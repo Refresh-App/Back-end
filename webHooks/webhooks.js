@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { spawn } = require("child_process");
-let crypto = require('crypto');
+let crypto = require("crypto");
 const gitSecret = process.env.GIT_SECRET;
 
 router.post("/github", (req, res) => {
@@ -13,7 +13,7 @@ router.post("/github", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
-    const gitPull = spawn("git", ["pull"])
+    const gitPull = spawn("git", ["pull"]);
 
     gitPull.stdout.on("data", data => {
       console.log(`Server Updated: ${data}`);
@@ -26,8 +26,11 @@ router.post("/github", (req, res) => {
     gitPull.stdout.on("close", data => {
       res.status(200).json({ thankyou: "github" }); //End the stream on close
     });
-  } else { //Bad Signature
-    res.status(401).json({message:'Not today Spider-Man',error:'Bad Signature'});
+  } else {
+    //Bad Signature
+    res
+      .status(401)
+      .json({ message: "Not today Spider-Man", error: "Bad Signature" });
   }
 });
 
