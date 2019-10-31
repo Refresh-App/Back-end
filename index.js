@@ -1,6 +1,7 @@
 //Bring In the Primary Middle-Ware
 const express = require('express')
 const helmet = require('helmet')
+const chalk = require('chalk')
 require('dotenv').config()
 
 //Set Globalse
@@ -24,5 +25,5 @@ server.use('/',(req,res)=>{
     res.status(200).json({message:"Welcome All To Refresh Proto 1"});
 })
 server.listen(PORT,()=>{
-    console.log(`\n** It's Alive... on port: ${PORT} **\n`)
+    console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`)
 })
