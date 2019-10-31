@@ -17,7 +17,7 @@ router.post("/github", (req, res) => {
 
     gitPull.stdout.on("data", data => {
       console.log(`Server Updated: ${data}`);
-    });
+    })
 
     gitPull.stdout.on("error", data => {
       console.log(`Something Wen't Wrong ${data}`); //Was there an error?
