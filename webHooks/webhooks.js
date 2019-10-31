@@ -63,6 +63,6 @@ router.post("/client", (req, res) => {
   } else{
     res.status(401).json({message:'Not Today Spider-Man',error:'Your Secret is Wrong'});
   }
-});
+})
 
 module.exports = router;
