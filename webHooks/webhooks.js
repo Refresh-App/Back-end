@@ -16,11 +16,11 @@ router.post("/github", (req, res) => {
     const gitPull = spawn("git", ["pull"]);
 
     gitPull.stdout.on("data", data => {
-      //console.log(`Server Updated: ${data}`);
+      console.log(`Server Updated: ${data}`);
     });
 
     gitPull.stdout.on("error", data => {
-      //console.log(`Something Wen't Wrong ${data}`); //Was there an error?
+      console.log(`Something Wen't Wrong ${data}`); //Was there an error?
     });
 
     gitPull.stdout.on("close", data => {
