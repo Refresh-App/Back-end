@@ -8,7 +8,7 @@ router.post("/github", (req, res) => {
     "sha1=" +
     crypto
       .createHmac("sha1", gitSecret)
-      .update(chunk.toString())
+      .update(req.body.toString())
       .digest("hex");
 
   //The Secret Matches
