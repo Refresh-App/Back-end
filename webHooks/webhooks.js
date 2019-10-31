@@ -28,6 +28,7 @@ router.post("/github", (req, res) => {
     })
   } else {
     //Bad Signature
+    console.log(req.data)
     res
       .status(401)
       .json({ message: "Not today Spider-Man", error: "Bad Signature" });
