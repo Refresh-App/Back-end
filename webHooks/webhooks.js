@@ -17,7 +17,7 @@ router.post("/github", (req, res) => {
 
     gitPull.stdout.on("close", data => {
       res.status(200).json({ thankyou: "github" }); //End the stream on close
-    });
+    })
   
 }); 
 
