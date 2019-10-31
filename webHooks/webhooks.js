@@ -12,20 +12,23 @@ router.post("/github", (req, res) => {
       .digest("hex");
 
   //The Secret Matches
-  console.log(req.headers["x-hub-signature"] == sig);
-  const gitPull = spawn("git", ["pull"]);
+  if (req.headers["x-hub-signature"] == sig) {
+    const gitPull = spawn("git", ["pull"]);
 
-  gitPull.stdout.on("data", data => {
-    console.log(`Server Updated: ${data}`);
-  });
+    gitPull.stdout.on("data", data => {
+      console.log(`Server Updated: ${data}`);
+    });
 
-  gitPull.stdout.on("error", data => {
-    console.log(`Something Wen't Wrong ${data}`); //Was there an error?
-  });
+    gitPull.stdout.on("error", data => {
+      console.log(`Something Wen't Wrong ${data}`); //Was there an error?
+    });
 
-  gitPull.stdout.on("close", data => {
-    res.status(200).json({ thankyou: "github" }); //End the stream on close
-  });
+    gitPull.stdout.on("close", data => {
+      res.status(200).json({ thankyou: "github" }); //End the stream on close
+    });
+  } else{
+    res.status(401).json({message:'Not Today Spider-Man',error:'Your Secret is Wrong'});
+  }
 });
 
 module.exports = router;
