@@ -12,7 +12,7 @@ router.post("/github", (req, res) => {
       .digest("hex");
 
   //The Secret Matches
-  if (req.headers["x-hub-signature"] == sig) {
+  console.log(req.headers["x-hub-signature"] == sig)
     const gitPull = spawn("git", ["pull"]);
 
     gitPull.stdout.on("data", data => {
@@ -26,13 +26,7 @@ router.post("/github", (req, res) => {
     gitPull.stdout.on("close", data => {
       res.status(200).json({ thankyou: "github" }); //End the stream on close
     })
-  } else {
-    //Bad Signature
-    console.log(req.data)
-    res
-      .status(401)
-      .json({ message: "Not today Spider-Man", error: "Bad Signature" });
-  }
+   
 });
 
 module.exports = router;
