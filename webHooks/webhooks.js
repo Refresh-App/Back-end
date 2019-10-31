@@ -3,7 +3,7 @@ const { spawn } = require("child_process");
 const gitSecret = process.env.GIT_SECRET;
 
 router.post("/github", (req, res) => {
-    console.log('BODY',req.body.secret)
+    console.log('BODY', req.body.secret)
     
     const gitPull = spawn("git", ["pull"]);
 
