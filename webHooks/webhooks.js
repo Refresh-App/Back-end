@@ -13,7 +13,7 @@ router.post("/github", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
-    const gitPull = spawn("git", ["pull"]);
+    const gitPull = spawn("git", ["pull"])
 
     gitPull.stdout.on("data", data => {
       console.log(`Server Updated: ${data}`);
