@@ -4,6 +4,7 @@ let crypto = require("crypto");
 const gitSecret = process.env.GIT_SECRET;
 
 router.post("/github", (req, res) => {
+  //Verifiy Signature
   const sig =
     "sha1=" +
     crypto
@@ -13,6 +14,7 @@ router.post("/github", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
+
     const gitPull = spawn("git", ["pull"]);
 
     gitPull.stdout.on("data", data => {

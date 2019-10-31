@@ -20,6 +20,9 @@ server.use(express.json())
 //Implement Routes
 server.use('/webhooks',webHooks)
 
+server.use('/',(req,res)=>{
+    res.status(200).json({message:"Welcome All To Refresh Proto 1"});
+})
 server.listen(PORT,()=>{
     console.log(`\n** It's Alive... on port: ${PORT} **\n`)
 })
