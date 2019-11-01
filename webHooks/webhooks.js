@@ -46,16 +46,9 @@ router.post("/client", (req, res) => {
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
     
-    const updateClient = exec("sh ./webHooks/updateClient.sh");
-
-    updateClient.stdout.on("error", data => {
-      return res.status(200).json({ thankyou: "github" });
-    });
-
-    updateClient.stdout.on("close", data => {
-      return res.status(200).json({ thankyou: "github" }); //End the stream on close
-    });
-
+    exec("sh ./webHooks/updateClient.sh");
+    //No Debugging Here
+    return res.status(200).json({ thankyou: "github" });
   } else {
     res
       .status(401)
