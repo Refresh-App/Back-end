@@ -45,21 +45,12 @@ router.post("/client", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
+    spawn("cd", ["/home/apidevnow/domains/client.apidevnow.com/public_html"])
+    spawn("git", ["pull"]);
+    spawn("npm", ["i"]);
 
-    const gitPull = spawn("git", ["pull"]);
-    const runNpm = spawn("npm", ["i"]);
-
-    gitPull.stdout.on("data", data => {
-      console.log(`Server Updated: ${data}`);
-    });
-
-    gitPull.stdout.on("error", data => {
-      console.log(`Something Wen't Wrong ${data}`); //Was there an error?
-    });
-
-    gitPull.stdout.on("close", data => {
-      res.status(200).json({ thankyou: "github" }); //End the stream on close
-    })
+    res.status(200).json({ thankyou: "github" }); //End the stream on close
+ 
   } else{
     res.status(401).json({message:'Not Today Spider-Man',error:'Your Secret is Wrong'});
   }
