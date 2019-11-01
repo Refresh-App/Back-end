@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { spawn } = require("child_process");
+const { spawn, exec } = require("child_process");
 let crypto = require("crypto");
 const gitSecret = process.env.GIT_SECRET;
 
@@ -14,7 +14,6 @@ router.post("/github", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
-
     const gitPull = spawn("git", ["pull"]);
     const runNpm = spawn("npm", ["i"]);
     gitPull.stdout.on("data", data => {
@@ -27,12 +26,13 @@ router.post("/github", (req, res) => {
 
     gitPull.stdout.on("close", data => {
       res.status(200).json({ thankyou: "github" }); //End the stream on close
-    })
-  } else{
-    res.status(401).json({message:'Not Today Spider-Man',error:'Your Secret is Wrong'});
+    });
+  } else {
+    res
+      .status(401)
+      .json({ message: "Not Today Spider-Man", error: "Your Secret is Wrong" });
   }
 });
-
 
 router.post("/client", (req, res) => {
   //Verifiy Signature
@@ -45,15 +45,22 @@ router.post("/client", (req, res) => {
 
   //The Secret Matches
   if (req.headers["x-hub-signature"] == sig) {
-    spawn("cd", ["/home/apidevnow/domains/client.apidevnow.com/public_html"])
-    spawn("git", ["pull"]);
-    spawn("npm", ["i"]);
+    
+    const updateClient = exec("sh ./webHooks/updateClient.sh");
 
-    res.status(200).json({ thankyou: "github" }); //End the stream on close
- 
-  } else{
-    res.status(401).json({message:'Not Today Spider-Man',error:'Your Secret is Wrong'});
+    updateClient.stdout.on("error", data => {
+      return res.status(200).json({ thankyou: "github" });
+    });
+
+    updateClient.stdout.on("close", data => {
+      return res.status(200).json({ thankyou: "github" }); //End the stream on close
+    });
+
+  } else {
+    res
+      .status(401)
+      .json({ message: "Not Today Spider-Man", error: "Your Secret is Wrong" });
   }
-})
+});
 
 module.exports = router;
