@@ -1,5 +1,5 @@
 const authRouter = require("express").Router();
-const axios = require('axios')
+const axios = require("axios");
 const jwt = require(_jwt);
 
 //database Model
@@ -15,20 +15,25 @@ const validateLogin = require("./validation/login");
 //GitHub
 const gitID = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
-
+const gitRedirect = "https://apidevnow.com/gitAuth";
 //Maybe one Wan'ts to register with Github, thats nice
 authRouter.get("/gitAuth", (req, res) => {
-  console.log('req',req)
-  console.log('gitId',gitID)
-  const requestToken = req.query.code;
-  console.log('reqToken',requestToken)
-  axios.post(
- `https://github.com/login/oauth/access_token?client_id=${gitID}&client_secret=${gitSecret}&code=${requestToken}&scope=user%20public_repo%20email`,
-  ).then(response => {
-    console.log('response',response)
-    const accessToken = response.data.access_token;
-    res.redirect(`/welcome.html?access_token=${accessToken}`);
-  });
+  passport.use(
+    new GitHubStrategy(
+      {
+        clientID: gitId,
+        clientSecret: gitSecret,
+        callbackURL: gitRedirect
+      },
+      function(accessToken, refreshToken, profile, cb) {
+        User.findOrCreate({ githubId: profile.id }, function(err, user) {
+          console.log("error", err, "User", user);
+          console.log(cb(err, user));
+          res.status(200).json({ message: "test complete" });
+        });
+      }
+    )
+  );
 });
 
 //Register ->Requires{username:'',password:''}
