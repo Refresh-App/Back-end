@@ -1,6 +1,8 @@
 const authRouter = require('express').Router()
 const jwt = require(_jwt)
 
+//database Model
+const dbModel = require('./authModel')
 //Encryption Authentication
 const bcrypt = require('bcrypt')
 const HashFactor = parseInt(process.env.HASH) || 10
@@ -10,7 +12,7 @@ const validateNewUser = require('./validation/register')
 const validateLogin = require('./validation/login')
 
 //Register ->Requires{username:'',password:''}
-router.post("/register", validateNewUser, (req, res) => {
+authRouter.post("/register", validateNewUser, (req, res) => {
     const user = req.body;
     const hash = bcrypt.hashSync(user.password, HashFactor);
     user.password = hash;
@@ -24,13 +26,14 @@ router.post("/register", validateNewUser, (req, res) => {
           token_type: "Basic ",
           token: jwt.genToken(newUser)
         };
+        console.log('payload',payload)
         res.status(201).send({ message: "Welcome da the Club Yo!", ...payload });
       })
-      .catch(err => res.status(400).json({ errors: [err] }));
+      .catch(err => res.status(400).json({ errors: err }));
   });
   
   //Register ->Requires{username:'',password:''}
-  router.post("/login", validateLogin, (req, res) => {
+  authRouter.post("/login", validateLogin, (req, res) => {
     const { password } = req.body;
     const user = req.user;
     if (user && bcrypt.compareSync(password, user.password)) {

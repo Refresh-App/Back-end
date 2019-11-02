@@ -9,6 +9,7 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
+
   const payload = {
     tokenType: "Basic ",
     ...user

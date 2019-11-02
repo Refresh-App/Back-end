@@ -4,8 +4,9 @@ module.exports = async (req, res, next) => {
 
   function validateNewUser(user) {
     //Check For Keys
-    !user.username && errors.push({ username: "required" });
-    !user.password && errors.push({ password: "required" });
+    const u = user
+    !u.username && errors.push({ username: "required" });
+    !u.password && errors.push({ password: "required" });
 
     //Validate Char Length
     Object.keys(user).map(x => {

@@ -12,7 +12,7 @@ global._jwt = path.resolve(__dirname + '/api/auth/preAuth/jwt')
 
 //Bring in the Routes.. Always after Globals
 const webHooks = require('./webHooks/webhooks')
-
+const primaryRouter = require('./api/server')
 //Configure the server
 const server = express()
 server.use(helmet());
@@ -20,6 +20,7 @@ server.use(express.json())
 
 //Implement Routes
 server.use('/webhooks',webHooks)
+server.use('/',primaryRouter)
 
 server.use('/',(req,res)=>{
     res.status(200).json({message:"Welcome All To Refresh Proto 1"});
