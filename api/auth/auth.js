@@ -14,7 +14,7 @@ const validateNewUser = require("./validation/register");
 const validateLogin = require("./validation/login");
 
 //GitHub
-const gitID = process.env.GITHUB_CLIENT_ID;
+const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuth";
 //Maybe one Wan'ts to register with Github, thats nice
