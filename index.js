@@ -13,9 +13,11 @@ global._jwt = path.resolve(__dirname + '/api/auth/preAuth/jwt')
 //Bring in the Routes.. Always after Globals
 const webHooks = require('./webHooks/webhooks')
 const primaryRouter = require('./api/server')
+const cors = require('cors')
 //Configure the server
 const server = express()
 server.use(helmet());
+server.use(cors())
 server.use(express.json())
 
 //Implement Routes
