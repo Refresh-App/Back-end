@@ -14,6 +14,10 @@ global._jwt = path.resolve(__dirname + '/api/auth/preAuth/jwt')
 const webHooks = require('./webHooks/webhooks')
 const primaryRouter = require('./api/server')
 const cors = require('cors')
+
+//Initialize Passport for Auth Stratagies
+const passport = require('passport');
+
 //Configure the server
 const server = express()
 server.use(helmet());
