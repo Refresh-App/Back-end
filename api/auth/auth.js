@@ -1,7 +1,8 @@
 const authRouter = require("express").Router();
 const axios = require("axios");
+//Authenication Stratagies
 const jwt = require(_jwt);
-
+const GitHubStrategy = require('passport-github').Strategy;
 //database Model
 const dbModel = require("./authModel");
 //Encryption Authentication
