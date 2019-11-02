@@ -17,7 +17,7 @@ const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 
 //Maybe one Wan'ts to register with Github, thats nice
-app.get("/gitAuth", (req, res) => {
+authRouter.get("/gitAuth", (req, res) => {
   console.log('req',req)
   const requestToken = req.query.code;
   axios.post(
