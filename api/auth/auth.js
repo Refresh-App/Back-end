@@ -21,10 +21,11 @@ authRouter.get("/gitAuth", (req, res) => {
   console.log('req',req)
   console.log('gitId',gitID)
   const requestToken = req.query.code;
+  console.log('reqToken',requestToken)
   axios.post(
  `https://github.com/login/oauth/access_token?client_id=${gitID}&client_secret=${gitSecret}&code=${requestToken}`,
   ).then(response => {
-    console.log('response')
+    console.log('response',response)
     const accessToken = response.data.access_token;
     res.redirect(`/welcome.html?access_token=${accessToken}`);
   });
