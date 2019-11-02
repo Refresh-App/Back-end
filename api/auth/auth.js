@@ -23,7 +23,7 @@ authRouter.get("/gitAuth", (req, res) => {
   const requestToken = req.query.code;
   console.log('reqToken',requestToken)
   axios.post(
- `https://github.com/login/oauth/access_token?client_id=${gitID}&client_secret=${gitSecret}&code=${requestToken}`,
+ `https://github.com/login/oauth/access_token?client_id=${gitID}&client_secret=${gitSecret}&code=${requestToken}&scope=user%20public_repo%20email`,
   ).then(response => {
     console.log('response',response)
     const accessToken = response.data.access_token;
