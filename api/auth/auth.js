@@ -17,23 +17,34 @@ const gitID = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuth";
 //Maybe one Wan'ts to register with Github, thats nice
+authRouter.use(
+  new GitHubStrategy(
+    {
+      clientID: gitId,
+      clientSecret: gitSecret,
+      callbackURL: gitRedirect
+    },
+    function(accessToken, refreshToken, profile, cb) {
+      User.findOrCreate({ githubId: profile.id }, function(err, user) {
+        console.log("error", err, "User", user);
+        console.log(cb(err, user));
+        res.status(200).json({ message: "test complete" });
+      });
+    }
+  )
+);
+
 authRouter.get("/gitAuth", (req, res) => {
-  passport.use(
-    new GitHubStrategy(
-      {
-        clientID: gitId,
-        clientSecret: gitSecret,
-        callbackURL: gitRedirect
-      },
-      function(accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ githubId: profile.id }, function(err, user) {
-          console.log("error", err, "User", user);
-          console.log(cb(err, user));
-          res.status(200).json({ message: "test complete" });
-        });
-      }
-    )
-  );
+  passport.authenticate('github')
+});
+
+authRouter.get("/checkGitAuth", (req, res) => {
+  console.log('here',req)
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.status(200).json({message:"success",...res});
+  }
 });
 
 //Register ->Requires{username:'',password:''}
