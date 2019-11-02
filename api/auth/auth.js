@@ -13,12 +13,13 @@ const validateNewUser = require("./validation/register");
 const validateLogin = require("./validation/login");
 
 //GitHub
-const gitId = process.env.GITHUB_CLIENT_ID;
+const gitID = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 
 //Maybe one Wan'ts to register with Github, thats nice
 authRouter.get("/gitAuth", (req, res) => {
   console.log('req',req)
+  console.log('gitId',gitID)
   const requestToken = req.query.code;
   axios.post(
  `https://github.com/login/oauth/access_token?client_id=${gitID}&client_secret=${gitSecret}&code=${requestToken}`,
