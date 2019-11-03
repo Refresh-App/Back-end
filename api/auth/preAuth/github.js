@@ -16,6 +16,9 @@ passport.use(
       callbackURL: gitRedirect
     },
     function(accessToken, refreshToken, profile, cb) {
+        console.log('Profile',  profile)
+        console.log('accessToken',  accessToken)
+        console.log('refreshToken',  refreshToken)
       User.findOrCreate({ githubId: profile.id }, function(err, user) {
         return cb(err, user);
       });
