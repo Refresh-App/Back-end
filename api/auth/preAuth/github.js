@@ -1,7 +1,7 @@
 const gitHubRouter = require("express").Router();
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
-res.send('')
+
 //Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
