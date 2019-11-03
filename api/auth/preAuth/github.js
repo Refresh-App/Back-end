@@ -7,6 +7,8 @@ const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuth";
 
+//Define User Object
+const User = {}
 //Declare Strategy Vars
 passport.use(
   new GitHubStrategy(
