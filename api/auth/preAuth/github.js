@@ -11,7 +11,7 @@ const gitRedirect = "https://apidevnow.com/gitAuthReturn";
 const User = require('../authModel')
 
 //Declare Strategy Vars
-passport.use(
+passport.use('/',(req,res,next) =>{
   new GitHubStrategy(
     {
       clientID: gitId,
@@ -21,12 +21,12 @@ passport.use(
     function(accessToken, refreshToken, profile, done) {
       User.addUser({ username: profile.id,password:'3334d44' })
       .then(res=>{
-        console.log('user',res)
-        done(res);
+        req.user = profile
+       next()
       }).catch(err => done(err))  
     }
   )
-);
+  });
 
 gitHubRouter.get('/gitAuth', passport.authenticate('github'));
 
