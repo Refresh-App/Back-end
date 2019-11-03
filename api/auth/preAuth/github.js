@@ -5,7 +5,7 @@ const GitHubStrategy = require("passport-github").Strategy;
 //Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
-const gitRedirect = "https://apidevnow.com/gitAuth";
+const gitRedirect = "https://apidevnow.com/gitAuthReturn";
 
 //Bring in the userModel
 const User = require('../authModel')
