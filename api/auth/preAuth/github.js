@@ -28,7 +28,7 @@ passport.use(
 );
 
 const auth =  passport.authenticate("github", { failureRedirect: "/login" })
-gitHubRouter.get( "/", (req,res)=>{
+gitHubRouter.get( "/", auth,(req,res)=>{
     // Successful authentication, redirect home.
     res.send("Working");
   }
