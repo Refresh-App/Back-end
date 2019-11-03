@@ -32,7 +32,7 @@ passport.use(
 
 gitHubRouter.get('/gitAuth', passport.authenticate('github'));
 
-gitHubRouter.get('/gitAuth', 
+gitHubRouter.get('/gitAuthReturn', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req',req)
