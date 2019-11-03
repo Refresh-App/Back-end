@@ -29,9 +29,9 @@ passport.use(
   )
 );
 
-app.get('/gitAuth', passport.authenticate('github'));
+gitHubRouter.get('/gitAuth', passport.authenticate('github'));
 
-app.get('/gitAuth', 
+gitHubRouter.get('/gitAuth', 
   passport.authenticate('github', { failureRedirect: '/login' }),
   function(req, res) {
     console.log('req',req)
