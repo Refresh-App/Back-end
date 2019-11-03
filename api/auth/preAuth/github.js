@@ -1,13 +1,13 @@
 const gitHubRouter = require("express").Router();
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
-
+res.send('')
 //Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuth";
 
-//Define User Object
+//Bring in the userModel
 const User = require('../authModel')
 
 //Declare Strategy Vars
@@ -31,13 +31,15 @@ passport.use(
 );
 
 
-gitHubRouter.get( "/",
-  passport.authenticate("github", { failureRedirect: "/login" }),
-  function(req, res) {
-      console.log('req',req)
-    // Successful authentication, redirect home.
-    res.send("Working");
-  }
-);
+gitHubRouter.get('/gitAuth',(req,res,next)=>{
+  passport.authenticate("github",(err,user,info)=>{
+    console.log('user', user, err, info )
+    res.json(user,err,info)
+  })
+ 
+});
 
 module.exports = gitHubRouter;
+
+
+
