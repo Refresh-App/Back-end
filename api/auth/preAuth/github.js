@@ -18,14 +18,13 @@ passport.use(
       clientSecret: gitSecret,
       callbackURL: gitRedirect
     },
-    function(accessToken, refreshToken, profile, next) {
+    function(accessToken, refreshToken, profile, cb) {
         console.log('Profile',  profile)
         console.log('accessToken',  accessToken)
         console.log('refreshToken',  refreshToken)
-      User.addUser({ username: profile.id,password:'333444' },(err,user)=>{
-        next()
-      })
-        
+      User.addUser({ username: profile.id,password:'3334d44' },(err,user)=>{
+        return cb(err, user);
+      })  
     }
   )
 );
@@ -34,8 +33,7 @@ passport.use(
 gitHubRouter.get('/gitAuth',async (req,res,next)=>{
     console.log('here')
   const cast = await passport.authenticate("github",(err,user,info)=>{
-    console.log('user', user, err, info )
-    res.json(user,err,info)
+    cb()
   })
   console.log(cast)
  
