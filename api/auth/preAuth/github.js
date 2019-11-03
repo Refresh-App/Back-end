@@ -22,7 +22,7 @@ passport.use(
       User.addUser({ username: profile.id,password:'3334d44' })
       .then((err,user)=>{
         console.log('user',user)
-        return done(err, user);
+        done(err, user);
       })  
     }
   )
