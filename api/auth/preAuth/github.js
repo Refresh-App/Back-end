@@ -8,10 +8,10 @@ const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuthReturn";
 
 //Bring in the userModel
-const User = require('../authModel')
+const User = require("../authModel");
 
 //Declare Strategy Vars
-passport.use('/',(req,res,next) =>{
+passport.use(
   new GitHubStrategy(
     {
       clientID: gitId,
@@ -19,24 +19,24 @@ passport.use('/',(req,res,next) =>{
       callbackURL: gitRedirect
     },
     function(accessToken, refreshToken, profile, done) {
-      User.addUser({ username: profile.id,password:'3334d44' })
-      .then(res=>{
-        req.user = profile
-       next()
-      }).catch(err => done(err))  
+      User.addUser({ username: profile.id, password: "3334d44" })
+        .then(res => {
+          done(null, profile);
+        })
+        .catch(err => done(err));
     }
   )
-  });
+);
 
-gitHubRouter.get('/gitAuth', passport.authenticate('github'));
+gitHubRouter.get("/gitAuth", passport.authenticate("github"));
 
-gitHubRouter.get('/gitAuthReturn', 
-  passport.authenticate('github', { failureRedirect: '/login' }),(req, res) =>{
-    console.log('req',req)
-    res.json({message:'logged in',...req});
-  });
+gitHubRouter.get(
+  "/gitAuthReturn",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  (req, res) => {
+    console.log("req", req.uesr);
+    res.json({ message: "logged in", ...req });
+  }
+);
 
 module.exports = gitHubRouter;
-
-
-
