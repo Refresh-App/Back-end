@@ -32,6 +32,7 @@ passport.use(
 
 
 gitHubRouter.get('/gitAuth',(req,res,next)=>{
+    console.log('here')
   passport.authenticate("github",(err,user,info)=>{
     console.log('user', user, err, info )
     res.json(user,err,info)
