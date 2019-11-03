@@ -1,7 +1,8 @@
 const gitHubRouter = require("express").Router();
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
-//Config Secrets
+
+//Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
 const gitRedirect = "https://apidevnow.com/gitAuth";
@@ -10,9 +11,9 @@ const gitRedirect = "https://apidevnow.com/gitAuth";
 passport.use(
   new GitHubStrategy(
     {
-      clientID: "f248d7c7a624257a6899",
-      clientSecret: "65122c45ab73f1f1620de07459e818a658f3b862",
-      callbackURL: "https://apidevnow.com/gitAuth"
+      clientID: gitId,
+      clientSecret: gitSecret,
+      callbackURL: gitRedirect
     },
     function(accessToken, refreshToken, profile, cb) {
       User.findOrCreate({ githubId: profile.id }, function(err, user) {
