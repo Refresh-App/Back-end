@@ -11,8 +11,7 @@ const gitRedirect = "https://apidevnow.com/gitAuthReturn";
 const User = require("../authModel");
 
 //InitialIze PassPort
-passport.initialize()
-
+gitHubRouter.use(passport.initialize());
 //Declare Strategy Vars
 passport.use(
   new GitHubStrategy(
