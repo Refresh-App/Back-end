@@ -11,7 +11,7 @@ const gitRedirect = "https://apidevnow.com/gitAuth";
 const User = require('../authModel')
 
 //Declare Strategy Vars
-passport.use((req,res,next) =>{
+passport.use('/',(req,res,next) =>{
   new GitHubStrategy(
     {
       clientID: gitId,
