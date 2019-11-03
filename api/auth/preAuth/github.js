@@ -24,7 +24,7 @@ passport.use(
       console.log(accessToken)
       User.addUser({ username: profile.id, password: "3334d44" })
         .then(res => {
-          done(null,accessToken);
+          done(null,profile,accessToken);
         })
         .catch(err => done(err));
     }
