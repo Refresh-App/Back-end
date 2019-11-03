@@ -36,7 +36,7 @@ gitHubRouter.get(
   "/gitAuthReturn",
   passport.authenticate("github", { failureRedirect: "/login",session: false }),
   (req, res) => {
-    console.log("req", req.uesr);
+    console.log("req", req);
     res.json({ message: "logged in", ...req });
   }
 );
