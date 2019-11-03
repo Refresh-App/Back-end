@@ -2,7 +2,7 @@ const authRouter = require("express").Router();
 const axios = require("axios");
 //Authenication Stratagies
 const jwt = require(_jwt);
-const GitHubStrategy = require('passport-github').Strategy;
+const gitAuth = require('./preAuth/github')
 //database Model
 const dbModel = require("./authModel");
 //Encryption Authentication
@@ -13,40 +13,8 @@ const HashFactor = parseInt(process.env.HASH) || 10;
 const validateNewUser = require("./validation/register");
 const validateLogin = require("./validation/login");
 
-//GitHub
-const gitId = process.env.GITHUB_CLIENT_ID;
-const gitSecret = process.env.GITHUB_CLIENT_SECRET;
-const gitRedirect = "https://apidevnow.com/gitAuth";
-//Maybe one Wan'ts to register with Github, thats nice
-authRouter.use(
-  new GitHubStrategy(
-    {
-      clientID: gitId,
-      clientSecret: gitSecret,
-      callbackURL: gitRedirect
-    },
-    function(accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ githubId: profile.id }, function(err, user) {
-        console.log("error", err, "User", user);
-        console.log(cb(err, user));
-        res.status(200).json({ message: "test complete" });
-      });
-    }
-  )
-);
-
-authRouter.get("/gitAuth", (req, res) => {
-  passport.authenticate('github')
-});
-
-authRouter.get("/checkGitAuth", (req, res) => {
-  console.log('here',req)
-  passport.authenticate('github', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.status(200).json({message:"success",...res});
-  }
-});
+//Maybe one Wan'ts to register with Github, //gitAuth
+authRouter.use('/gitAuth')
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
@@ -56,7 +24,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
   dbModel
     .addUser(user)
     .then(newUser => {
-      //Just to Besure
+      //Just to Be sure
       delete newUser.password;
       payload = {
         ...newUser,
@@ -87,5 +55,7 @@ authRouter.post("/login", validateLogin, (req, res) => {
       .json({ errors: [{ password: "Invalid Username Or Password" }] });
   }
 });
+
+
 
 module.exports = authRouter;
