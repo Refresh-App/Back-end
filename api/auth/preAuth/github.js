@@ -23,7 +23,7 @@ passport.use(
       .then(res=>{
         console.log('user',res)
         done(res);
-      })  
+      }).catch(err => done(err))  
     }
   )
 );
@@ -33,7 +33,7 @@ gitHubRouter.get('/gitAuth', passport.authenticate('github'));
 gitHubRouter.get('/gitAuthReturn', 
   passport.authenticate('github', { failureRedirect: '/login' }),(req, res) =>{
     console.log('req',req)
-    res.json(req);
+    res.json({message:'logged in',...req});
   });
 
 module.exports = gitHubRouter;
