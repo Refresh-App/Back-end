@@ -26,7 +26,6 @@ passport.use(
   )
 );
 
-gitHubRouter.get("/", passport.authenticate("github"));
 
 gitHubRouter.get(
   "/",
