@@ -29,15 +29,14 @@ passport.use(
   )
 );
 
+app.get('/gitAuth', passport.authenticate('github'));
 
-gitHubRouter.get('/gitAuth',async (req,res,next)=>{
-    console.log('here')
-  const cast = await passport.authenticate("github",(err,user,info)=>{
-    cb()
-  })
-  console.log(cast)
- 
-});
+app.get('/gitAuth', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log('req',req)
+    res.json(req);
+  });
 
 module.exports = gitHubRouter;
 
