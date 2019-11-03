@@ -24,7 +24,7 @@ passport.use(
       console.log(accessToken)
       User.addUser({ username: profile.id, password: "3334d44" })
         .then(res => {
-          done(null, profile,accessToken);
+          done(null,accessToken);
         })
         .catch(err => done(err));
     }
@@ -37,7 +37,7 @@ gitHubRouter.get(
   "/gitAuthReturn",
   passport.authenticate("github", { failureRedirect: "/login",session: false }),
   (req, res) => {
-    console.log("req", req);
+    console.log("req", req.user);
     res.json({ message: "logged in", ...req.user });
   }
 );
