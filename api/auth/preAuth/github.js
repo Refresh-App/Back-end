@@ -18,11 +18,12 @@ passport.use(
     {
       clientID: gitId,
       clientSecret: gitSecret,
-      callbackURL: gitRedirect
+      callbackURL: gitRedirect,
+      session: false
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken)
-      User.addUser({ username: profile.id, password: "3334d44" })
+      User.addUser({ username: profile.username, password: "3334d44" })
         .then(res => {
           done(null,profile,accessToken);
         })
@@ -35,7 +36,7 @@ gitHubRouter.get("/gitAuth", passport.authenticate("github"));
 
 gitHubRouter.get(
   "/gitAuthReturn",
-  passport.authenticate("github", { failureRedirect: "/login",session: false }),
+  passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     console.log("req", req.user);
     res.json({ message: "logged in", ...req.user });
