@@ -18,12 +18,12 @@ passport.use(
       clientSecret: gitSecret,
       callbackURL: gitRedirect
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, next) {
         console.log('Profile',  profile)
         console.log('accessToken',  accessToken)
         console.log('refreshToken',  refreshToken)
       User.addUser({ username: profile.id,password:'333444' },(err,user)=>{
-        cb(err,user)
+        next()
       })
         
     }
