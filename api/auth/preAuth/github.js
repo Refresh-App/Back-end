@@ -21,9 +21,10 @@ passport.use(
       callbackURL: gitRedirect
     },
     function(accessToken, refreshToken, profile, done) {
+      console.log(accessToken)
       User.addUser({ username: profile.id, password: "3334d44" })
         .then(res => {
-          done(null, profile,accessToken);
+          done(null, profile);
         })
         .catch(err => done(err));
     }
