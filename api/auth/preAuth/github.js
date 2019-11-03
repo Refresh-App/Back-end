@@ -22,10 +22,10 @@ passport.use(
   )
 );
 
-gitHubRouter.get("/gitAuth", passport.authenticate("github"));
+gitHubRouter.get("/", passport.authenticate("github"));
 
 gitHubRouter.get(
-  "/auth/github/callback",
+  "/",
   passport.authenticate("github", { failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirect home.
