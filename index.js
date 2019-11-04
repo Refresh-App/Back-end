@@ -20,7 +20,7 @@ const passport = require('passport');
 
 //Configure the server
 const server = express()
-server.use(helmet());
+server.use(helmet()); https://client.apidevnow.com
 server.use(cors())
 server.use(express.json())
 

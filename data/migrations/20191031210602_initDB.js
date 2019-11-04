@@ -7,7 +7,6 @@ exports.up = function(knex) {
       .notNullable();
     col
       .string("password", 128)
-      .unique()
       .notNullable();
   });
 };
