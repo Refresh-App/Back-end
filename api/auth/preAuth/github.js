@@ -23,11 +23,7 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken)
-      User.addUser({ username: profile.username, password: "3334d44" })
-        .then(res => {
           done(null,profile,accessToken);
-        })
-        .catch(err => done(err));
     }
   )
 );
