@@ -28,10 +28,11 @@ passport.use(
   )
 );
 
+//GitLogin URL
 gitHubRouter.get("/gitAuth", passport.authenticate("github"));
 
-gitHubRouter.get(
-  "/gitAuthReturn",
+//Github Call Back
+gitHubRouter.get("/gitAuthReturn",
   passport.authenticate("github", { failureRedirect: "/login",session:false }),
   (req, res) => {
     console.log("req", req.user);
