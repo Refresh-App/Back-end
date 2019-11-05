@@ -40,7 +40,7 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
-    const setToken = "<script>(function(){localStorage.setItem('yo','working')})()</script>"
+    const setToken = "<script>(function(){localStorage.setItem('yo','working')})(),alert('hello')</script>"
     res.set('Content-Type', 'text/html');
     res.send(new Buffer(setToken))
   });
