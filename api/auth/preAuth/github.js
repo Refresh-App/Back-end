@@ -42,9 +42,9 @@ gitHubRouter.get(
     console.log("req", req.user);
     res.type(".js");
     res.send(
-      `(function(){
+      (function(){
         localStorage.setItem('yo','working')
-      })()`
+      })()
     );
   }
 );
