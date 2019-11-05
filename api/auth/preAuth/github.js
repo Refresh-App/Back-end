@@ -45,13 +45,6 @@ gitHubRouter.get(
     <h1>Thank You ${req.user.displayName}
     <script>
       (function(){
-        const  body = document.querySelector('body')
-        const input = document.createElement("input");
-          input.setAttribute("type", "hidden");
-          input.setAttribute("name", "name_you_want");
-          input.setAttribute("value", "value_you_want");
-        body.append(input)
-        localStorage.setItem('yo','working')
         window.opener.postMessage('${JSON.stringify(req.user)}', "*");
         window.close()
       })()
