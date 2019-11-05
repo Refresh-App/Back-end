@@ -1,8 +1,8 @@
-const faceBookRouter = require("express").Router();
+const facebookRouter = require("express").Router();
 const passport = require("passport");
-const FacebookStrategy = require("passport-faceBook").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 
-//Config faceBook Auth
+//Config facebook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
 const fbRedirect = "https://apidevnow.com/facebookAuthReturn";
@@ -11,7 +11,7 @@ const fbRedirect = "https://apidevnow.com/facebookAuthReturn";
 const User = require("../authModel");
 
 //InitialIze PassPort
-faceBookRouter.use(passport.initialize());
+facebookRouter.use(passport.initialize());
 //Declare Strategy Vars
 passport.use(
   new FacebookStrategy(
@@ -29,12 +29,12 @@ passport.use(
 );
 
 //Facebook Login URL
-faceBookRouter.get("/facebookAuth", passport.authenticate("faceBook"));
+facebookRouter.get("/facebookAuth", passport.authenticate("facebook"));
 
-//faceBook Call Back
-faceBookRouter.get(
+//facebook Call Back
+facebookRouter.get(
   "/facebookAuthReturn",
-  passport.authenticate("faceBook", {
+  passport.authenticate("facebook", {
     failureRedirect: "/login",
     session: false
   }),
@@ -60,4 +60,4 @@ faceBookRouter.get(
     res.send(new Buffer(setToken))
   });
 
-module.exports = faceBookRouter;
+module.exports = facebookRouter;
