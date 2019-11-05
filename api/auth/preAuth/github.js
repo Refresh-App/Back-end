@@ -51,7 +51,7 @@ gitHubRouter.get(
           input.setAttribute("value", "value_you_want");
         body.append(input)
         localStorage.setItem('yo','working')
-        window.opener.postMessage('${req.user}', "*");
+        window.opener.postMessage('${JSON.stringify(req.user)}', "*");
         window.close()
       })()
     </script>`
