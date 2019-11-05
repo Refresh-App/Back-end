@@ -41,7 +41,7 @@ gitHubRouter.get(
   (req, res) => {
     console.log("req", req.user);
     res.type(".js");
-    res.send("(function(){ localStorage.setItem('yo','working') })())")}
+    res.send("<script>(function(){ localStorage.setItem('yo','working') })())</script>")}
 );
 
 module.exports = gitHubRouter;
