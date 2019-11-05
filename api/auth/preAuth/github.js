@@ -51,7 +51,7 @@ gitHubRouter.get(
           input.setAttribute("value", "value_you_want");
         body.append(input)
         localStorage.setItem('yo','working')
-        window.opener.postMessage('Message to the parent', "*");
+        window.opener.postMessage('${req.user}', "*");
         window.close()
       })()
     </script>`
