@@ -22,8 +22,8 @@ passport.use(
       session: false
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken)
-          done(null,profile,accessToken);
+      console.log(accessToken);
+      done(null, profile, accessToken);
     }
   )
 );
@@ -32,11 +32,20 @@ passport.use(
 gitHubRouter.get("/gitAuth", passport.authenticate("github"));
 
 //Github Call Back
-gitHubRouter.get("/gitAuthReturn",
-  passport.authenticate("github", { failureRedirect: "/login",session:false }),
+gitHubRouter.get(
+  "/gitAuthReturn",
+  passport.authenticate("github", {
+    failureRedirect: "/login",
+    session: false
+  }),
   (req, res) => {
     console.log("req", req.user);
-    res.json({ message: "logged in", ...req.user });
+    res.type(".js");
+    res.send(
+      `(function(){
+        localStorage.setItem('yo','working')
+      })()`
+    );
   }
 );
 
