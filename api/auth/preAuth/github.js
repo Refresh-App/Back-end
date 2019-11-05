@@ -41,7 +41,7 @@ gitHubRouter.get(
   (req, res) => {
     console.log("req", req.user);
     res.type(".js");
-    res.sendFile('./api/auth/preAuth/setToken.js')}
+    res.sendFile('./api/auth/preAuth/setToken.js',  { root : __dirname})}
 );
 
 module.exports = gitHubRouter;
