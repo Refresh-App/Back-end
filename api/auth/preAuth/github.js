@@ -43,7 +43,7 @@ gitHubRouter.get(
     const setToken = `
     <h1>Thank You ${req.user.displayName}
     <script>
-      const  body = document.getElementsByTagName('body')
+      const  body = document.querySelector('body')
       const input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute("name", "name_you_want");
