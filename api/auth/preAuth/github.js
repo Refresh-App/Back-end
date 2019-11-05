@@ -41,7 +41,7 @@ gitHubRouter.get(
   (req, res) => {
     console.log("req", req.user);
     res.type(".js");
-    res.sendFile("<script>(function(){ localStorage.setItem('yo','working') })())</script>")}
+    res.sendFile('./api/auth/preAuth/setToken.js')}
 );
 
 module.exports = gitHubRouter;
