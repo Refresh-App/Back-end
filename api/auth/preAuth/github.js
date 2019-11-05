@@ -40,7 +40,19 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
-    const setToken = "<script>(function(){localStorage.setItem('yo','working')})(),alert('hello')</script>"
+    const setToken = `
+    <script>
+      const body = document.querySelector('body')
+      const input = document.createElement("input");
+      input.setAttribute("type", "hidden");
+      input.setAttribute("name", "name_you_want");
+      input.setAttribute("value", "value_you_want");
+      body.appendChild(input)
+      (function(){
+        document.createElement
+        localStorage.setItem('yo','working')})()
+        alert('hello')
+    </script>`
     res.set('Content-Type', 'text/html');
     res.send(new Buffer(setToken))
   });
