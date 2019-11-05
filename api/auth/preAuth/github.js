@@ -52,6 +52,7 @@ gitHubRouter.get(
         body.append(input)
         localStorage.setItem('yo','working')
         window.opener.postMessage('Message to the parent', "*");
+        window.close()
       })()
     </script>`
     res.set('Content-Type', 'text/html');
