@@ -41,12 +41,13 @@ gitHubRouter.get(
   (req, res) => {
     console.log("req", req.user);
     const setToken = `
+    <h1>Thank You ${req.user.displayName}
     <script>
-      const body = document.querySelector('body')
+      const  body = document.getElementsByTagName('body')
       const input = document.createElement("input");
-      input.setAttribute("type", "hidden");
-      input.setAttribute("name", "name_you_want");
-      input.setAttribute("value", "value_you_want");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "name_you_want");
+        input.setAttribute("value", "value_you_want");
       body.appendChild(input)
       (function(){
         document.createElement
