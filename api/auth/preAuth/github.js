@@ -48,11 +48,10 @@ gitHubRouter.get(
         input.setAttribute("type", "hidden");
         input.setAttribute("name", "name_you_want");
         input.setAttribute("value", "value_you_want");
-      body.appendChild(input)
+      body.append(input)
       (function(){
         document.createElement
         localStorage.setItem('yo','working')})()
-        alert('hello')
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(new Buffer(setToken))
