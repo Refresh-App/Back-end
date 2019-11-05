@@ -40,7 +40,7 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
-    res.type(".js");
+
     res.sendFile('/setToken.html',  { root : __dirname})}
 );
 
