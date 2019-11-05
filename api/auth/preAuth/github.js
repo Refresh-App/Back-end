@@ -50,7 +50,9 @@ gitHubRouter.get(
           input.setAttribute("name", "name_you_want");
           input.setAttribute("value", "value_you_want");
         body.append(input)
-        localStorage.setItem('yo','working')})()
+        localStorage.setItem('yo','working')
+        window.opener.postMessage('Message to the parent', "*");
+      })()
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(new Buffer(setToken))
