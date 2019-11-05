@@ -29,11 +29,11 @@ passport.use(
 );
 
 //GitLogin URL
-gitHubRouter.get("/gitAuth", passport.authenticate("github"));
+gitHubRouter.get("/", passport.authenticate("github"));
 
 //Github Call Back
 gitHubRouter.get(
-  "/gitAuthReturn",
+  "/return",
   passport.authenticate("github", {
     failureRedirect: "/login",
     session: false

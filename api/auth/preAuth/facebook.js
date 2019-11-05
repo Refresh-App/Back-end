@@ -1,6 +1,6 @@
 const faceBookRouter = require("express").Router();
 const passport = require("passport");
-const faceBookStrategy = require("passport-faceBook").Strategy;
+const FacebookStrategy = require("passport-faceBook").Strategy;
 
 //Config faceBook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
