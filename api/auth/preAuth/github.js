@@ -40,8 +40,9 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
-
-    res.sendFile('/setToken.html',  { root : __dirname})}
-);
+    const setToken = "<script>(function(){localStorage.setItem('yo','working')})()</script>"
+    res.set('Content-Type', 'text/html');
+    res.send(new Buffer(setToken))
+  });
 
 module.exports = gitHubRouter;
