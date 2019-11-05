@@ -40,6 +40,7 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
+    delete req.user._raw
     const setToken = `
     <h1>Thank You ${req.user.displayName}
     <script>
