@@ -39,7 +39,6 @@ gitHubRouter.get(
   passport.authenticate("github", {
     failureRedirect: "/login",
     session: false,
-    scope: ['email']
   }),
   (req, res) => {
     console.log("req", req.user);
