@@ -1,11 +1,11 @@
 const gitHubRouter = require("express").Router();
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
-
+const jwt = require(_jwt)
 //Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
 const gitSecret = process.env.GITHUB_CLIENT_SECRET;
-const gitRedirect = "https://apidevnow.com/gitAuth/return";
+const gitRedirect = "https://refresh-yo.herokuapp.com/gitAuth/return";
 
 //Bring in the userModel
 const User = require("../authModel");
