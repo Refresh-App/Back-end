@@ -41,6 +41,7 @@ gitHubRouter.get(
   (req, res) => {
     console.log("req", req.user);
     delete req.user._raw
+    delete req.user.bio
     const setToken = `
     <h1>Thank You ${req.user.displayName}
     <script>
