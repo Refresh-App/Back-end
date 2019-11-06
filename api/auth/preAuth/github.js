@@ -43,7 +43,7 @@ gitHubRouter.get(
     delete req.user._raw
     delete req.user._json.bio
     const setToken = `
-    <h1>Thank You ${req.user.displayName}
+    <h1>Thank You ${req.user.displayName} </h1>
     <script>
       (function(){
         window.opener.postMessage('${JSON.stringify(req.user)}', "*");
