@@ -29,11 +29,10 @@ passport.use(
 );
 
 //Facebook Login URL
-facebookRouter.get("/facebookAuth", passport.authenticate("facebook"));
+facebookRouter.get("/", passport.authenticate("facebook"));
 
 //facebook Call Back
-facebookRouter.get(
-  "/facebookAuth/return",
+facebookRouter.get("/return",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
     session: false

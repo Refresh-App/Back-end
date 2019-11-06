@@ -3,6 +3,7 @@ const axios = require("axios");
 //Authenication Stratagies
 const jwt = require(_jwt);
 const gitAuth = require('./preAuth/github')
+const facebookAuth = require('./preAuth/facebook')
 //database Model
 const dbModel = require("./authModel");
 //Encryption Authentication
@@ -15,6 +16,8 @@ const validateLogin = require("./validation/login");
 
 //Maybe one Wan'ts to register with Github, //gitAuth
 authRouter.use('/gitAuth',gitAuth)
+
+authRouter.use('/facebookAuth',gitAuth)
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
