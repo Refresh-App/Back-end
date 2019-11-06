@@ -45,7 +45,7 @@ gitHubRouter.get(
     <h1>Thank You ${req.user.displayName}
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify(req.user)}', "*");
+        window.opener.postMessage('${req.user}', "*");
         window.close()
       })()
     </script>`
