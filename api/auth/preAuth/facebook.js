@@ -19,7 +19,6 @@ passport.use(
       clientID: fbId,
       clientSecret: fbSecret,
       callbackURL: fbRedirect,
-      passReqToCallback : true,
       profileFields: ['id', 'displayName', 'name', 'photos', 'email']
       
     },
