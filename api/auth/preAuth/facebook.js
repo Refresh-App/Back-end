@@ -30,11 +30,11 @@ passport.use(
 );
 
 //Facebook Login URL
-facebookRouter.get("/", passport.authenticate("facebook",{authType: 'reauthenticate', scope: ['user_friends', 'manage_pages','email', 'public_profile']}));
+facebookRouter.get("/", passport.authenticate("facebook",{scope: ['email', 'public_profile']}));
 
 //facebook Call Back
 facebookRouter.get("/return",
-  passport.authenticate("facebook", {authType: 'reauthenticate', scope: ['user_friends', 'manage_pages','email', 'public_profile'],session:false }),
+  passport.authenticate("facebook", {authType: 'reauthenticate', scope: ['email', 'public_profile'],session:false }),
   (req, res) => {
     console.log("req", req.user);
     delete req.user._raw
