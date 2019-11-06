@@ -34,9 +34,10 @@ facebookRouter.get("/", passport.authenticate("facebook"));
 //facebook Call Back
 facebookRouter.get("/return",
   passport.authenticate("facebook", {
+    scope: ['email'],
     failureRedirect: "/login",
-    session: false,
-    scope: ['email']
+    session: false
+    
   }),
   (req, res) => {
     console.log("req", req.user);
