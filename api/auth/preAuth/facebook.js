@@ -19,8 +19,8 @@ passport.use(
       clientID: fbId,
       clientSecret: fbSecret,
       callbackURL: fbRedirect,
-      profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
-      enableProof: true
+      profileFields: ['id', 'displayName', 'name', 'photos', 'email']
+      
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
@@ -34,7 +34,7 @@ facebookRouter.get("/", passport.authenticate("facebook"));
 
 //facebook Call Back
 facebookRouter.get("/return",
-  passport.authenticate("facebook", { scope: ['email'],session:false }),
+  passport.authenticate("facebook", { scope: ['email', 'public_profile'],session:false }),
   (req, res) => {
     console.log("req", req.user);
     delete req.user._raw
