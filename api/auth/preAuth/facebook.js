@@ -36,7 +36,8 @@ facebookRouter.get("/", passport.authenticate("facebook"));
 facebookRouter.get("/return",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
-    session: false
+    session: false,
+    scope: ['email']
   }),
   (req, res) => {
     console.log("req", req.user);
