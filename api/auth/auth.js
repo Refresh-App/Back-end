@@ -3,7 +3,7 @@ const axios = require("axios");
 //Authenication Stratagies
 const jwt = require(_jwt);
 const gitAuth = require('./preAuth/github')
-const facebookAuth = require('./preAuth/facebook')
+//const facebookAuth = require('./preAuth/facebook')
 //database Model
 const dbModel = require("./authModel");
 //Encryption Authentication
