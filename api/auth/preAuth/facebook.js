@@ -30,7 +30,7 @@ passport.use(
 );
 
 //Facebook Login URL
-facebookRouter.get("/", passport.authenticate("facebook"));
+facebookRouter.get("/", passport.authenticate("facebook",{authType: 'reauthenticate', scope: ['user_friends', 'manage_pages','email', 'public_profile']}));
 
 //facebook Call Back
 facebookRouter.get("/return",
