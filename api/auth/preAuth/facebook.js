@@ -33,7 +33,7 @@ facebookRouter.get("/facebookAuth", passport.authenticate("facebook"));
 
 //facebook Call Back
 facebookRouter.get(
-  "/facebookAuthReturn",
+  "/facebookAuth/return",
   passport.authenticate("facebook", {
     failureRedirect: "/login",
     session: false
