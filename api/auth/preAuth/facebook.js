@@ -53,4 +53,8 @@ facebookRouter.get("/return",
     res.send(new Buffer(setToken))
   });
 
+  facebookRouter.get("/terms", (req,res) =>{
+    res.status(200).json({message:'You agree to protect your data to the best of our known abilities, but, will be held liable for nothing'});
+  });
+
 module.exports = facebookRouter;
