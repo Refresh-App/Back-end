@@ -33,10 +33,7 @@ facebookRouter.get("/", passport.authenticate("facebook"));
 
 //facebook Call Back
 facebookRouter.get("/return",
-  passport.authenticate("facebook", {
-    scope: ['email'],
-    session: false
-  }),
+  passport.authenticate("facebook", { scope: 'email' }),
   (req, res) => {
     console.log("req", req.user);
     delete req.user._raw
