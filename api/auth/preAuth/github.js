@@ -21,6 +21,7 @@ passport.use(
       clientSecret: gitSecret,
       callbackURL: gitRedirect,
       session: false,
+      scope: ['email']
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
@@ -37,7 +38,8 @@ gitHubRouter.get(
   "/return",
   passport.authenticate("github", {
     failureRedirect: "/login",
-    session: false
+    session: false,
+    scope: ['email']
   }),
   (req, res) => {
     console.log("req", req.user);
