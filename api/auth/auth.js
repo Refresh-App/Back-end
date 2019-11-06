@@ -18,7 +18,7 @@ const validateLogin = require("./validation/login");
 
 //Maybe one Wan'ts to register with Github, Facebook, or, Google
 authRouter.use("/gitAuth", gitAuth);
-authRouter.use("/facebookAuth", gitAuth);
+authRouter.use("/facebookAuth", facebookAuth);
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
