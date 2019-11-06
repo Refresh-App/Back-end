@@ -19,7 +19,7 @@ passport.use(
       clientID: fbId,
       clientSecret: fbSecret,
       callbackURL: fbRedirect,
-      profileFields: ['id', 'displayName', 'name', 'photos', 'emails'],
+      profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
