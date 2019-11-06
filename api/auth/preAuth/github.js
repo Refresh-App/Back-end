@@ -12,6 +12,7 @@ const User = require("../authModel");
 
 //InitialIze PassPort
 gitHubRouter.use(passport.initialize());
+
 //Declare Strategy Vars
 passport.use(
   new GitHubStrategy(
@@ -19,7 +20,7 @@ passport.use(
       clientID: gitId,
       clientSecret: gitSecret,
       callbackURL: gitRedirect,
-      session: false
+      session: false,
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
@@ -40,10 +41,10 @@ gitHubRouter.get(
   }),
   (req, res) => {
     console.log("req", req.user);
+    //...So, not sure how to deal with escaping very well. R-J
     delete req.user._raw
     delete req.user._json.bio
     const setToken = `
-    <h1>Thank You ${req.user.displayName} </h1>
     <script>
       (function(){
         window.opener.postMessage('${JSON.stringify(req.user)}', "*");

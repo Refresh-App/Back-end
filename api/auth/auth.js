@@ -1,9 +1,11 @@
 const authRouter = require("express").Router();
 const axios = require("axios");
+
 //Authenication Stratagies
 const jwt = require(_jwt);
-const gitAuth = require('./preAuth/github')
-//const facebookAuth = require('./preAuth/facebook')
+const gitAuth = require("./preAuth/github");
+const facebookAuth = require("./preAuth/facebook");
+
 //database Model
 const dbModel = require("./authModel");
 //Encryption Authentication
@@ -14,10 +16,9 @@ const HashFactor = parseInt(process.env.HASH) || 10;
 const validateNewUser = require("./validation/register");
 const validateLogin = require("./validation/login");
 
-//Maybe one Wan'ts to register with Github, gitAuth
-authRouter.use('/gitAuth',gitAuth)
-
-//authRouter.use('/facebookAuth',gitAuth)
+//Maybe one Wan'ts to register with Github, Facebook, or, Google
+authRouter.use("/gitAuth", gitAuth);
+authRouter.use("/facebookAuth", gitAuth);
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
@@ -58,7 +59,5 @@ authRouter.post("/login", validateLogin, (req, res) => {
       .json({ errors: [{ password: "Invalid Username Or Password" }] });
   }
 });
-
-
 
 module.exports = authRouter;

@@ -5,7 +5,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 //Config facebook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
-const fbRedirect = "https://apidevnow.com/facebookAuthReturn";
+const fbRedirect = "https://apidevnow.com/facebookAuth/return";
 
 //Bring in the userModel
 const User = require("../authModel");
@@ -44,13 +44,6 @@ facebookRouter.get("/return",
     <h1>Thank You ${req.user.displayName}
     <script>
       (function(){
-        const  body = document.querySelector('body')
-        const input = document.createElement("input");
-          input.setAttribute("type", "hidden");
-          input.setAttribute("name", "name_you_want");
-          input.setAttribute("value", "value_you_want");
-        body.append(input)
-        localStorage.setItem('yo','working')
         window.opener.postMessage('${JSON.stringify(req.user)}', "*");
         window.close()
       })()
