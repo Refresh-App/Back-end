@@ -1,7 +1,7 @@
 const db = require(_dbConfig);
 module.exports = {
   addUser,
-  findByName,
+  findByEmail,
   findById,
 };
 
@@ -16,7 +16,7 @@ function findById(id) {
     .first()
 }
 
-function findByName(username) {
+function findByEmail(username) {
   return db(table + " as u")
     .select("u.id", "u.username", "u.password" )
     .where({ username })

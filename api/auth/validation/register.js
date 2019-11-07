@@ -5,12 +5,12 @@ module.exports = async (req, res, next) => {
   function validateNewUser(user) {
     //Check For Keys
     const u = user
-    !u.username && errors.push({ username: "required" });
+    !u.email && errors.push({ email: "required" });
     !u.password && errors.push({ password: "required" });
 
     //Validate Char Length
     Object.keys(user).map(x => {
-      if (x === "password" || x === "username") {
+      if (x === "password" || x === "email") {
         const key = u[x].length;
 
         //Verifiy Length Min
@@ -33,9 +33,9 @@ module.exports = async (req, res, next) => {
   //Does the user exist?
   if (!errors.length) {
     await dbModel
-      .findByName(req.body.username)
+      .findByEmail(req.body.email)
       .then(
-        user => user && errors.push({ username: "Username Already Exists" })
+        user => user && errors.push({ email: "Username Already Exists" })
       );
   }
   //OK We are probably safe to move on
