@@ -47,7 +47,6 @@ facebookRouter.get("/return",
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(Buffer.from(setToken))
-    res.end()
   });
 
   facebookRouter.get("/terms", (req,res) =>{
