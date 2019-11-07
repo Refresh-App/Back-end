@@ -48,7 +48,7 @@ gitHubRouter.get(
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify(req.user)}');
+        window.opener.postMessage('${JSON.stringify(req.user)}',"*");
         window.close()
       })()
     </script>`
