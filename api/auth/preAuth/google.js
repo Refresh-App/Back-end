@@ -39,7 +39,6 @@ googleRouter.get(
   passport.authenticate("google", {
     failureRedirect: "/login",
     session: false,
-    scope: ['email']
   }),
   (req, res) => {
     console.log("req", req.user);
