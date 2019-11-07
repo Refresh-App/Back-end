@@ -16,10 +16,10 @@ function findById(id) {
     .first()
 }
 
-function findByEmail(username) {
+function findByEmail(email) {
   return db(table + " as u")
-    .select("u.id", "u.username", "u.password" )
-    .where({ username })
+    .select("u.id", "u.email", "u.password" )
+    .where({ email })
     .first();
 }
 
