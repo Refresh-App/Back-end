@@ -23,7 +23,6 @@ authRouter.use("/googleAuth",googleAuth)
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
-  console.log('user',user)
   const user = req.body;
   const hash = bcrypt.hashSync(user.password, HashFactor);
   user.password = hash;
