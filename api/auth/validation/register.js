@@ -3,7 +3,7 @@ module.exports = async (req, res, next) => {
   const errors = [];
 
   function validateNewUser(user) {
-    console.log(user)
+    
     //Check For Keys
     const u = user
     !u.email && errors.push({ email: "required" });
@@ -39,7 +39,7 @@ module.exports = async (req, res, next) => {
         user => user && errors.push({ email: "Username Already Exists" })
       );
   }
-
+  console.log('reqdsfsdfds',req.body)
   console.log(errors)
   //OK We are probably safe to move on
   errors.length < 1 ? next() : res.status(401).json({ errors: errors });
