@@ -18,7 +18,7 @@ passport.use(
   new GoogleStrategy(
     {
       clientID: googleId,
-      consumerSecret: googleSecret,
+      clientSecret: googleSecret,
       callbackURL: googleRedirect,
       session: false
     },
