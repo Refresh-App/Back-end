@@ -41,5 +41,5 @@ module.exports = async (req, res, next) => {
   }
   
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(200).json({ errors });
+  errors.length < 1 ? next() : res.status(400).json({ errors });
 };
