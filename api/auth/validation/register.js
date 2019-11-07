@@ -36,10 +36,10 @@ module.exports = async (req, res, next) => {
     await dbModel
       .findByEmail(req.body.email)
       .then(
-        user => user && errors.push({ email: "Username Already Exists" })
+        user => user && errors.push({ email: "User Already Exists" })
       );
   }
   
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(401).json({ errors });
+  errors.length < 1 ? next() : res.status(200).json({ errors });
 };
