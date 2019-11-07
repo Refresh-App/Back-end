@@ -27,9 +27,9 @@ module.exports = async (req, res, next) => {
         if (x === "email") {
           //Cats got your keyboard... When in dbout, RegEx it out
           !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(u[x]) &&
-            errors.push({ error: "Unexpected Eamil Address" });
+            errors.push({[x]: "Unexpected Eamil Address" });
         }
-        
+
       } else {
         //Why except dirty keys
         errors.push({ error: `Unexpected key: [${x}] provide` });
