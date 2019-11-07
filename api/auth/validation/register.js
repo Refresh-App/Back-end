@@ -39,8 +39,7 @@ module.exports = async (req, res, next) => {
         user => user && errors.push({ email: "Username Already Exists" })
       );
   }
-  console.log('reqdsfsdfds',req.body)
-  console.log(errors)
+  
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(401).json({ errors: errors });
+  errors.length < 1 ? next() : res.status(401).json({ errors });
 };
