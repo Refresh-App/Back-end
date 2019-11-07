@@ -23,6 +23,13 @@ module.exports = async (req, res, next) => {
         if (key > 50 && x) {
           errors.push({ [x]: "Must be a maximum of 50 chars" });
         }
+
+        if (x === "email") {
+          //Cats got your keyboard... When in dbout, RegEx it out
+          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(u[x]) &&
+            errors.push({ error: "Unexpected Eamil Address" });
+        }
+        
       } else {
         //Why except dirty keys
         errors.push({ error: `Unexpected key: [${x}] provide` });
