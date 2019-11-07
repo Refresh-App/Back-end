@@ -1,6 +1,6 @@
 const googleRouter = require("express").Router();
 const passport = require("passport");
-const GitHubStrategy = require("passport-google-oauth").Strategy;
+const GoogleStrategy = require("passport-google-oauth").Strategy;
 const jwt = require(_jwt)
 //Config GitHub Auth
 const googleId = process.env.GOOGLE_CLIENT_ID;
@@ -17,10 +17,11 @@ googleRouter.use(passport.initialize());
 passport.use(
   new GoogleStrategy(
     {
-      clientID: googleId,
-      clientSecret: googleSecret,
+      consumerKey: googleId,
+      consumerSecret: googleSecret,
       callbackURL: googleRedirect,
-      session: false
+      session: false,
+      
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
