@@ -29,7 +29,7 @@ server.use('/webhooks',webHooks)
 server.use('/',primaryRouter)
 
 server.use('/',(req,res)=>{
-    res.status(200).json({message:"Welcome All To Refresh Proto 1t"});
+    res.status(200).json({message:"Welcome JB To Refresh Proto 1t"});
 })
 server.listen(PORT,()=>{
     console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`)
