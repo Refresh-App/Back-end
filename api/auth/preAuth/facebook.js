@@ -45,7 +45,7 @@ facebookRouter.get("/return",
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify({...req.user._json,token})}', "*");
+        window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
       })()
     </script>`
