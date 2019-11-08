@@ -24,10 +24,10 @@ passport.use(
       enableProof: true
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOrCreateByEmail(profile.emails[0].value)
+      User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile,user:{...res}}, accessToken)
+        done(null, {...profile._json,user:{...res}}, accessToken)
       })
     }
   )
@@ -41,7 +41,7 @@ facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
     console.log("req");
-    const token = jwt.genToken(req.user.emails[0].value)
+    const token = jwt.genToken(req.user.email.value)
     const setToken = `
     <script>
       (function(){
