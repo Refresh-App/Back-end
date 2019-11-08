@@ -24,7 +24,7 @@ exports.up = function(knex) {
       tbl
         .integer("question_id")
         .references("id")
-        .inTable("question")
+        .inTable("questions")
         .unsigned();
       tbl
         .integer("answer_id")
