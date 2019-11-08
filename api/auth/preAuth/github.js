@@ -27,7 +27,10 @@ passport.use(
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
       User.findOrCreateByEmail(profile.emails[0].value)
-      .then(done(null, profile, accessToken))
+      .then(res =>{
+        console.log('addedOrReturnedYo')
+        done(null, profile, accessToken)
+      })
       
     }
   )
