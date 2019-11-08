@@ -38,7 +38,7 @@ async function findOrCreateByEmail(profile) {
     }else{
       addUser(
         {email,
-          password: bcrypt.hashSync(Date.now() + email, HashFactor)
+          password: bcrypt.hashSync(Date.now() + email, 14)
         })
       .then(res =>{
         const id = res.id
