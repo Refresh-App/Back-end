@@ -1,4 +1,4 @@
-const db = require(dbConfig)
+const db = require(_dbConfig)
 module.exports={
     findAll,
     findByUserId,
