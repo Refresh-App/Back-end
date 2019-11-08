@@ -29,7 +29,7 @@ async function findOrCreateByEmail(email) {
     .where({ email })
     .first();
     if(user){
-      return user
+      return {...user,message:"Welcome Back"}
     }else{
       addUser({email,password:'afiou89273928309w8e093279868723hrf876t32ur874r9y87'})
     }
