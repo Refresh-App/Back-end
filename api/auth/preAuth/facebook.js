@@ -23,7 +23,7 @@ passport.use(
       profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
       enableProof: true
     },
-    function(accessToken, refreshToken, profile, done) {
+    function(accessToken, refreshToken, profile, done) {  
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
