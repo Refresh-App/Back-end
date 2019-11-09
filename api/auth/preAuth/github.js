@@ -26,7 +26,7 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOrCreateByEmail(profile._json)
-      .then(res =>done(null, {...profile._json,user:{...res}}, accessToken))
+      .then(res =>done(null, {...res}, accessToken))
     }
   )
 );
