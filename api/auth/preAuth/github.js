@@ -53,7 +53,7 @@ gitHubRouter.get(
     <script id="${id}">
         window.opener.postMessage('${JSON.stringify({...req.user,token})}',"*");
         window.close()
-        document.getElementById("${id}").remove();
+        document.getElementById(${id}).remove();
     </script>`
     res.set('Content-Type', 'text/html');
     res.end(Buffer.from(setToken))
