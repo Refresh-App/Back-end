@@ -28,7 +28,7 @@ passport.use(
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log('res',res)
-        done(null, res, accessToken)
+        done(null, {...res,...profile}, accessToken)
       })
     }
   )
