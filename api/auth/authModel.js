@@ -30,6 +30,7 @@ async function findOrCreateByEmail(profile) {
   
   const email=profile.email
   const user = await db(table)
+    .select('email','id')
     .where({ email })
     .first();
     if(user){
