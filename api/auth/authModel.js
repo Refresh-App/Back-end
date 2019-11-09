@@ -42,8 +42,7 @@ async function findOrCreateByEmail(profile) {
         })
       .then(res =>{
         delete res.password
-        profile = {...profile,res}
-        console.log('ID',profile)
+        profile = {...profile,user:{...res}}
       })
     }
 }
