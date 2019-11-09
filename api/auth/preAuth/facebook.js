@@ -43,13 +43,11 @@ facebookRouter.get("/return",
     const token = jwt.genToken(req.user.email.value)
     const setToken = `
     <script>
-      (function(){
         window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
-      })()
     </script>`
     res.set('Content-Type', 'text/html');
-    res.send(Buffer.from(setToken))
+    res.send(setToken)
   })
 
   facebookRouter.get("/terms", (req,res) =>{
