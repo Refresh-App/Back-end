@@ -25,7 +25,6 @@ passport.use(
       scope: ['email']
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}

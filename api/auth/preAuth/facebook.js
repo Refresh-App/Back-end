@@ -40,7 +40,6 @@ facebookRouter.get("/", passport.authenticate("facebook",{scope: ['email', 'publ
 facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
-    console.log("req");
     const token = jwt.genToken(req.user.email.value)
     const setToken = `
     <script>

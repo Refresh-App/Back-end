@@ -53,7 +53,6 @@ googleRouter.get(
     session: false
   }),
   (req, res) => {
-    console.log("req");
     //...So, not sure how to deal with escaping very well. R-J
     const token = jwt.genToken(req.user.email)
     const setToken = `
