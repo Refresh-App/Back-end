@@ -35,7 +35,7 @@ async function findOrCreateByEmail(profile) {
     if(user){
       return {...user,message:"Welcome Back"}
     }else{
-      addUser(
+      return addUser(
         {email,
           password: bcrypt.hashSync(Date.now() + email, 14)
         })
