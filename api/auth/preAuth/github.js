@@ -55,6 +55,7 @@ gitHubRouter.get(
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(Buffer.from(setToken))
+    res.end()
   });
 
 module.exports = gitHubRouter;
