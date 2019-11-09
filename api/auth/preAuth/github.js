@@ -26,7 +26,8 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       delete profile._raw
-      User.findOrCreateByEmail(profile._json)
+      const user ={email:profile.email,display_name:profile.displayName,bio:profile.bio}
+      User.findOrCreateByEmail(user)
       .then(res =>{
         console.log('res',res)
         done(null, {...res,...profile}, accessToken)

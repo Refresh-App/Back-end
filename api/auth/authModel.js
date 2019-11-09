@@ -26,23 +26,23 @@ function findByEmail(email) {
     .first();
 }
 
-async function findOrCreateByEmail(profile) {
-  
-  const email=profile.email
-  const user = await db(table)
+async function findOrCreateByEmail(user) {
+  console.log("kjsdfklUSER",user)
+  const email=user.email
+  const userExists = await db(table)
+    .select('id','email')
     .where({ email })
     .first();
-    if(user){
-      return {...user,...profile,message:"Welcome Back"}
+    if(userExists){
+      return {...userExists,...user,message:"Welcome Back"}
     }else{
       return addUser(
         {email,
           password: bcrypt.hashSync(Date.now() + email, 14)
         })
       .then(res =>{
-        delete res.password
-        profile = {...profile,user:{...res}}
-        return profile
+        user = {...userExists,user:{...res}}
+        return user
       })
     }
 }
