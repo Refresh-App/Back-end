@@ -24,6 +24,7 @@ passport.use(
       enableProof: true
     },
     function(accessToken, refreshToken, profile, done) {  
+      delete profile._raw
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
