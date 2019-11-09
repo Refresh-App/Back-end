@@ -13,7 +13,6 @@ module.exports = {
 const table = "users";
 
 function findById(id) {
-  console.log(id);
   return db(table)
     .select("*")
     .where({ id })
@@ -43,6 +42,7 @@ async function findOrCreateByEmail(profile) {
       .then(res =>{
         delete res.password
         profile = {...profile,user:{...res}}
+        return profile
       })
     }
 }
