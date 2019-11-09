@@ -41,7 +41,8 @@ async function findOrCreateByEmail(profile) {
           password: bcrypt.hashSync(Date.now() + email, 14)
         })
       .then(res =>{
-        console.log('newUser',res)
+        delete res.password
+        profile = {...profile,res}
         console.log('ID',profile)
       })
     }
