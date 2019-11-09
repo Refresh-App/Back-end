@@ -48,10 +48,12 @@ gitHubRouter.get(
     //...So, not sure how to deal with escaping very well. R-J
   
     const token = jwt.genToken(req.user.email)
+    const id = Date.now()
     const setToken = `
-    <script>
+    <script id="${id}">
         window.opener.postMessage('${JSON.stringify({...req.user,token})}',"*");
         window.close()
+        document.getElementById("${id}").remove();
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(Buffer.from(setToken))
