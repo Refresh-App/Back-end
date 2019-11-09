@@ -50,10 +50,10 @@ gitHubRouter.get(
     const token = jwt.genToken(req.user.email)
     const id = Date.now()
     const setToken = `
-    <script id="${id}">
+    <script id=yo>
         window.opener.postMessage('${JSON.stringify({...req.user,token})}',"*");
         window.close()
-        document.getElementById(${id}).remove();
+        document.getElementById('yo').remove();
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(setToken)
