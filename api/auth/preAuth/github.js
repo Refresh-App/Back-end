@@ -54,6 +54,7 @@ gitHubRouter.get(
         window.close()
         document.getElementById("yo").remove();
     </script>`
+    console.log('Token',setToken)
     res.set('Content-Type', 'text/html');
     res.send(setToken)
   });
