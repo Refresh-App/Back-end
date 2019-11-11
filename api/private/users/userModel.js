@@ -9,7 +9,7 @@ module.exports = {
   findByUsername
 };
 
-const table = 'user';
+const table = "user";
 function findAll() {
   return db(table);
 }
@@ -39,7 +39,7 @@ function remove(id) {
 function editById(id, update) {
   return db(table)
     .where({ id })
-    .update(update, '*');
+    .update(update, "*");
 }
 function register(obj) {
   return db(table)
