@@ -25,7 +25,6 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) { 
       profile = profileScrubber(profile)
-      delete profile._raw
       User.findOrCreateByEmail(profile)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}

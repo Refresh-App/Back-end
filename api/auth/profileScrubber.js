@@ -4,6 +4,7 @@ const addProp = (prop, value) =>{
     cleanProfile[prop] = value
 }
 
+console.log(profile)
 //Email
 !!profile.emails[0].value && addProp('email',profile.emails[0].value)//facebook
 
