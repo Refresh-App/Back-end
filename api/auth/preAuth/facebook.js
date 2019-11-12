@@ -8,9 +8,9 @@ const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
 const fbRedirect = "https://apidevnow.com/facebookAuth/return";
 
-//Bring in the userModel
+//Bring in the userModel and Data Scrubber
 const User = require("../authModel");
-
+const profileScrubber = require('../profileScrubber')
 //InitialIze PassPort
 facebookRouter.use(passport.initialize());
 //Declare Strategy Vars
@@ -23,9 +23,10 @@ passport.use(
       profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
       enableProof: true
     },
-    function(accessToken, refreshToken, profile, done) {  
+    function(accessToken, refreshToken, profile, done) { 
+      profile = profileScrubber(profile)
       delete profile._raw
-      User.findOrCreateByEmail(profile._json)
+      User.findOrCreateByEmail(profile)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
         done(null, {...profile,user:{...res}}, accessToken)
