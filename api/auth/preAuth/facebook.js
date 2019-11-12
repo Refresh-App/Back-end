@@ -20,7 +20,7 @@ passport.use(
       clientID: fbId,
       clientSecret: fbSecret,
       callbackURL: fbRedirect,
-      profileFields: ['id', 'displayName', 'name', 'email','picture.type(large)'],
+      profileFields: ['id', 'displayName', 'name', 'email','picture.type(large)','gender'],
       enableProof: true
     },
     function(accessToken, refreshToken, profile, done) { 
