@@ -41,7 +41,8 @@ async function findOrCreateByEmail(profile) {
     const password = bcrypt.hashSync(Date.now() + email, 14);
     
     const newUser = await addUser({email,password})
-
+    
+    delete profile.email
     const newProfil = await Profile.createProfile({
       user_id:newUser.id,
       ...profile
