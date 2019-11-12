@@ -21,6 +21,6 @@ console.log(profile)
 
 //Profile Picture
 !!profile.photos[0].value && addProp('profile_pic')//facebook
-
+console.log('Clean Profile',cleanProfile)
 return cleanProfile
 }
