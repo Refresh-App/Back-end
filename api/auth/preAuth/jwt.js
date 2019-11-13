@@ -8,11 +8,12 @@ module.exports = {
 };
 
 //Creates a new JWT Token
-function genToken(email) {
+function genToken(email, role) {
 
   const payload = {
     tokenType: "Basic ",
-    email
+    email,
+    role
   };
 
   const options = {
