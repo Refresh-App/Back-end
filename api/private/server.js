@@ -2,7 +2,7 @@ const privateRouter = require("express").Router();
 const mailRouter = require("./mailer/sendMail");
 const adminRouter = require("./admin/admin");
 const userRouter = require("./users/users");
-const rolesRouter = require("./roles/roles")
+const rolesRouter = require("../public/roles/roles")
 
 
 const jwt = require(_jwt);
