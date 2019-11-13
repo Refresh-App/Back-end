@@ -7,7 +7,7 @@ exports.up = function(knex) {
     })
     .createTable("missions", col => {
       col.increments();
-      col.string("missiontitle").notNullable();
+      col.string("title").notNullable();
       col.string("description").notNullable();
       col.specificType("dotw", "INT[]").notNullable();
       col.dateTime("startDate");
