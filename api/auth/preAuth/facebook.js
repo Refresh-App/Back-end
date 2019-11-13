@@ -27,7 +27,7 @@ passport.use(
       profile = profileScrubber(profile)
       User.findOrCreateByEmail(profile)
       .then(res =>{
-        done(null, profile, accessToken)
+        done(null, res, accessToken)
       })
     }
   )
