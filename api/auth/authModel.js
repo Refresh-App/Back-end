@@ -46,10 +46,9 @@ async function findOrCreateByEmail(profile) {
     const newProfil = await Profile.createProfile({
       user_id:newUser.id,
       ...profile,
-      newUser:'Welcome New User'
     })
 
-    return {user:{...newUser},profile:{...newProfil}}
+    return {user:{...newUser},profile:{...newProfil,newUser:'Welcome New User'}}
   }
 }
 
