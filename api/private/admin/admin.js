@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(404).json({ message: "Problem getting the administrators", ...e });
     });
 });
 router.get("/:id", (req, res) => {
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(404).json({ message: "Unable to locate that administrator", ...e });
     });
 });
 
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(404).json({ message: "Problem creating that administrator", ...e });
     });
 });
 router.put("/:id", (req, res) => {
@@ -43,7 +43,7 @@ router.put("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(404).json({ message: "Problem editing the entry", ...e });
     });
 });
 router.delete("/:id", (req, res) => {
@@ -55,7 +55,7 @@ router.delete("/:id", (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(404).json({ message: "Administrator removed", ...e });
     });
 });
 module.exports = router;
