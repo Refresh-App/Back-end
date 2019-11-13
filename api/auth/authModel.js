@@ -48,7 +48,7 @@ async function findOrCreateByEmail(profile) {
       ...profile,
     })
 
-    delete newProfil.id
+    delete newProfile.id
     return {...newProfile,newUser:'Welcome New User'}
   }
 }
