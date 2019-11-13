@@ -35,7 +35,7 @@ async function findOrCreateByEmail(profile) {
 
   //If the user exist
   if (user) {
-    return { ...user, ...profile, message: "Welcome Back" };
+    return { ...profile, message: "Welcome Back" };
   } else {
     //Encrypt Password, consider doing off AccessToken
     const password = bcrypt.hashSync(Date.now() + email, 14);
@@ -48,7 +48,8 @@ async function findOrCreateByEmail(profile) {
       ...profile,
     })
 
-    return {user:{...newUser},profile:{...newProfil,newUser:'Welcome New User'}}
+    delete newProfil.id
+    return {newProfil,newUser:'Welcome New User'}
   }
 }
 
