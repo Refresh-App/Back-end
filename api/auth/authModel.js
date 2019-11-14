@@ -54,11 +54,9 @@ async function findOrCreateByEmail(profile) {
       user_id:newUser.id,
       ...profile,
     })
-    
-    const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
 
     delete newProfile.id
-    return {...newProfile, userRole:[...getUserRoles], newUser:'Welcome New User'}
+    return {...newProfile, userRole:[...userRole], newUser:'Welcome New User'}
   }
 }
 
