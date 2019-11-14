@@ -11,4 +11,5 @@ privateRouter.use("/mailerYo", mailRouter);
 privateRouter.use("/admin", jwt.chkRole(), adminRouter);
 privateRouter.use("/users", userRouter);
 privateRouter.use("/roles", rolesRouter);
+
 module.exports = privateRouter;
