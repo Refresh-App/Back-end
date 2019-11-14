@@ -10,12 +10,14 @@ module.exports = {
 };
 
 const table = "users";
-function findAll() {
-  return db(table + " as u ")
-  .join("user_roles as ur", "ur.role_id", "u.id")
-  .join("roles as rt", "ur.role_id", "ur.id")
-  .select("*")
-  // .where("u.id", "ur.user_id")
+const depTable = "roles"
+async function findAll() {
+  const users = await db(table);
+  const withRoles = users.map(async user => {
+    user.role
+
+  })
+ 
 }
 
 function findById(id) {
