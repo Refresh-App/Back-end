@@ -22,6 +22,8 @@ function genToken(email, role) {
 
   return jwt.sign(payload, secret, options);
 }
+
+//Checks Role
 function chkRole(role){
     return (req,res,next)=>{
         //Gets req.user from chkToken
