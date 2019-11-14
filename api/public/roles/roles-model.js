@@ -17,7 +17,6 @@ function findAllRolesById(userId) {
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
   .where("ur.user_id", userId)
-  .then(res => console.log(res))
 }
 
 function findAll(){
@@ -42,11 +41,8 @@ function editById(id, update) {
     .where({ id })
     .update(update, '*');
 }
-
-//Expects: {user_id,role_id}
 function addUserRole(obj) {
   return db(userRoles)
     .insert(obj,'id')
-    .then(findAllRolesById(obj.user_id));
 }
 
