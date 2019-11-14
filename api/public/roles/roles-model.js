@@ -43,7 +43,7 @@ function editById(id, update) {
 }
 function addUserRole(obj) {
   return db(userRoles)
-    .insert(obj)
+    .insert(obj,'id')
     .then(([id]) => findById(id));
 }
 
