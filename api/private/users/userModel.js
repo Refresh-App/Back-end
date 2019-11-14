@@ -9,9 +9,13 @@ module.exports = {
   findByUsername
 };
 
-const table = "user";
+const table = "users";
 function findAll() {
-  return db(table);
+  return db(table + " as u ")
+  .join("user_roles as ur", "ur.role_id", "u.id")
+  .join("roles as rt", "ur.role_id", "ur.id")
+  .select("*")
+  // .where("u.id", "ur.user_id")
 }
 
 function findById(id) {

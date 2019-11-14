@@ -16,6 +16,7 @@ exports.up = function(knex) {
         .unsigned()
         .references("id")
         .inTable("roles");
+    col.unique(["user_id", "role_id"]);
     });
 };
 
