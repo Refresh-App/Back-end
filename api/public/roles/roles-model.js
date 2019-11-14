@@ -12,7 +12,7 @@ module.exports = {
 const table = 'roles';
 const userRoles = "user_roles";
 function findAllRolesById(userId) {
- return db(depTable + " as ur ")
+ return db(userRoles + " as ur ")
   .select("rt.id")
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
