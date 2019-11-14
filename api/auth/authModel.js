@@ -37,7 +37,7 @@ async function findOrCreateByEmail(profile) {
   //If the user exist
   if (user) {
     const  getUserRoles = await rolesModel.findAllRolesById(user.id)
-    return { ...profile,userRoles:[...userRoles], message: "Welcome Back" };
+    return { ...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
   } else {
     //Encrypt Password, consider doing off AccessToken
     const password = bcrypt.hashSync(Date.now() + email, 14);
