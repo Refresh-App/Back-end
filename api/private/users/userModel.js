@@ -1,24 +1,15 @@
 const db = require(_dbConfig);
 
 module.exports = {
-  findAll,
+  // findAll,
   findById,
   remove,
   register,
   editById,
   findByUsername
 };
+const table = "users"
 
-const table = "users";
-const depTable = "roles"
-async function findAll() {
-  const users = await db(table);
-  const withRoles = users.map(async user => {
-    user.role
-
-  })
- 
-}
 
 function findById(id) {
   id = Array.isArray(id) ? [id] : id;
