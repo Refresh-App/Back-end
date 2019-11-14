@@ -1,17 +1,8 @@
 exports.up = function(knex) {
   return knex.schema
-    .createTable("categories", tbl => {
-      tbl.increments();
-      tbl.string("type", 255);
-    })
     .createTable("questions", tbl => {
       tbl.increments();
       tbl.string("question", 500);
-      tbl
-        .integer("category_id")
-        .references("id")
-        .inTable("categories")
-        .unsigned();
     })
     .createTable("answers", tbl => {
       tbl.increments();
@@ -48,6 +39,5 @@ exports.down = function(knex) {
     .dropTableIfExists("points")
     .dropTableIfExists("user_answers")
     .dropTableIfExists("answers")
-    .dropTableIfExists("questions")
-    .dropTableIfExists("categories");
+    .dropTableIfExists("questions");
 };
