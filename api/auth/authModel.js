@@ -38,16 +38,23 @@ async function findOrCreateByEmail(profile) {
   if (user) {
     const  getUserRoles = await rolesModel.findAllRolesById(user.id)
     return { ...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
-  } else {
+  } else {//CREATE NEW USER
+    
     //Encrypt Password, consider doing off AccessToken
     const password = bcrypt.hashSync(Date.now() + email, 14);
+
+    //Create New User
     const newUser = await addUser({email,password})
+
+    //Assign User Role
     const userRole = await rolesModel.addUserRole({user_id: newUser.id, role_id: 2})
     delete profile.email
+    
     const newProfile = await Profile.createProfile({
       user_id:newUser.id,
       ...profile,
     })
+    
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
 
     delete newProfile.id

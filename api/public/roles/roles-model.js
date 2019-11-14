@@ -17,12 +17,12 @@ function findAllRolesById(userId) {
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
   .where("ur.user_id", userId)
-  
-  // .where("rt.id", 3)
 }
+
 function findAll(){
   return db(table)
 }
+
 function findById(id) {
   id = Array.isArray(id) ? [id] : id;
   return db(table)
@@ -41,9 +41,11 @@ function editById(id, update) {
     .where({ id })
     .update(update, '*');
 }
+
+//Expects: {user_id,role_id}
 function addUserRole(obj) {
   return db(userRoles)
     .insert(obj,'id')
-    .then(([id]) => findById(id));
+    .then(findAllRolesById(obj.user_id));
 }
 
