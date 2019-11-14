@@ -3,8 +3,8 @@ const mailRouter = require("./mailer/sendMail");
 const adminRouter = require("./admin/admin");
 const userRouter = require("./users/users");
 const rolesRouter = require("../public/roles/roles");
-const questionsRouter = require("./questions/questions")
-
+const questionsRouter = require("./questions/questions");
+const profileRouter = require("./profile/profile");
 
 const jwt = require(_jwt);
 
@@ -13,5 +13,6 @@ privateRouter.use("/admin", jwt.chkRole(), adminRouter);
 privateRouter.use("/users", userRouter);
 privateRouter.use("/roles", rolesRouter);
 privateRouter.use("/questions", questionsRouter);
+privateRouter.use("/profile", profileRouter);
 
 module.exports = privateRouter;
