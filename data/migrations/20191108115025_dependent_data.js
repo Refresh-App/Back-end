@@ -7,7 +7,6 @@ exports.up = function(knex) {
     .createTable("questions", tbl => {
       tbl.increments();
       tbl.string("question", 500);
-      tbl.string("objkey", 10);
       tbl
         .integer("category_id")
         .references("id")
