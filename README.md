@@ -6,6 +6,8 @@
 | Method | Endpoint | Explanation |
 | :----: | :------------: | :------------------------------------- |
 | GET | /roles | GET to see the user roles |
+| GET | /users | GET to see the users |
+| GET | /roles/:id | GET to see the user's role where :id is user's id |
 
 #### Implementation and Docs deployed at [Apidevnow](https://client.apidevnow.com/) <br>
 
