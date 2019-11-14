@@ -1,7 +1,7 @@
 const db = require(_dbConfig);
 
 module.exports = {
-  // findAll,
+  findAll,
   findById,
   remove,
   register,
@@ -10,7 +10,9 @@ module.exports = {
 };
 const table = "users"
 
-
+function findAll(){
+  return db(table)
+}
 function findById(id) {
   id = Array.isArray(id) ? [id] : id;
   return db(table)

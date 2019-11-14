@@ -5,12 +5,12 @@ module.exports = {
   findAll,
   findById,
   remove,
-  addAdmin,
+  addUserRole,
   editById,
 };
 
 const table = 'roles';
-const depTable = "user_roles";
+const userRoles = "user_roles";
 function findAllRolesById(userId) {
  return db(depTable + " as ur ")
   .select("rt.id")
@@ -43,8 +43,8 @@ function editById(id, update) {
     .where({ id })
     .update(update, '*');
 }
-function addAdmin(obj) {
-  return db(table)
+function addUserRole(obj) {
+  return db(userRoles)
     .insert(obj)
     .then(([id]) => findById(id));
 }
