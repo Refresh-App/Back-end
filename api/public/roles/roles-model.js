@@ -17,6 +17,7 @@ function findAllRolesById(userId) {
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
   .where("ur.user_id", userId)
+  .then(res => console.log(res))
 }
 
 function findAll(){
