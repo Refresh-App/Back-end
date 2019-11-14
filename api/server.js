@@ -4,7 +4,7 @@ const primaryRouter = require("express").Router();
 const jwt = require("./auth/preAuth/jwt");
 
 //Bring in the Routes
-const privateRouter = require("./private/server");
+const privateRouter = require("./private/privateRouter");
 
 
 //Login, Register, GoogleAuth, FaceBookAuth, GitHubAuth
