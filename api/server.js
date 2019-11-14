@@ -4,7 +4,6 @@ const primaryRouter = require("express").Router();
 const jwt = require("./auth/preAuth/jwt");
 
 //Bring in the Routes
-const rolesRouter = require("./public/roles/roles");
 const privateRouter = require("./private/server");
 
 
@@ -13,7 +12,7 @@ const authRouter = require("./auth/auth");
 
 //Implement Routes
 primaryRouter.use("/", authRouter);
-primaryRouter.use("/roles", rolesRouter);
+primaryRouter.use("/", rolesRouter);
 primaryRouter.use("/", privateRouter);
 
 module.exports = primaryRouter;
