@@ -51,7 +51,7 @@ async function findOrCreateByEmail(profile) {
     delete profile.email
     
     const newProfile = await Profile.createProfile({
-      user_id:newUser.id,
+      userId:newUser.id,
       ...profile,
     })
     
