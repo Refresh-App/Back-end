@@ -13,7 +13,7 @@ function genToken(user) {
   const {user_id,userRoles} = user
   const payload = {
     tokenType: "Basic ",
-    user_id,
+    userId:user_id,
     userRoles
   };
 
