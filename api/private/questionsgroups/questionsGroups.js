@@ -3,7 +3,7 @@ const dbModel = require("./questionsGroupsModel")
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
-    .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
+    .then(p=>{res.status(200).json({message:`SUCCESS`,groups:[...p]})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 router
