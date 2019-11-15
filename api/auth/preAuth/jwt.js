@@ -9,10 +9,10 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
-  const {emai,userRoles} = user
+  const {id,userRoles} = user
   const payload = {
     tokenType: "Basic ",
-    email,
+    id,
     userRoles
   };
 
@@ -34,6 +34,7 @@ function chkRole(role){
         }
     }
 }
+
 //Verifies Existing Role and JWT token
 function chkToken() {
   return (req, res, next) => {
