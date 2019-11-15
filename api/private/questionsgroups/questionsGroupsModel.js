@@ -1,5 +1,4 @@
 const db = require(_dbConfig);
-const questionsModel = require("../questions/questionsModel");
 
 module.exports = {
   findAll,
@@ -16,21 +15,17 @@ function findAll() {
 }
 
 function findById(id) {
-  id = Array.isArray(id) ? [id] : id;
   return db(table)
     .where({ id })
     .first()
-    .then(res => {
-        const questions = []
-      res.question_ids.map(questionid => {
-        questions.push(questionsModel.findById(
-          questionid
-        ))
-        console.log(questions)
-      });
-      return questions;
-      console.log(res.question_ids)
-    });
+    .then(group=>findAllQuestionsByArray(group))
+}
+
+function findAllQuestionsByArray(arr){
+  
+  return db('questions')
+  .whereIn('id', arr.question_ids)
+  .then(questions=>{return {group:arr.group,questions:[...questions]}})
 }
 
 // function findByUserName(admin) {

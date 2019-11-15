@@ -4,7 +4,7 @@ const dbModel = require("./profileModle");
 router.get("/", (req, res) => {
   console.log(req.user)
   return dbModel
-    .findByUserId(req.user.id)
+    .findAll()
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
