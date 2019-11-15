@@ -37,7 +37,7 @@ async function findOrCreateByEmail(profile) {
   //If the user exist
   if (user) {
     const  getUserRoles = await rolesModel.findAllRolesById(user.id)
-    return { ...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
+    return { ...profile,userId:user.id,userRoles:[...getUserRoles], message: "Welcome Back" };
   } else {//CREATE NEW USER
     
     //Encrypt Password, consider doing off AccessToken
