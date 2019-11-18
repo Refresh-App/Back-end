@@ -27,6 +27,11 @@ function genToken(user) {
 //Checks Role
 function chkRole(role){
     return (req,res,next)=>{
+        req.user.userRoles.forEach(userRole =>{
+          if(userRole = role){
+            console.log("yo")
+          }
+        })
         console.log("check Role", req.user.userRoles,"role",role)
         if(req.user && role === req.user.role){
             next()
