@@ -28,7 +28,7 @@ function genToken(user) {
 function chkRole(role){
     return (req,res,next)=>{
         req.user.userRoles.forEach(userRole =>{
-          if(req.user && userRole === role){
+          if(userRole === role){
             next()
           } 
         })
