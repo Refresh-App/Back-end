@@ -29,7 +29,7 @@ server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
 server.use("/", (error, req, res, next) => {
-  res.status(200).json({errors:[...error]});
+  res.status(200).json({errors:[error]});
 });
 server.listen(PORT, () => {
   console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`);
