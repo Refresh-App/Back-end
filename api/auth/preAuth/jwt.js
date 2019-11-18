@@ -30,10 +30,9 @@ function chkRole(role){
         req.user.userRoles.forEach(userRole =>{
           if(req.user && userRole === role){
             next()
-          } else {
-            next({token:'Invalid Access, You do not have permission to be here'})
-        }
+          } 
         })
+        next({token:'Invalid Access, You do not have permission to be here'})
     }
 }
 
