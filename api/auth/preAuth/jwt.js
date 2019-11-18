@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
-const tokenTTL = process.env.TOKEN_TTL || '1d'
+const tokenTTL = process.env.TOKEN_TTL || "1d";
 module.exports = {
   genToken,
   chkToken,
@@ -9,11 +9,11 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
-  console.log("hasdhfpiohlewnrfodhjksmfns",user)
-  const {user_id,userRoles} = user
+  console.log("hasdhfpiohlewnrfodhjksmfns", user);
+  const { user_id, userRoles } = user;
   const payload = {
     tokenType: "Basic ",
-    userId:user_id,
+    userId: user_id,
     userRoles
   };
 
@@ -25,15 +25,17 @@ function genToken(user) {
 }
 
 //Checks Role
-function chkRole(role){
-    return (req,res,next)=>{
-        req.user.userRoles.forEach(userRole =>{
-          if(userRole === role){
-            next()
-          } 
-        })
-        next({token:'Invalid Access, You do not have permission to be here'})
-    }
+function chkRole(role) {
+  return (req, res, next) => {
+    let access = false
+    req.user.userRoles.forEach(userRole => {
+      if (userRole.id === role) {
+          access = true
+          next();
+      }
+    });
+    !access && next({token:'Invalid Access, You do not have permission to be here'})
+  };
 }
 
 //Verifies Existing Role and JWT token
@@ -45,14 +47,13 @@ function chkToken() {
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
           //Needs Time Validation
-          next({ token: "Invalid Token, you will need to Log back in"})
+          next({ token: "Invalid Token, you will need to Log back in" });
         } else {
-            req.user = {...req.user, ...decoded};
-            next()
+          req.user = { ...req.user, ...decoded };
+          next();
         }
       });
     //No Token, No Pass
-    !token &&
-    next({ token: "No Token Provided, you will need to Login" })
+    !token && next({ token: "No Token Provided, you will need to Login" });
   };
 }
