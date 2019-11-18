@@ -51,7 +51,7 @@ function chkToken() {
               errors: [{ token: "Invalid Token, you will need to Log back in" }]
             });
         } else {
-            req.user = decoded;
+            req.user = {...req.user, decoded};
             next()
         }
       });
