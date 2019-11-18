@@ -31,7 +31,7 @@ function chkRole(role){
         if(req.user && role === req.user.role){
             next()
         } else {
-            res.status(401).json({errors:[{token:'Invalid Access'}]});
+            next({errors:[{token:'Invalid Access'}]})
         }
     }
 }
@@ -45,7 +45,7 @@ function chkToken() {
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
           //Needs Time Validation
-          next(401)
+          next({ errors:[{token: "Invalid Token, you will need to Log back in"}] })
         } else {
             req.user = {...req.user, decoded};
             next()
@@ -53,8 +53,6 @@ function chkToken() {
       });
     //No Token, No Pass
     !token &&
-      res
-        .status(401)
-        .json({ error: "No Token Provided, you will need to Login" });
+    next({ error: "No Token Provided, you will need to Login" })
   };
 }

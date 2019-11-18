@@ -28,8 +28,8 @@ server.use(express.json());
 server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
-server.use("/", (error,req, res,next) => {
-  res.status(200).json({ message: "Welcome To Refresh Proto 1t" });
+server.use("/", (error, req, res, next) => {
+  res.status(200).json(error);
 });
 server.listen(PORT, () => {
   console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`);
