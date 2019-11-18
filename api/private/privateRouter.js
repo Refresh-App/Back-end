@@ -17,7 +17,7 @@ privateRouter.use("/mailerYo", mailRouter);
 privateRouter.use("/missions", missionRouter);
 privateRouter.use("/profile", profileRouter);
 privateRouter.use("/users", userRouter);
-privateRouter.use("/questions", questionsRouter);
+privateRouter.use("/questions",jwt.chkRole(1), questionsRouter);
 privateRouter.use("/questiongroups", questionGroupsRouter)
 
 

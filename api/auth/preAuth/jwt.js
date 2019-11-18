@@ -27,11 +27,11 @@ function genToken(user) {
 //Checks Role
 function chkRole(role){
     return (req,res,next)=>{
-        //Gets req.user from chkToken
+        console.log("check Role", req.user.userRoles,"role",role)
         if(req.user && role === req.user.role){
             next()
         } else {
-            next({token:'Invalid Access'})
+            next({token:'Invalid Access, You do not have permission to be here'})
         }
     }
 }
@@ -47,7 +47,7 @@ function chkToken() {
           //Needs Time Validation
           next({ token: "Invalid Token, you will need to Log back in"})
         } else {
-            req.user = {...req.user, decoded};
+            req.user = {...req.user, ...decoded};
             next()
         }
       });
