@@ -28,7 +28,7 @@ server.use(express.json());
 server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
-server.use("/", (req, res) => {
+server.use("/", (error,req, res,next) => {
   res.status(200).json({ message: "Welcome To Refresh Proto 1t" });
 });
 server.listen(PORT, () => {

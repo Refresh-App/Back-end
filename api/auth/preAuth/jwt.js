@@ -45,11 +45,7 @@ function chkToken() {
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
           //Needs Time Validation
-          res
-            .status(401)
-            .json({
-              errors: [{ token: "Invalid Token, you will need to Log back in" }]
-            });
+          next(401)
         } else {
             req.user = {...req.user, decoded};
             next()
