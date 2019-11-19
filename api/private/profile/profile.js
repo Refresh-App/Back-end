@@ -3,8 +3,8 @@ const dbModel = require("./profileModle");
 
 
 router.get("/", (req, res) => {
-  console.log(req.user)
-  const {id} = req.user
+  console.log('USERDDFJDSK',req.user)
+  const id = req.user.userId
   return dbModel
     .findByProfileId(id)
     .then(p => {
