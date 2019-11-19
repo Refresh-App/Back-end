@@ -13,7 +13,7 @@ function findAll() {
 }
 function findByUserId(id) {
   return db(table)
-    .where({ id })
+    .where('user_id', id )
     .first();
 }
 
