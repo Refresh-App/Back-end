@@ -1,36 +1,41 @@
 exports.up = function(knex) {
   return knex.schema
-    .createTable("questions", tbl => {
-      tbl.increments();
-      tbl.string("question", 500);
+    .createTable("questions", col => {
+      col.increments();
+      col.string("question", 500);
     })
-    .createTable("answers", tbl => {
-      tbl.increments();
-      tbl.string("answer", 500);
-      tbl.dateTime("answered_at");
+    .createTable("answers", col => {
+      col.increments();
+      col.string("answer", 500);
+      col.dateTime("answered_at");
+      col
+      .integer("user_id")
+      .unsigned()
+      .references("id")
+      .inTable("users");
     })
-    .createTable("user_answers", tbl => {
-      tbl.increments();
-      tbl
+    .createTable("user_answers", col => {
+      col.increments();
+      col
         .integer("question_id")
         .references("id")
         .inTable("questions")
         .unsigned();
-      tbl
+      col
         .integer("answer_id")
         .references("id")
         .inTable("answers")
         .unsigned();
     })
 
-    .createTable("points", tbl => {
-      tbl.increments();
-      tbl
+    .createTable("points", col => {
+      col.increments();
+      col
         .integer("user_id")
         .references("id")
         .inTable("users")
         .unsigned();
-      tbl.integer("points");
+      col.integer("points");
     });
 };
 
