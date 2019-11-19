@@ -2,7 +2,8 @@ exports.up = function(knex) {
   return knex.schema.createTable("answers", col => {
     col.increments();
     col.integer("answer", 2);
-    col.dateTime("answer_date");
+    col.dateTime("answer_date")
+    .defaultTo(knex.fn.now(6));
     col
       .integer("question_id")
       .references("id")
@@ -14,7 +15,7 @@ exports.up = function(knex) {
       .unsigned()
       .references("id")
       .inTable("users")
-      .onDelete("CASCADE")
+      .onDelete("CASCADE");
   });
 };
 
