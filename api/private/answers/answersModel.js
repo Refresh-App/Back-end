@@ -1,7 +1,7 @@
 const db = require(_dbConfig);
 module.exports = {
   find,
-    findAll,
+  findAll,
   findByUserId,
   add,
   findByDateRang,
