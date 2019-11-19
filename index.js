@@ -36,6 +36,7 @@ server.use("/", (error, req, res, next) => {
   }
 });
 
+
 server.use("/", (req, res) => {
   const rootURL = process.env.ROOT_URL || req.get("host");
   res
