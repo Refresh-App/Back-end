@@ -2,7 +2,7 @@ const router = require("express").Router();
 const dbModel = require("./profileModle");
 
 router.get("/", (req, res) => {
-  console.log(req.user)
+  console.log("user",req.user)
   return dbModel
     .findAll()
     .then(p => {
