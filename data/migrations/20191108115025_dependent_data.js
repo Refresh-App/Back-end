@@ -9,6 +9,11 @@ exports.up = function(knex) {
       col.string("answer", 500);
       col.dateTime("answered_at");
       col
+      .integer("question")
+      .references("id")
+      .inTable("questions")
+      .onDelete("CASCADE");
+      col
       .integer("user_id")
       .unsigned()
       .references("id")
