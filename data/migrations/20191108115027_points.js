@@ -4,12 +4,14 @@ exports.up = function(knex) {
         col.increments();
         col
           .integer("user_id")
+          .notNullable()
           .references("id")
           .inTable("users")
           .unsigned();
         col.integer("points");
         col
         .integer("answer_id")
+        .notNullable()
         .references("id")
         .inTable("answers")
         .onDelete("CASCADE");
