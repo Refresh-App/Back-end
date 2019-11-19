@@ -4,4 +4,5 @@ const docsRouter = require('./docs/docs')
 
 publicRouter.use('/docs',docsRouter)
 publicRouter.use('/roles',rolerRouter)
+
 module.exports = publicRouter;
