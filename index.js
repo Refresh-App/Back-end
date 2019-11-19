@@ -29,7 +29,7 @@ server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
 server.use("/", (error, req, res, next) => {
-  if (errors) {
+  if (error) {
     res.status(200).json({ errors: [...error] });
   } else {
     next();
