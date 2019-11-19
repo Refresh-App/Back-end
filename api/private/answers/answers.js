@@ -2,26 +2,15 @@ const router = require("express").Router();
 const dbModel = require("./answersModel");
 const answerScrubber = require("./answerScrubber");
 router.get("/", (req, res) => {
-  if (req.startDate && req.endDate) {
-    return dbModel
-      .findByDateRang(req.startDate, req.endDate)
-      .then(p => {
-        res.status(200).json({ message: `SUCCESS`, ...p });
-      })
-      .catch(e => {
-        res.status(404).json({ message: "SOMEMESSAGE", ...e });
-      });
-  } else {
-    const id = req.user.userId;
-    return dbModel
-      .findByUserId(id)
-      .then(p => {
-        res.status(200).json({ message: `SUCCESS`, ...p });
-      })
-      .catch(e => {
-        res.status(404).json({ message: "SOMEMESSAGE", ...e });
-      });
-  }
+  const id = req.user.userId;
+  return dbModel
+    .findByUserId(id)
+    .then(p => {
+      res.status(200).json({ message: `SUCCESS`, ...p });
+    })
+    .catch(e => {
+      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+    });
 });
 
 router.get("/:id", (req, res) => {

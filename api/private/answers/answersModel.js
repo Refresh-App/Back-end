@@ -4,7 +4,8 @@ module.exports = {
   findByUserId,
   add,
   findByDateRang,
-  findAllByQuestionId
+  findAllByQuestionId,
+  add
 };
 const table = "answers";
 
@@ -38,3 +39,9 @@ function add(obj) {
     .insert(obj, "id")
     .then(([id]) => findById(id));
 }
+
+function add(obj) {
+    return db(table)
+      .insert(obj, "id")
+  }
+  
