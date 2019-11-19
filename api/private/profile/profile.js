@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const dbModel = require("./profileModle");
 
-
-
 router.get("/", (req, res) => {
   const id = req.user.userId
   return dbModel
@@ -22,7 +20,7 @@ router.put("/", (req, res) => {
   const { body } = req;
 
   return dbModel
-    .editById(req.user.id)
+    .editByUserId(req.user.userId)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
