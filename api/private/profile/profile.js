@@ -1,21 +1,10 @@
 const router = require("express").Router();
 const dbModel = require("./profileModle");
 
-router.get("/", (req, res) => {
-  console.log("user",req.user)
-  return dbModel
-    .findAll()
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
-    })
-    .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
-    });
-});
 
-router.get("/:id", (req, res) => {
-  //console.log(req.user)
-  const {id} = req.params
+router.get("/", (req, res) => {
+  console.log(req.user)
+  const {id} = req.user
   return dbModel
     .findByProfileId(id)
     .then(p => {
