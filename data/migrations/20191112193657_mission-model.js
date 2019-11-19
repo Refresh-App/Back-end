@@ -2,8 +2,8 @@ exports.up = function(knex) {
   return knex.schema
     .createTable("days_of_the_week", col => {
       col.increments();
-      col.string("dayLong").unique();
-      col.string("dayShort").unique();
+      col.string("day_long").unique();
+      col.string("day_short").unique();
     })
     .createTable("missions", col => {
       col.increments();
@@ -11,10 +11,11 @@ exports.up = function(knex) {
       col.string("description").notNullable();
       col.string("question").notNullable();
       col.integer("point_value").notNullable();
+      col.integer("goal").notNullable();
       col.specificType("dotw", "INT[]")
-      col.dateTime("startDate");
-      col.dateTime("endingDate");
-      col.integer("dailyOccurances");
+      col.dateTime("start_date");
+      col.dateTime("ending_date");
+      col.integer("daily_reminders");
       col
         .integer("user_id")
         .references("id")
