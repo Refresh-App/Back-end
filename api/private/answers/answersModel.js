@@ -2,11 +2,12 @@ const db = require(_dbConfig);
 module.exports = {
   findByUserId,
   add,
-  findByDateRang
+  findByDateRang,
+  findAllByQuestionId
 };
 const table = "answers";
 
-function findById(id) {
+function findAllByQuestionId(id) {
   return db(table)
     .where({ id })
     .first();
@@ -14,8 +15,8 @@ function findById(id) {
 
 function findByDateRang(startDate,endDate){
     return db(table)
-    .where('answer_date','>=',startDate)
-    .where('answer_date','<=',endDate)
+    .whereBetween('answer_date', [startDate, endDate])
+    .orderBy('question_id')
 }
 
 function findByUserId(id) {
