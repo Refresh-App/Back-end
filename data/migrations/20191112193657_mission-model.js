@@ -7,9 +7,11 @@ exports.up = function(knex) {
     })
     .createTable("missions", col => {
       col.increments();
-      col.string("title").notNullable();
+      col.string("vertical").notNullable();
       col.string("description").notNullable();
-      col.specificType("dotw", "INT[]").notNullable();
+      col.string("question").notNullable();
+      col.integer("point_value").notNullable();
+      col.specificType("dotw", "INT[]")
       col.dateTime("startDate");
       col.dateTime("endingDate");
       col.integer("dailyOccurances");
