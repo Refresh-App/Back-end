@@ -29,8 +29,18 @@ server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
 server.use("/", (error, req, res, next) => {
+  if(errors){
   res.status(200).json({errors:[...error]});
+  }else{
+    next()
+  }
 });
+
+server.use('/',(req,res)=>{
+    const rootURL = req.get('host');
+    res.status(200).json({errors:[{invalid:`${rootURL + req.originalUrl}, using method ${req.method}, is not a valid URL`}]});
+})
+
 server.listen(PORT, () => {
   console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`);
 });
