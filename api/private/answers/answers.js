@@ -5,6 +5,7 @@ router.get("/", (req, res) => {
   const id = req.user.userId;
 
   if(req.startDate && req.endDate){
+    //THIS SHOULD BE A POST const from = '2019-01-01'; const to = '2019-02-02';
     return dbModel.findBYDateRange(req.startDate, req.endDate)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
