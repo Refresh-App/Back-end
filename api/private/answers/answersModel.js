@@ -1,32 +1,39 @@
-const db = require(_dbConfig)
-module.exports={
-    findAll,
-    findById,
-    remove,
-    add,
-    editById
+const db = require(_dbConfig);
+module.exports = {
+  findById,
+  findByUserId,
+  remove,
+  add,
+  editById
+};
+const table = "answers";
+function findAll() {
+  return db(table);
 }
-const table='answers'
-function findAll(){
-    return db(table)
-}
-function findById(id){
-    return db(table)
-    .where({id})
-    .first()
-}
-function remove(id) {
-    return db(table)
-    .where({id})
-    .del()
-}
-function editById(id,update){
-    return db(table)
+function findById(id) {
+  return db(table)
     .where({ id })
-    .update(update, '*');
+    .first();
 }
-function add(obj){
-    return db(table)
-    .insert(obj,'id')
-    .then(([id])=>findById(id))
+
+function findByUserId(id) {
+  return db(table)
+    .where("user_id", id)
+    .orderBy("question_id")
+}
+
+function remove(id) {
+  return db(table)
+    .where({ id })
+    .del();
+}
+function editById(id, update) {
+  return db(table)
+    .where({ id })
+    .update(update, "*");
+}
+function add(obj) {
+  return db(table)
+    .insert(obj, "id")
+    .then(([id]) => findById(id));
 }

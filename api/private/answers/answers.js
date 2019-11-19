@@ -3,7 +3,8 @@ const dbModel = require('./answersModel')
 const answerScrubber = require('./answerScrubber')
 router
   .get('/',(req,res)=>{
-    return dbModel.findAll()
+    const id = req.user.userId
+    return dbModel.findByUserId(id)
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
@@ -33,6 +34,7 @@ router
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
+
 router
   .delete('/:id',(req,res)=>{
     const {id}=req.params
