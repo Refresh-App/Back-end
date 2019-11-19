@@ -38,7 +38,7 @@ server.use("/", (error, req, res, next) => {
 
 server.use('/',(req,res)=>{
     const rootURL = process.env.ROOT_URL || req.get('host');
-    res.status(200).json({errors:[{invalid:`${req.hostname + req.originalUrl}, using method ${req.method}, is not a valid URL`}]});
+    res.status(200).json({errors:[{invalid:`${req.hostname + req.originalUrl}, using method ${req.method}, is not a valid URL`},req]});
 })
 
 server.listen(PORT, () => {
