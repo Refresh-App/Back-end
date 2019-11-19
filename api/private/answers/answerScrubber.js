@@ -14,13 +14,13 @@ module.exports = async (req, res, next) => {
     : errors.push({ answer: "Answer is Required" });
 
   //Description
-  !!question_id
-    ? addProp("question_id", question_id)
+  !!answer.question_id
+    ? addProp("question_id", answer.question_id)
     : errors.push({ question_id: "Question Id is Required" });
   
   !!req.user.userId
-    ? addProp("user_id", user_id)
-    : errors.push({ question_id: "User Id is Required, something is a bit shifty here..." });
+    ? addProp("user_id", req.user.userId)
+    : errors.push({ user_id: "User Id is Required, something is a bit shifty here..." });
 
   if (errors.length > 0) {
     next(errors);

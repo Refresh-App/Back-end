@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const dbModel = require('./answersModel')
-
+const answerScrubber = require('./answerScrubber')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
@@ -17,7 +17,7 @@ router
 })
   
 router
-  .post('/',(req,res)=>{
+  .post('/',answerScrubber,(req,res)=>{
     const {body}=req
     return dbModel.add(body)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
