@@ -11,7 +11,7 @@
         col.string("answer", 3000);
         col.dateTime("answer_date");
         col
-          .integer("question")
+          .integer("question_id")
           .references("id")
           .inTable("questions")
           .onDelete("CASCADE");
