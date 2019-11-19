@@ -30,7 +30,7 @@ server.use("/", primaryRouter);
 
 server.use("/", (error, req, res, next) => {
   if (error) {
-    res.status(200).json({ errors: [...error] });
+    res.status(200).json({ errors: [error] });
   } else {
     next();
   }
