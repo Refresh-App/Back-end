@@ -26,6 +26,7 @@ module.exports = async (req, res, next) => {
     next(errors);
   } else {  
     req.body = cleanAnswer;
+    addProp("answer_date", new Date())
     next();
   }
 };
