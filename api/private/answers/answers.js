@@ -40,7 +40,6 @@ router.post("/datefilter", (req, res) => {
       .catch(e => {
         res.status(404).json({ message: "SOMEMESSAGE", ...e });
       });
-  
 });
 
 router.post("/", answerScrubber, (req, res) => {
