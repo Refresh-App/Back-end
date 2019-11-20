@@ -32,7 +32,7 @@ router.post("/", (req, res,next) => {
   const id = req.user.userId;
   const {startDate,endDate} = req.body
 
-  if(req.startDate && req.endDate){
+  if(startDate && endDate){
     //THIS SHOULD BE A POST {startDate:'2019-01-01'; endDate:'2019-02-02'};
     return dbModel.findBYDateRange(startDate, endDate)
     .then(p => {
