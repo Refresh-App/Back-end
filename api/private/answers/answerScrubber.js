@@ -23,6 +23,7 @@ module.exports = async (req, res, next) => {
     : errors.push({ user_id: "User Id is Required, something is a bit shifty here..." });
 
   if (errors.length > 0) {
+    errors.push(answer);
     next(errors);
   } else {  
     req.body = cleanAnswer;
