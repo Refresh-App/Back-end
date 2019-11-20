@@ -30,7 +30,7 @@ router.post("/datefilter", (req, res) => {
   const id = req.user.userId;
   const { startDate, endDate } = req.body;
 
-  if (startDate && endDate) {
+
     //THIS SHOULD BE A POST {startDate:'2019-01-01'; endDate:'2019-02-02'};
     return dbModel
       .findBYDateRange(startDate, endDate)
@@ -40,7 +40,7 @@ router.post("/datefilter", (req, res) => {
       .catch(e => {
         res.status(404).json({ message: "SOMEMESSAGE", ...e });
       });
-  }
+  
 });
 
 router.post("/", answerScrubber, (req, res) => {
