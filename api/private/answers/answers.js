@@ -30,7 +30,7 @@ router.post("/datefilter", (req, res) => {
   const id = req.user.userId;
   const { startDate, endDate } = req.body;
 
-
+  console.log('here',startDate,endDate)
     //THIS SHOULD BE A POST {startDate:'2019-01-01'; endDate:'2019-02-02'};
     return dbModel
       .findBYDateRange(startDate, endDate)
