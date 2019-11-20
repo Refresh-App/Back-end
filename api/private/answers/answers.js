@@ -52,7 +52,7 @@ router.post("/", answerScrubber, (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(200).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e,...body });
     });
 });
 
