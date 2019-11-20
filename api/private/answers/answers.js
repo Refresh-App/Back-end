@@ -39,7 +39,7 @@ router.get("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 
@@ -51,7 +51,7 @@ router.post("/", answerScrubber, (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 
@@ -78,7 +78,7 @@ router.delete("/:id", (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 module.exports = router;
