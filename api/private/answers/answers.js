@@ -26,7 +26,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/datefilter", (req, res, next) => {
+router.post("/datefilter", (req, res) => {
   const id = req.user.userId;
   const { startDate, endDate } = req.body;
 
