@@ -45,6 +45,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
+  console.log('heresdafpkoasjdfpja',req.body)
   return dbModel
     .add(body)
     .then(p => {
