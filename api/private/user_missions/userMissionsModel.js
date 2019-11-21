@@ -9,8 +9,10 @@ module.exports={
 const table='user_missions'
 function findAll(){
     return db(table + ' as um')
+    .select('u.email','um.*')
     .join('missions as m','m.id','um.mission_id')
     .join('users as u','u.id','um.user_id')
+
 }
 function findById(id){
     return db(table)
