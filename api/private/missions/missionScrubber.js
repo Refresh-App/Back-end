@@ -22,7 +22,7 @@ module.exports = async (req, res, next) => {
   mission.question = mission.question && (await questionModel.add({question:mission.question}));
   !!mission.question && Number(mission.question)
     ? addProp("question", mission.question)
-    : errors.push({ question: "Question is required" });
+    : errors.push({ question: "Question is required" })
 
   //Point Value
   !!mission.point_value

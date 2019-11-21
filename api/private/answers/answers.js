@@ -3,33 +3,16 @@ const dbModel = require("./answersModel");
 const answerScrubber = require("./answerScrubber");
 
 router.get("/", (req, res) => {
-  return dbModel.find()
-  .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+  const id = req.user.userId;
+  return dbModel
+    .findByUserId(id)
+    .then(p => {
+      res.status(200).json({ message: `SUCCESS`, ...p });
+    })
+    .catch(e => {
+      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+    });
 });
-new Date
-// router.get("/", (req, res) => {
-//   const id = req.user.userId;
-//   if(req.startDate && req.endDate){
-//     //THIS SHOULD BE A POST {startDate:'2019-01-01'; endDate:'2019-02-02'};
-//     return dbModel.findBYDateRange(req.body.startDate, req.body.endDate)
-//     .then(p => {
-//       res.status(200).json({ message: `SUCCESS`, ...p });
-//     })
-//     .catch(e => {
-//       res.status(404).json({ message: "SOMEMESSAGE", ...e });
-//     });
-//   }else{
-//   return dbModel
-//     .findByUserId(id)
-//     .then(p => {
-//       res.status(200).json({ message: `SUCCESS`, ...p });
-//     })
-//     .catch(e => {
-//       res.status(404).json({ message: "SOMEMESSAGE", ...e });
-//     });
-//   }
-// });
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -39,19 +22,36 @@ router.get("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
+});
+
+router.post("/datefilter", (req, res) => {
+  const id = req.user.userId;
+  const { startDate, endDate } = req.body;
+
+  console.log('here',startDate,endDate)
+    //THIS SHOULD BE A POST {startDate:'2019-01-01'; endDate:'2019-02-02'};
+    return dbModel
+      .findByDateRange(startDate, endDate)
+      .then(p => {
+        res.status(200).json({ message: `SUCCESS`, ...p });
+      })
+      .catch(e => {
+        res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      });
 });
 
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
+  console.log("heresdafpkoasjdfpja", req.body);
   return dbModel
     .add(body)
     .then(p => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e, ...body });
     });
 });
 
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 
@@ -78,7 +78,7 @@ router.delete("/:id", (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+      res.status(200).json({ message: "SOMEMESSAGE", ...e });
     });
 });
 module.exports = router;

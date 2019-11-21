@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable("answers", col => {
     col.increments();
-    col.integer("answer", 2);
+    col.string("answer", 3000);
     col.dateTime("answer_date");
     col
       .integer("question_id")
