@@ -7,12 +7,26 @@ module.exports={
     editById
 }
 const table='user_missions'
-function findAll(){
-    return db(table + ' as um')
-    .select('u.email','um.*')
+async function findAll(id){
+    const userMissions = await db(table + ' as um')
     .join('missions as m','m.id','um.mission_id')
-    .join('users as u','u.id','um.user_id')
-
+    .where('um.user_id',1)
+    
+    const missionProgress = []
+     await userMissions.forEach(async mission =>{
+         await db('answers as a')
+        .select('a.answer')
+        .where('a.user_id',2)
+        .andWhere('a.question_id',12)
+        .then(res =>{
+            console.log('sdafsdafsdfsdfsdfsfsfsdaffef',res) 
+            missionProgress.push(res)
+        })
+        .catch(err =>console.log(err))
+    })
+    
+    return {missions:[...userMissions],progress:[...missionProgress]}
+    
 }
 function findById(id){
     return db(table)
