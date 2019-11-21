@@ -11,6 +11,7 @@ exports.up = function(knex) {
       .unsigned()
       .references("id")
       .inTable("missions");
+    col.unique(["user_id","mission_id"])
   });
 };
 
