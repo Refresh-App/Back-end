@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("user_missiona", col => {
+  return knex.schema.createTable("user_missions", col => {
     col.increments();
     col
       .integer("user_id")
