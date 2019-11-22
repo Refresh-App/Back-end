@@ -15,14 +15,15 @@ async function findAll(id) {
   
   console.log(today,tomorrow)
   const missionProgress = await
-      db('missions as m').select(db.raw('array_agg(a.answer) as totals'),'m.vertical as mission','m.goal','m.point_value')
+      db('missions as m').select(db.raw('array_agg(a.answer) as totals'),'m.*')
           .from('answers as a')
           .join('missions as m','m.question','a.question_id')
           .whereBetween("answer_date", [today, tomorrow])
           .andWhere('a.user_id',id)
           .as('mp')
-          .groupBy('m.vertical','m.goal','m.point_value')
-      
+          .groupBy('m.id','m.vertical','m.description','m.question','m.point_value','m.goal','m.dotw','m.start_date' ,'m.ending_date' ,'m.daily_reminders' )
+//'m.id','m.vertical','m.description','m.question','m.point_value','m.point_current','m.goal','m.dotw','m.start_date' ,'m.ending_date' ,'m.daily_reminders' 
+    
       
       await missionProgress.forEach(mission=>{
         let count = 0; 
@@ -30,11 +31,11 @@ async function findAll(id) {
           n = parseInt(n)
           count = Number(n) ? count + n : count
         })
-        mission.missionComplete = count >= mission.goal ? true:false;
-        mission.dailyPoints = count
+        mission.mission_complete = count >= mission.goal ? true:false;
+        mission.point_current = count
       })
 
-  return { missionProgress}
+  return {...missionProgress}
 }
 
 function findById(id) {
