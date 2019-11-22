@@ -9,26 +9,23 @@ module.exports = {
 const table = "user_missions";
 async function findAll(id) {
 
- 
-  
+   const today =  new Date(2019,new Date().getMonth(),new Date().getDate())
+   const tomorrow =  new Date(2019,new Date().getMonth(),new Date().getDate() +1)
   const missionProgress = await
       db('missions as m').select('mp.*')
       .from( function (){
           this.select(db.raw('array_agg(a.answer) as totals'),'m.vertical as mission')
           .from('answers as a')
           .join('missions as m','m.question','a.question_id')
-          .whereBetween("answer_date", ['2019-10-18', '2019-12-21'])
-          .andWhere('a.user_id',50)
+          .whereBetween("answer_date", [today, tomorrow])
+          .andWhere('a.user_id',60)
           .as('mp')
           .groupBy('m.vertical')
       })
       
-     
-      missionProgress.answers = JSON.parse(missionProgress.answers)
-     
 
 
-  return {missionProgress: missionProgress}
+  return { missionProgress}
 }
 function findById(id) {
   return db(table)
