@@ -22,11 +22,11 @@ exports.seed = function(knex) {
       randomDate(new Date(2012, 0, 1), new Date());
 
       const fakeAnswers = [];
-      for (let i = 0; i < 5000; i++) {
+      for (let i = 0; i < 1000; i++) {
         fakeAnswers.push({
           answer: getRandomInt(1, 10),
           question_id: getRandomInt(11, 13),
-          user_id: getRandomInt(1, 50),
+          user_id: getRandomInt(1, 5),
           answer_date: randomDate(
             new Date(2019, 10, 15),
             new Date(2019, 12, 15)
