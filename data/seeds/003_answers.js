@@ -12,14 +12,14 @@ exports.seed = function(knex) {
 
       function randomDate(start, end) {
         const date = new Date(
-          Date.UTC(
+          
             start.getTime() + Math.random() * (end.getTime() - start.getTime())
-          )
+          
         );
         return date;
       }
 
-      randomDate(new Date(2012, 0, 1), new Date());
+      randomDate(new Date(2019, 10, 1), new Date(2019,12,12));
 
       const fakeAnswers = [];
       for (let i = 0; i < 1000; i++) {
