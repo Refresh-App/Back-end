@@ -1,4 +1,5 @@
 const faker = require('faker');
+const bcrypt = require('bcrypt')
 const HashFactor = 8
 
 const createFakeUser = () =>({
