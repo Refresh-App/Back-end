@@ -18,7 +18,7 @@ async function findAll(id) {
           .from('answers as a')
           .join('missions as m','m.question','a.question_id')
           .whereBetween("answer_date", [today, tomorrow])
-          .andWhere('a.user_id',32)
+          .andWhere('a.user_id',id)
           .as('mp')
           .groupBy('m.vertical','m.goal')
       })
