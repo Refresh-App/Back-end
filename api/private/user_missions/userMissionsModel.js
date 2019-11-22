@@ -14,17 +14,17 @@ async function findAll(id) {
   const missionProgress = await
       db('missions as m').select('mp.*')
       .from( function (){
-          this.select(db.raw('array_agg(a.answer) as answers'),'m.vertical as mission')
+          this.select(db.raw('array_agg(a.*) as answers'),'m.vertical as mission')
           .from('answers as a')
           .join('missions as m','m.question','a.question_id')
-          .whereBetween("answer_date", ['2019-10-18', '2020-10-21'])
+          .whereBetween("answer_date", ['2019-10-18', '2019-12-21'])
           .andWhere('a.user_id',50)
           .as('mp')
           .groupBy('m.vertical')
       })
       
      
-
+      missionProgress.answers = JSON.parse(missionProgress.answers)
      
 
 
