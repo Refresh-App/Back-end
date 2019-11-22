@@ -22,7 +22,7 @@ exports.seed = function(knex) {
           answer:getRandomInt(1,10),
           question_id:getRandomInt(11,13),
           user_id:getRandomInt(1,50),
-          answer_date: randomDate(new Date(2019, 11, 1), new Date(2020, 1, 1))
+          answer_date: randomDate(new Date(2019, 11, 15), new Date(2019, 12, 15))
         })
       }
       // Inserts seed entries
