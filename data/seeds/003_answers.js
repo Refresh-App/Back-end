@@ -11,13 +11,14 @@ exports.seed = function(knex) {
       }
 
       function randomDate(start, end) {
-        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        return date
       }
     
     randomDate(new Date(2012, 0, 1), new Date())
 
       const fakeAnswers = []
-      for(let i = 0 ; i < 10000;i++){
+      for(let i = 0 ; i < 1000;i++){
         fakeAnswers.push({
           answer:getRandomInt(1,10),
           question_id:getRandomInt(11,13),
