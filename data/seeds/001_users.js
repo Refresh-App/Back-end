@@ -1,8 +1,9 @@
 const faker = require('faker');
+const HashFactor = 8
 
 const createFakeUser = () =>({
   email: faker.internet.email(),
-  password: 'roman'
+  password:  bcrypt.hashSync('roman', HashFactor)
 })
 
 exports.seed = function(knex) {
