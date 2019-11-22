@@ -18,7 +18,7 @@ exports.seed = function(knex) {
     randomDate(new Date(2012, 0, 1), new Date())
 
       const fakeAnswers = []
-      for(let i = 0 ; i < 200;i++){
+      for(let i = 0 ; i < 5000;i++){
         fakeAnswers.push({
           answer:getRandomInt(1,10),
           question_id:getRandomInt(11,13),
