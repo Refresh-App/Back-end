@@ -2,7 +2,7 @@ const faker = require('faker');
 
 const createFakeUser = () =>({
   email: faker.internet.email(),
-  password: faker.internet.password
+  password: 'roman'
 })
 
 exports.seed = function(knex) {
