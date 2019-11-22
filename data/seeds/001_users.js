@@ -13,7 +13,7 @@ exports.seed = function(knex) {
       .then(function () {
 
         const fakeUsers = []
-        const userCount = 827
+        const userCount = 100
 
         for(let i = 0; i < userCount; i++){
           fakeUsers.push(createFakeUser())
