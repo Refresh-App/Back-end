@@ -8,25 +8,35 @@ module.exports = {
 };
 const table = "user_missions";
 async function findAll(id) {
-
-   const today =  new Date(2019,new Date().getMonth(),new Date().getDate())
-   const tomorrow =  new Date(2019,new Date().getMonth(),new Date().getDate() +1)
+  
+  const now = new Date() 
+  const today =  new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() ))
+  const tomorrow =  new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() +1 ))
+  
+  console.log(today,tomorrow)
   const missionProgress = await
-      db('missions as m').select('mp.*')
-      .from( function (){
-          this.select(db.raw('array_agg(a.answer) as totals'),'m.vertical as mission','m.goal')
+      db('missions as m').select(db.raw('array_agg(a.answer) as totals'),'m.vertical as mission','m.goal','m.point_value')
           .from('answers as a')
           .join('missions as m','m.question','a.question_id')
           .whereBetween("answer_date", [today, tomorrow])
           .andWhere('a.user_id',id)
           .as('mp')
-          .groupBy('m.vertical','m.goal')
-      })
+          .groupBy('m.vertical','m.goal','m.point_value')
       
-
+      
+      await missionProgress.forEach(mission=>{
+        let count = 0; 
+        mission.totals && mission.totals.forEach(n =>{
+          n = parseInt(n)
+          count = Number(n) ? count + n : count
+        })
+        mission.missionComplete = count >= mission.goal ? true:false;
+        mission.dailyPoints = count
+      })
 
   return { missionProgress}
 }
+
 function findById(id) {
   return db(table)
     .where({ id })
