@@ -6,7 +6,6 @@ module.exports = {
   add,
   findByDateRange,
   findAllByQuestionId,
-  add
 };
 const table = "answers";
 
