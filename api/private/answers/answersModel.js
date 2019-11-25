@@ -6,6 +6,10 @@ module.exports = {
   add,
   findByDateRange,
   findAllByQuestionId,
+<<<<<<< HEAD
+=======
+  add
+>>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
 };
 const table = "answers";
 
@@ -26,12 +30,19 @@ function findAllByQuestionId(id) {
     .first();
 }
 
+<<<<<<< HEAD
 function findByDateRange(id,startDate, endDate) {
   console.log('here')
   return db(table)
     .whereBetween("answer_date", [startDate, endDate])
     .orderBy("user_id")
     .andWhere("user_id",id)
+=======
+function findByDateRange(startDate, endDate) {
+  return db(table)
+    .whereBetween("answer_date", [startDate, endDate])
+    .orderBy("user_id")
+>>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
 }
 
 function findByUserId(id) {
@@ -43,6 +54,10 @@ function findByUserId(id) {
 function add(obj) {
   return db(table)
     .insert(obj, "id")
+<<<<<<< HEAD
+=======
+    .then(([id]) => findById(id));
+>>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
 }
 
 

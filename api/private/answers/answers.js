@@ -32,7 +32,11 @@ router.post("/datefilter", (req, res) => {
   const { startDate, endDate } = req.body;
   
     return dbModel
+<<<<<<< HEAD
       .findByDateRange(id,startDate, endDate)
+=======
+      .findByDateRange(startDate, endDate)
+>>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
       .then(p => {
         res.status(200).json({ message: `SUCCESS`, ...p });
       })
@@ -41,6 +45,7 @@ router.post("/datefilter", (req, res) => {
       });
 });
 
+<<<<<<< HEAD
 //Add Answer
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
@@ -49,6 +54,14 @@ router.post("/", answerScrubber, (req, res) => {
     .add(body)
     .then(p => {
       console.log('returned answer',p)
+=======
+router.post("/", answerScrubber, (req, res) => {
+  const { body } = req;
+  console.log("heresdafpkoasjdfpja", req.body);
+  return dbModel
+    .add(body)
+    .then(p => {
+>>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
