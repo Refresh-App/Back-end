@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
-
+ 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
