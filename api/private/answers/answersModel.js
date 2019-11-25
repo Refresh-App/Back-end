@@ -42,7 +42,7 @@ function findByUserId(id) {
 function add(obj) {
   return db(table)
     .insert(obj, "id")
-    .then(([id]) => findById(id));
+    .then(([id]) => findByUserId(id));
 }
 
 
