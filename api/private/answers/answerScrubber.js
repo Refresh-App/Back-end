@@ -33,13 +33,14 @@ module.exports = async (req, res, next) => {
   };
 
   if (Array.isArray(answers)) {
+    console.log('array')
     req.body = [];
     answers.forEach(a => {
       req.body.push(cleaner(a));
     });
   } else {
-    //Answer
-    req.body = cleaner(answers);
+    console.log('single')
+    req.body = {...cleaner(answers)};
   }
 
   if (errors.length > 0) {

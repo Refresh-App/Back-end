@@ -41,13 +41,14 @@ router.post("/datefilter", (req, res) => {
       });
 });
 
+//Add Answer
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
-  console.log("heresdafpkoasjdfpja", req.body);
+  console.log('Bodydsjflkjsdklfjlsd,',body)
   return dbModel
     .add(body)
     .then(p => {
-      console.log('returned answers',p)
+      console.log('returned answer',p)
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {

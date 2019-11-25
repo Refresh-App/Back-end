@@ -41,15 +41,13 @@ function findByUserId(id) {
 function findById(id) {
   return db(table)
     .where({id})
-    .orderBy("answer_date");
+    .first()
 }
 
 function add(obj) {
   return db(table)
     .insert(obj, "id")
-    .then(([id]) =>{ 
-      findById(id)
-    });
+    .then(([id]) =>findById(id));
 }
 
 
