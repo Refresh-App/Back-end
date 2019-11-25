@@ -47,6 +47,7 @@ router.post("/", answerScrubber, (req, res) => {
   return dbModel
     .add(body)
     .then(p => {
+      console.log('returned answers',p)
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
