@@ -27,6 +27,7 @@ module.exports = async (req, res, next) => {
         });
 
     errors.length < 0 && addProp("answer_date", new Date());
+    console.log('Clean Answers',cleanAnswer)
     //return cleanObj
     return cleanAnswer;
   };
