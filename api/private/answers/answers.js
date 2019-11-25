@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
-
+ 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
@@ -32,7 +32,8 @@ router.post("/datefilter", (req, res) => {
   const { startDate, endDate } = req.body;
   
     return dbModel
-      .findByDateRange(startDate, endDate)
+
+      .findByDateRange(id,startDate, endDate)
       .then(p => {
         res.status(200).json({ message: `SUCCESS`, ...p });
       })
@@ -41,14 +42,13 @@ router.post("/datefilter", (req, res) => {
       });
 });
 
-//Add Answer
+
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
-  console.log('Bodydsjflkjsdklfjlsd,',body)
+  console.log("heresdafpkoasjdfpja", req.body);
   return dbModel
     .add(body)
     .then(p => {
-      console.log('returned answer',p)
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {

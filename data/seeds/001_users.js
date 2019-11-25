@@ -1,8 +1,10 @@
+
 const bcrypt = require('bcrypt')
 const HashFactor = 8
 let count = '0'
 const createFakeUser = () =>({
   email:`dfgf${Date.now()}d@gmail.com`,
+
   password:  bcrypt.hashSync('roman', HashFactor)
 })
 
