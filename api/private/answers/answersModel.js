@@ -48,3 +48,4 @@ function findByDateRange(id, startDate, endDate) {
             .insert(obj, "id").then(([id]) => findById(id));
 
     }
+}
