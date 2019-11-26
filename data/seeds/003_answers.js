@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex("answers")
-  .del()
+  .truncate()
     .then(function() {
       
       const getRandomInt = (min, max) => {
