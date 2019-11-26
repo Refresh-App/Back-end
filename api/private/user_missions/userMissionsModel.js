@@ -12,10 +12,6 @@ async function findAll(id) {
   const today = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   );
-<<<<<<< HEAD
-  
-=======
->>>>>>> 31d76e90138d6553c3d06c825baae867be44d36d
   const tomorrow = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
   );
