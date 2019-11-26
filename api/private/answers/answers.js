@@ -32,7 +32,7 @@ router.post("/datefilter", (req, res) => {
   const { startDate, endDate } = req.body;
   
     return dbModel
-      .findByDateRange(startDate, endDate)
+      .findByDateRange(id,startDate, endDate)
       .then(p => {
         res.status(200).json({ message: `SUCCESS`, ...p });
       })
