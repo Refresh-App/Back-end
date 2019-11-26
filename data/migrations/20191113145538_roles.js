@@ -10,12 +10,14 @@ exports.up = function(knex) {
         .integer("user_id")
         .unsigned()
         .references("id")
-        .inTable("users");
+        .inTable("users")
+        .onDelete("CASCADE");
       col
         .integer("role_id")
         .unsigned()
         .references("id")
         .inTable("roles");
+        .onDelete("CASCADE");
     col.unique(["user_id", "role_id"]);
     });
 };

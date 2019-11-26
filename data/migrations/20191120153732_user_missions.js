@@ -5,7 +5,8 @@ exports.up = function(knex) {
       .integer("user_id")
       .unsigned()
       .references("id")
-      .inTable("users");
+      .inTable("users")
+      .onDelete("CASCADE");
     col
       .integer("mission_id")
       .unsigned()
