@@ -16,7 +16,6 @@ function find(){
 function findAll(id) {
     return db(table)
       .where("user_id", id)
-      .first();
   }
 
 function findAllByQuestionId(id) {
