@@ -2,10 +2,12 @@
 const express = require("express");
 const helmet = require("helmet");
 const chalk = require("chalk");
+const cors = require("cors");
 require("dotenv").config();
 
 //Set Globalse
 const PORT = process.env.PORT || 5000;
+const ENV = process.env.NODE_ENV || process.env.DB_ENV
 const path = require("path");
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
@@ -13,10 +15,6 @@ global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
 //Bring in the Routes.. Always after Globals
 const webHooks = require("./webHooks/webhooks");
 const primaryRouter = require("./api/server");
-const cors = require("cors");
-
-//Initialize Passport for Auth Stratagies
-const passport = require("passport");
 
 //Configure the server
 const server = express();
@@ -51,14 +49,12 @@ server.use("/", (req, res) => {
 });
 
 //A bit hackey, Need for Travis 
-if (process.env.NODE_ENV === "test") {
+if (ENV === "test") {
   
 } else {
   server.listen(PORT, () => {
-    console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)} **\n`);
+    console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)}, Using ${ENV} Environment **\n`);
   });
 }
-
-
 
 module.exports=server
