@@ -8,7 +8,7 @@ const createFakeUser = () =>({
 
 exports.seed = function(knex) {
     // Deletes ALL existing entries
-    return knex('users').truncate()
+    return knex('users').del()
       .then(function () {
 
         const fakeUsers = []
