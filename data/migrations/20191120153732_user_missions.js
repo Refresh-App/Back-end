@@ -11,7 +11,8 @@ exports.up = function(knex) {
       .integer("mission_id")
       .unsigned()
       .references("id")
-      .inTable("missions");
+      .inTable("missions")
+      .onDelete("CASCADE");
     col.unique(["user_id","mission_id"])
   });
 };
