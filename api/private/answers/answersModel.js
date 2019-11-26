@@ -30,7 +30,7 @@ function findByDateRange(id,startDate, endDate) {
   return db(table)
     .whereBetween("answer_date", [startDate, endDate])
     .orderBy("user_id")
-    .where({id})
+    .where('user_id',id)
 }
 
 function findByUserId(id) {
