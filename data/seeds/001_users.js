@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt')
 const HashFactor = 8
 
-const createFakeUser = () =>({
-  email: `date${Date.now()}@gmail.com`,
+const createFakeUser = (count) =>({
+  email: `testyMcTester${count}@supertest.com`,
   password:  bcrypt.hashSync('roman', HashFactor)
 })
 
@@ -15,7 +15,7 @@ exports.seed = function(knex) {
         const userCount = 6
 
         for(let i = 0; i < userCount; i++){
-          fakeUsers.push(createFakeUser())
+          fakeUsers.push(createFakeUser(i))
         }
         // Inserts seed entries
         return knex('users').insert(fakeUsers);
