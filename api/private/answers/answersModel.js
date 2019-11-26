@@ -26,13 +26,11 @@ function findAllByQuestionId(id) {
     .first();
 }
 
-
 function findByDateRange(id,startDate, endDate) {
-  console.log('here')
   return db(table)
     .whereBetween("answer_date", [startDate, endDate])
     .orderBy("user_id")
-    .andWhere("user_id",id)
+    .where({id})
 }
 
 function findByUserId(id) {
@@ -40,8 +38,6 @@ function findByUserId(id) {
     .where("user_id", id)
     .orderBy("answer_date");
 }
-
-
 
 function add(obj) {
   return db(table)

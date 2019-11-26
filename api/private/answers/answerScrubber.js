@@ -27,8 +27,6 @@ module.exports = async (req, res, next) => {
         });
 
     errors.length < 1 && addProp("answer_date", new Date());
-    console.log('Clean Answers',cleanAnswer)
-
     //return cleanObj
     return cleanAnswer;
   };
@@ -39,9 +37,8 @@ module.exports = async (req, res, next) => {
       req.body.push(cleaner(a));
     });
   } else {
-
-    req.body = {...cleaner(answers)};
-
+    //Answer
+    req.body = cleaner(answers);
   }
 
   if (errors.length > 0) {
