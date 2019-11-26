@@ -7,7 +7,7 @@ require("dotenv").config();
 
 //Set Globalse
 const PORT = process.env.PORT || 5000;
-const ENV = process.env.NODE_ENV || process.env.DB_ENV
+const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
@@ -27,34 +27,35 @@ server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
 server.use("/", (error, req, res, next) => {
-  if (error) {
-    res.status(200).json({ errors: error });
-  } else {
-    next();
-  }
+    if (error) {
+        res.status(200).json({ errors: error });
+    } else {
+        next();
+    }
 });
 
 server.use("/", (req, res) => {
-  const rootURL = process.env.ROOT_URL || req.get("host");
-  res.status(200).json({
-    errors: [
-      {
-        invalid: `${rootURL + req.originalUrl}, using method ${
+    const rootURL = process.env.ROOT_URL || req.get("host");
+    res.status(200).json({
+        errors: [{
+                invalid: `${rootURL + req.originalUrl}, using method ${
           req.method
         }, is not a valid URL`
-      },
-      { docs: `${rootURL}/docs` }
-    ]
-  });
+            },
+            { docs: `${rootURL}/docs` }
+        ]
+    });
 });
 
-//A bit hackey, Need for Travis 
-if (ENV === "test") {
-  
-} else {
-  server.listen(PORT, () => {
-    console.log(`\n** It's Alive... on port: ${chalk.blue(PORT)}, Using ${ENV} Environment **\n`);
-  });
+//A bit hackey, Need for Travis
+if (ENV === "test") {} else {
+    server.listen(PORT, () => {
+        console.log(
+            `\n** It's Alive... on port: ${chalk.blue(
+        PORT
+      )} ** \n** Using Environment: ${chalk.blue(ENV.toUpperCase())}  **\n`
+        );
+    });
 }
 
-module.exports=server
+module.exports = server;
