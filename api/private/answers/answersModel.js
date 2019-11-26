@@ -1,29 +1,25 @@
 const db = require(_dbConfig);
 module.exports = {
   add,
-  find,
-  findAll,
+  editById,
+  findAllByUserId,
   findByDateRange,
   findAllByQuestionId
 };
 
 const table = "answers";
 
-function find() {
-  return db(table);
-}
 
-function findAll(id) {
+function findAllByUserId(id) {
   return db(table)
     .where("user_id", id)
-    .first();
+  
 }
 
-function findAllByQuestionId(id) {
+function findAllByQuestionId(user_id,id) {
   return db(table)
     .where({ id })
-    .where("user_id", req.user.userId)
-    .first();
+    .where("user_id", user_id)
 }
 
 function findByDateRange(id, startDate, endDate) {
@@ -35,4 +31,11 @@ function findByDateRange(id, startDate, endDate) {
 
 function add(obj) {
   return db(table).insert(obj, "id");
+}
+
+function editById(user_id,id){
+  return db(table)
+  .where({id})
+  .andWhere({user_id})
+  .update(update, "*");
 }
