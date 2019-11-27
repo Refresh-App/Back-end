@@ -26,16 +26,15 @@ authRouter.post("/register", validateNewUser, (req, res) => {
   const hash = bcrypt.hashSync(user.password, HashFactor);
   user.password = hash;
   dbModel
-    .addUser(user)
+    .findOrCreateByEmail(user)
     .then(newUser => {
-      //Just to Be sure
-      delete newUser.password;
+    
       payload = {
         ...newUser,
         token_type: "Basic ",
         token: jwt.genToken(newUser)
       };
-      console.log("payload", payload);
+     
       res.status(201).send({ message: "Welcome da the Club Yo!", ...payload });
     })
     .catch(err => res.status(400).json({ errors: err }));
