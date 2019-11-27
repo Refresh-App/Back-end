@@ -1,3 +1,4 @@
+require('dotenv').config()
 const bcrypt = require('bcrypt')
 const HashFactor = 8
 const URL = process.env.ROOT_URL || 'apidevnow.com'
