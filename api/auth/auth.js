@@ -28,7 +28,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
   dbModel
     .findOrCreateByEmail(user)
     .then(newUser => {
-    
+      console.log(newUser)
       payload = {
         ...newUser,
         token_type: "Basic ",
@@ -41,10 +41,11 @@ authRouter.post("/register", validateNewUser, (req, res) => {
 });
 
 //Register ->Requires{username:'',password:''}
-authRouter.post("/login", validateLogin, (req, res) => {
+authRouter.post("/login", validateLogin, async (req, res) => {
   const { password } = req.body;
-  const user = req.user;
+  let user = req.user;
   if (user && bcrypt.compareSync(password, user.password)) {
+    user = await dbModel.findOrCreateByEmail(user)
     delete user.password;
     payload = {
       ...user,
