@@ -1,10 +1,12 @@
   
 const cleaner = require('knex-cleaner');
 
-exports.seed = function(knex) {
-  return cleaner.clean(knex, {
+exports.seed = async function(knex) {
+  const clean = await cleaner.clean(knex, {
     mode: 'delete',
     restartIdentity: true,
     ignoreTables: ['knex_migrations', 'knex_migrations_lock'],
   });
+
+  return clean
 };
