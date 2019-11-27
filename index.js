@@ -35,7 +35,7 @@ server.use("/", (error, req, res, next) => {
 });
 
 server.use("/", (req, res) => {
-    const rootURL = process.env.ROOT_URL || req.get("host");
+    const rootURL = process.env.ROOT_URL || 'apidevnow.com';
     res.status(200).json({
         errors: [{
                 invalid: `${rootURL + req.originalUrl}, using method ${
