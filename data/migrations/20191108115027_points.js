@@ -8,15 +8,14 @@ exports.up = function(knex) {
           .references("id")
           .inTable("users")
           .unsigned()
-          .onDelete("CASCADE")
-          .onUpdate("CASCADE")
+          
         col.integer("points");
         col
           .integer("answer_id")
           .notNullable()
           .references("id")
           .inTable("answers")
-          .onDelete("CASCADE")
+     
       });
   };
   

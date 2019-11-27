@@ -13,7 +13,7 @@ exports.up = function(knex) {
       .unsigned()
       .references("id")
       .inTable("users")
-      .onDelete("CASCADE")
+  
   });
 };
 
