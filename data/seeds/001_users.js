@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
 const HashFactor = 8
-const URL = process.env.ROOT_URL
+const URL = process.env.ROOT_URL || 'apidevnow.com'
 
 const createFakeUser = (count) =>({
   email: `testuser${count}@${URL}`,
