@@ -8,7 +8,7 @@ exports.up = function(knex) {
       .references("id")
       .inTable("questions")
       .onDelete("CASCADE")
-      .onUpdate("CASCADE")
+    
     col.integer("point_value").notNullable();
     col.integer("goal").notNullable();
     col.specificType("dotw", "INT[]");

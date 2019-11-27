@@ -9,14 +9,14 @@ exports.up = function(knex) {
       .inTable("questions")
       .unsigned()
       .onDelete("CASCADE")
-      .onUpdate("CASCADE")
+     
     col
       .integer("user_id")
       .unsigned()
       .references("id")
       .inTable("users")
       .onDelete("CASCADE")
-      .onUpdate("CASCADE")
+    
   });
 };
 
