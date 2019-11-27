@@ -3,7 +3,7 @@ const HashFactor = 8
 const URL = process.env.ROOT_URL
 
 const createFakeUser = (count) =>({
-  email: `testyMcTester${count}@${URL}`,
+  email: `testuser${count}@${URL}`,
   password:  bcrypt.hashSync('roman', HashFactor)
 })
 
