@@ -9,6 +9,7 @@ exports.up = function(knex) {
           .inTable("users")
           .unsigned()
           .onDelete("CASCADE")
+          .onUpdate("CASCADE")
         col.integer("points");
         col
           .integer("answer_id")
@@ -16,6 +17,7 @@ exports.up = function(knex) {
           .references("id")
           .inTable("answers")
           .onDelete("CASCADE")
+          .onUpdate("CASCADE")
       });
   };
   

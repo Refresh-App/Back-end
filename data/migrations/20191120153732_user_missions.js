@@ -7,12 +7,14 @@ exports.up = function(knex) {
       .references("id")
       .inTable("users")
       .onDelete("CASCADE")
+      .onUpdate("CASCADE")
     col
       .integer("mission_id")
       .unsigned()
       .references("id")
       .inTable("missions")
       .onDelete("CASCADE")
+      .onUpdate("CASCADE")
     col.unique(["user_id","mission_id"])
   });
 };
