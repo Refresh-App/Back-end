@@ -29,6 +29,10 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
+
+  const user_missions = await userMissionsModel.findAll(user.id);
+  const getUserRoles = await rolesModel.findAllRolesById(user.id);
+
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
@@ -37,8 +41,7 @@ async function findOrCreateByEmail(profile) {
 
   //If the user exist
   if (user) {
-    const getUserRoles = await rolesModel.findAllRolesById(user.id);
-    const user_missions = await userMissionsModel.findAll(user.id);
+
     return {
       user_id: user.id,
       userRoles: [...getUserRoles],
@@ -75,6 +78,7 @@ async function findOrCreateByEmail(profile) {
 
     return {
       ...newProfile,
+      ...user_missions,
       userRoles: [...getUserRoles],
       newUser: "Welcome New User"
     };
