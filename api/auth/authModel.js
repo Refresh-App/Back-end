@@ -62,6 +62,7 @@ async function findOrCreateByEmail(profile) {
 
     //Create New User
     const newUser = await addUser({ email, password });
+    const user_missions = await userMissionsModel.findAll(newUser.id);
     delete profile.email; //Clean For Profile Creation
 
     //Assign User Role
