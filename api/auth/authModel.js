@@ -39,12 +39,13 @@ async function findOrCreateByEmail(profile) {
     .first();
 
   //Get user Mission and Roles
-  const user_missions = await userMissionsModel.findAll(user.id);
-  const getUserRoles = await rolesModel.findAllRolesById(user.id);
   
+  
+
   //If the user exist
   if (user) {
-
+    const user_missions = await userMissionsModel.findAll(user.id);
+    const getUserRoles = await rolesModel.findAllRolesById(user.id);
     return {
       user_id: user.id,
       userRoles: [...getUserRoles],
