@@ -41,7 +41,6 @@ async function findOrCreateByEmail(profile) {
     const user_missions = await userMissionsModel.findAll(user.id);
     return {
       user_id: user.id,
-      ...profile,
       userRoles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back"
