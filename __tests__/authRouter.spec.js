@@ -15,14 +15,14 @@ describe("Register, Login and delete a standard user using the local stratagey",
     token = res.body.token;
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("user_profile");
-    expect(res.body).toHaveProperty("user_profile");
-    done();
+    expect(res.body).toHaveProperty("token");
+    return done();
   });
 
   it("Deletes Test User", async done => {
     const res = await req.delete("/deleteme").set("Authorization", token);
     console.log('reszzzzzzzzz',res.body)
     expect(res.status).toBe(200);
-    done();
+    return done();
   });
 });
