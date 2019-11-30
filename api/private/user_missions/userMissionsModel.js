@@ -50,8 +50,8 @@ async function findAll(id) {
     await missions_in_progress.forEach((mission, i) => {
       //Add Returned Mission Id to filtered Missions
       filterdMissions.push(missions_in_progress[i].id);
-      
-      //Get Total Mission Progress. 
+
+      //Get Total Mission Progress.
       let count = 0;
       mission.totals &&
         //Loops through array of totals
@@ -73,7 +73,9 @@ async function findAll(id) {
 
   return {
     user_missions: {
-      missions_in_progress:process.env.NODE_ENV !== 'test'?missions_in_progress:'',
+      missions_in_progress:
+        //SQLITE3 doesnot support queried arrays where as postgres does
+        process.env.NODE_ENV !== "test" ? missions_in_progress : "",
       missions_needing_attention
     }
   };
