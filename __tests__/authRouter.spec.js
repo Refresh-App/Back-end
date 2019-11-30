@@ -2,12 +2,15 @@ const app = require("../index"); // Link to your server file
 const supertest = require("supertest");
 const req = supertest(app);
 
-describe("Renders Without Crashing", () => {
+describe("It should Register and Log in a user", () => {
   it("Default Route", async done => {
-    const res = await req.get("/");
-
-    expect(res.status).toBe(200);
-
+    const res = await req.post("/register").send({
+        email:'testyMc@Testerson.com',
+        password:"secretSquirl"
+    });
+    console.log('post',res.body)
+    expect(res.status).toBe(201);
+    
     done();
   });
 });
