@@ -3,6 +3,11 @@ const supertest = require("supertest");
 const req = supertest(app);
 
 describe("Register, Login and delete a standard user using the local stratagey", () => {
+
+  afterAll(done => {
+    app.close(done);
+  });
+
   let token;
   const testUser = {
     email: "testyMc@Testerson.com",
@@ -14,7 +19,6 @@ describe("Register, Login and delete a standard user using the local stratagey",
    
     token = res.body.token;
     expect(res.status).toBe(201);
-    console.log('res.body',res.body)
     expect(res.body).toHaveProperty("user_profile");
     expect(res.body).toHaveProperty("token");
     return done();
