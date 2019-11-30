@@ -50,6 +50,7 @@ server.use("/", (req, res) => {
 
 //A bit hackey, Need for Travis
 if (ENV === "test") {} else {
+    console.log('ENVVVVV',ENV)
     server.listen(PORT, () => {
         console.log(
             `\n** It's Alive... on port: ${chalk.blue(
