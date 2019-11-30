@@ -59,4 +59,13 @@ authRouter.post("/login", validateLogin, async (req, res) => {
   }
 });
 
+//Register ->Requires{username:'',password:''}
+authRouter
+  .delete('/deleteme',jwt.chkToken(),(req,res)=>{
+    const id=req.user.user_id
+    return dbModel.removeUser(id)
+    .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
+    .catch(e=>{res.status(401).json({message:'SOMEMESSAGE', ...e})})
+})
+
 module.exports = authRouter;

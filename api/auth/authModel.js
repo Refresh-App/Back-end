@@ -8,7 +8,8 @@ module.exports = {
   addUser,
   findByEmail,
   findById,
-  findOrCreateByEmail
+  findOrCreateByEmail,
+  removeUser
 };
 
 //Nice to declare Tables up top Yo, including sub tables
@@ -92,4 +93,11 @@ function addUser(obj) {
   return db(table)
     .insert(obj, "id")
     .then(([id]) => findById(id));
+}
+
+
+function removeUser(id){
+  return db(table)
+  .where({ id })
+  .del();
 }
