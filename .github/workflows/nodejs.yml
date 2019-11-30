@@ -27,7 +27,7 @@ jobs:
         ROOT_URL: ${{ secrets.ROOT_URL }}
         DB_ENV: ${{ secrets.DB_ENV }}
         DATABASE_URL_STAGE: ${{ secrets.DATABASE_URL_STAGE }}
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_URL: development
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
         GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
         GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
