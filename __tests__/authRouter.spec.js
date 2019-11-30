@@ -16,6 +16,7 @@ describe("Register, Login and delete a standard user using the local stratagey",
 
   it("Regiters Test User", async done => {
     const res = await req.post("/register").send(testUser);
+    console.log('res.body',res.body)
     token = res.body.token;
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("user_profile");
