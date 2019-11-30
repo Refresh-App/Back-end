@@ -23,7 +23,7 @@ async function findAll(id) {
 
   //Returns All missions in progress between Above Dates
   let missions_in_progress = await db("missions as m")
-    .select(db.raw("array_agg(a.answer) as totals"), "m.*")
+    .select(process.env.NODE_ENV !== 'test' && db.raw("array_agg(a.answer) as totals"), "m.*")
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
     .whereBetween("answer_date", [today, tomorrow])
