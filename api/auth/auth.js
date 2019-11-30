@@ -2,7 +2,7 @@ const authRouter = require("express").Router();
 
 //Authenication Stratagies
 const jwt = require(_jwt);
-const gitAuth = require("./preAuth/github");
+//const gitAuth = require("./preAuth/github");
 const facebookAuth = require("./preAuth/facebook");
 const googleAuth = require("./preAuth/google")
 //database Model
@@ -16,7 +16,7 @@ const validateNewUser = require("./validation/register");
 const validateLogin = require("./validation/login");
 
 //Maybe one Wan'ts to register with Github, Facebook, or, Google
-authRouter.use("/gitAuth", gitAuth);
+//authRouter.use("/gitAuth", gitAuth);
 authRouter.use("/facebookAuth", facebookAuth);
 authRouter.use("/googleAuth",googleAuth)
 
@@ -28,7 +28,6 @@ authRouter.post("/register", validateNewUser, (req, res) => {
   dbModel
     .findOrCreateByEmail(user)
     .then(newUser => {
-      console.log(newUser)
       payload = {
         ...newUser,
         token_type: "Basic ",
