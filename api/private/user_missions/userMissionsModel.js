@@ -99,3 +99,4 @@ function add(obj) {
     .insert(obj, "id")
     .then(([id]) => findById(id));
 }
+
