@@ -23,7 +23,7 @@ async function findAll(id) {
 
   //Returns All missions in progress between Above Dates
   let missions_in_progress = await db("missions as m")
-    .select(process.env.NODE_ENV !== 'test' && db.raw("array_agg(a.answer) as totals"), "m.*")
+    .select(process.env.NODE_ENV !== 'test' && db.raw("array_agg(a.id) as daily_answers"), "m.*")
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
     .whereBetween("answer_date", [today, tomorrow])
@@ -51,16 +51,9 @@ async function findAll(id) {
       //Add Returned Mission Id to filtered Missions
       filterdMissions.push(missions_in_progress[i].id);
       
-      //Get Total Mission Progress. 
-      let count = 0;
-      mission.totals &&
-        //Loops through array of totals
-        mission.totals.forEach(n => {
-          n = parseInt(n);
-          count = Number(n) ? count + n : count;
-        });
-      mission.mission_complete = count >= mission.goal ? true : false;
-      mission.point_current = count;
+      mission.daily_answers =  db('answers')
+      .whereIn('id', mission.daily_answers) 
+      
     });
   }
 

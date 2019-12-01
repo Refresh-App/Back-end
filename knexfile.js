@@ -1,4 +1,3 @@
-console.log("ENVS",process.env.DATABASE_URL,process.env.DATABASE_URL_STAGE)
 module.exports = {
   test: {
     client: "sqlite3",
