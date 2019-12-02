@@ -11,12 +11,12 @@ module.exports = {
 
 const table = 'roles';
 const userRoles = "user_roles";
-function findAllRolesById(userId) {
+function findAllRolesById(user_id) {
  return db(userRoles + " as ur ")
   .select("rt.id")
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
-  .where("ur.user_id", userId)
+  .where("ur.user_id", user_id)
 }
 
 function findAll(){
