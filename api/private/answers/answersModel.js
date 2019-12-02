@@ -29,10 +29,11 @@ function findByDateRange(id, startDate, endDate) {
 }
 
 function add(obj) {
+    console.log(obj)
   return db(table)
     .insert(obj, "id")
     .then(res => {
-      userMissionsModel.findAll(obj.user_id);
+      return userMissionsModel.findAll(obj.user_id);
     });
 }
 
