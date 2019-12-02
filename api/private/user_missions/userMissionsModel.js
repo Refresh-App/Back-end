@@ -74,6 +74,9 @@ async function findAll(id) {
     });
   }
 
+  const mission_subscriptions = await db(table + " as um")
+  .select("um.mission_id")
+  .where('user_id',id)
   //Return All other User Missions Not In Progress
   const missions_needing_attention = await db(table + " as um")
     .select("m.*")
@@ -84,7 +87,8 @@ async function findAll(id) {
   return {
     user_missions: {
       missions_in_progress,
-      missions_needing_attention
+      missions_needing_attention,
+      mission_subscriptions
     }
   };
 }
