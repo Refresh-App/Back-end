@@ -88,9 +88,8 @@ async function findAll(id) {
 
   return {
     user_missions: {
-      missions_in_progress,
-      missions_needing_attention,
-      mission_subscriptions
+      ...missions_in_progress,
+      ...missions_needing_attention,
     }
   };
 }
