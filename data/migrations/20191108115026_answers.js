@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("answers", col => {
     col.increments();
     col.string("answer", 3000);
-    col.dateTime("answer_date");
+    col.timestamp("answer_date",{ useTz: true });
     col
       .integer("question_id")
       .references("id")
