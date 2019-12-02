@@ -34,6 +34,7 @@ function add(obj) {
     .then(res => {
       return userMissionsModel.findAll(user_id);
     });
+    
 }
 
 function editById(user_id, id) {
