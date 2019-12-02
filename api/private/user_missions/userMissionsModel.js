@@ -73,10 +73,12 @@ async function findAll(id) {
       mission.point_current = count;
     });
   }
-
+  //This seems a bit redundant, but, is quick for what we need
   const mission_subscriptions = await db(table + " as um")
-  .select("um.mission_id")
+  .select("um.mission_id",'m.vertical')
+  .join('missions as m', 'm.id', 'um.mission_id')
   .where('user_id',id)
+
   //Return All other User Missions Not In Progress
   const missions_needing_attention = await db(table + " as um")
     .select("m.*")
