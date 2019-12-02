@@ -26,7 +26,16 @@ async function findAll(id) {
     .select(
       process.env.NODE_ENV !== "test" &&
         db.raw("array_agg(a.id) as daily_answers"),
-      "m.*"
+        "m.id as mission_id",
+        "m.vertical",
+        "m.description",
+        "m.question",
+        "m.point_value",
+        "m.goal",
+        "m.dotw",
+        "m.start_date",
+        "m.ending_date",
+        "m.daily_reminders"
     )
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
@@ -73,11 +82,6 @@ async function findAll(id) {
       mission.point_current = count;
     });
   }
-  //This seems a bit redundant, but, is quick for what we need
-  const mission_subscriptions = await db(table + " as um")
-  .select("um.mission_id",'m.vertical')
-  .join('missions as m', 'm.id', 'um.mission_id')
-  .where('user_id',id)
 
   //Return All other User Missions Not In Progress
   const missions_needing_attention = await db(table + " as um")
