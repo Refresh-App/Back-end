@@ -1,5 +1,5 @@
 const db = require(_dbConfig);
-const userMissionsModel = require('../user_missions/userMissionsModel')
+const userMissionsModel = require("../user_missions/userMissionsModel");
 module.exports = {
   add,
   editById,
@@ -10,17 +10,14 @@ module.exports = {
 
 const table = "answers";
 
-
 function findAllByUserId(id) {
-  return db(table)
-    .where("user_id", id)
-  
+  return db(table).where("user_id", id);
 }
 
-function findAllByQuestionId(user_id,id) {
+function findAllByQuestionId(user_id, id) {
   return db(table)
     .where({ id })
-    .where("user_id", user_id)
+    .where("user_id", user_id);
 }
 
 function findByDateRange(id, startDate, endDate) {
@@ -31,14 +28,17 @@ function findByDateRange(id, startDate, endDate) {
 }
 
 function add(obj) {
-  return db(table).insert(obj, "id").then(res=>{
-    return userMissionsModel.findAll(obj.user_id)
-  })
+  const user_id = Array.isArray(obj) ? obj[0].user_id : obj.user_id;
+  return db(table)
+    .insert(obj, "id")
+    .then(res => {
+      return userMissionsModel.findAll(user_id);
+    });
 }
 
-function editById(user_id,id){
+function editById(user_id, id) {
   return db(table)
-  .where({id})
-  .andWhere({user_id})
-  .update(update, "*");
+    .where({ id })
+    .andWhere({ user_id })
+    .update(update, "*");
 }
