@@ -26,16 +26,7 @@ async function findAll(id) {
     .select(
       process.env.NODE_ENV !== "test" &&
         db.raw("array_agg(a.id) as daily_answers"),
-        "m.id as mission_id",
-        "m.vertical",
-        "m.description",
-        "m.question",
-        "m.point_value",
-        "m.goal",
-        "m.dotw",
-        "m.start_date",
-        "m.ending_date",
-        "m.daily_reminders"
+      "m.*"
     )
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
@@ -82,6 +73,7 @@ async function findAll(id) {
       mission.point_current = count;
     });
   }
+
 
   //Return All other User Missions Not In Progress
   const missions_needing_attention = await db(table + " as um")
