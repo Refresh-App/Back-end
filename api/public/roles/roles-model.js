@@ -10,9 +10,9 @@ module.exports = {
 };
 
 const table = 'roles';
-const userRoles = "user_roles";
+const user_roles = "user_roles";
 function findAllRolesById(user_id) {
- return db(userRoles + " as ur ")
+ return db(user_roles + " as ur ")
   .select("rt.id")
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
@@ -42,7 +42,7 @@ function editById(id, update) {
     .update(update, '*');
 }
 function addUserRole(obj) {
-  return db(userRoles)
+  return db(user_roles)
     .insert(obj,'id')
 }
 
