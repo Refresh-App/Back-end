@@ -45,11 +45,6 @@ async function findAll(id) {
       "m.ending_date",
       "m.daily_reminders"
     );
-
-  //No Missions in Progress
-  if (!missions_in_progress.length) {
-    missions_in_progress = "No Missions Currently in progress for today";
-  } else {
     //Verify all mission answers are countable and numbers
     await missions_in_progress.forEach(async (mission, i) => {
       //Add Returned Mission Id to filtered Missions
@@ -72,8 +67,6 @@ async function findAll(id) {
       //Get Current Mission Count
       mission.point_current = count;
     });
-  }
-
 
   //Return All other User Missions Not In Progress
   const missions_needing_attention = await db(table + " as um")
