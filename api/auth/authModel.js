@@ -61,9 +61,14 @@ async function findOrCreateByEmail(profile) {
     const newUser = await addUser({ email, password });
     
     // Assign Default Missions
-    await db('default_missons as dm')
-    .select(['dm.mission_id'])
-    .then(res=>console.log(res))
+    const defaultMissions = await db('default_missions')
+    .select(["mission_id"])
+    .then(res=>{
+      res.forEach(mission =>{
+        const {mission_id} = mission
+        userMissionsModel.add({mission_id,user_id:newUser.id})
+      })
+    })
 
     //Get User Missions
     const user_missions = await userMissionsModel.findAll(newUser.id);
