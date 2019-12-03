@@ -66,7 +66,7 @@ async function findOrCreateByEmail(profile) {
     .then(res=>{
       res.forEach(mission =>{
         const {mission_id} = mission
-        userMissionsModel.add({mission_id,user_id:newUser.id})
+        return userMissionsModel.add({mission_id,user_id:newUser.id})
       })
     })
 
