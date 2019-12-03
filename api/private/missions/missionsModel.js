@@ -9,6 +9,15 @@ module.exports={
 const table='missions'
 function findAll(){
     return db(table + ' as m')
+    .select("m.id as mission_id",
+    "m.vertical",
+    "m.description",
+    "m.point_value",
+    "m.goal",
+    "m.dotw",
+    "m.start_date",
+    "m.ending_date",
+    "m.daily_reminders",'q.question as question')
     .join('questions as q','q.id','m.question')
 }
 function findById(id){
