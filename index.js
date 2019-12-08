@@ -51,7 +51,9 @@ server.use("/", (error, req, res, next) => {
 server.use("/", (req, res) => {
   const routeId = req.originalUrl.split("/");
   const matchedRoute = matchClosestRoute(routeCatalog, routeId[1]);
-
+  const proposedDoc = matchedRoute
+    ? `${matchedRoute}_${req.method.toLowerCase()}`
+    : "";
   res.status(200).json({
     errors: [
       {
@@ -60,7 +62,7 @@ server.use("/", (req, res) => {
         }, is not a valid URL`
       },
       {
-        docs: `https://${rootURL}/docs#${matchedRoute}_${req.method.toLowerCase()}`
+        docs: `https://${rootURL}/docs#${proposedDoc}`
       }
     ]
   });
