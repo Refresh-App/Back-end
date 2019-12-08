@@ -24,7 +24,6 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
-    
   },
   staging: {
     client: "pg",
