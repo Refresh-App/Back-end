@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  const number = process.env.NODE_ENV === 'test' ? 200 : 3000
+  const number =  3000
   return knex("answers")
     .del()
     .then(function() {
