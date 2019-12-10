@@ -78,6 +78,8 @@ pre {
   padding: 10px;
   height: 200px;
   color: black;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 .route .route_details div {
   width: 50%;
@@ -107,5 +109,5 @@ pre {
   background: blue;
 }
 .route [data-method="DELETE"] {
-  background: #DD3300;
+  background: #dd3300;
 }
