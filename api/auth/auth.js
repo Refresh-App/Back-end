@@ -63,8 +63,8 @@ authRouter.post("/login", validateLogin, async(req, res) => {
 //Register ->Requires{email:'',password:''}
 
 authRouter.routes = [
-    // {route:'/facebookAuth', method:"GET", expects:{}, returns:{}},//These Cause Huge Data Returns
-    // {route:'/googleAuth' , method:"GET", expects:{}, returns:{}},//These Cause Huge Data Returns
+    // {route:'/facebookAuth', method:"GET", expects:{}},//These Cause Huge Data Returns
+    // {route:'/googleAuth' , method:"GET", expects:{}},//These Cause Huge Data Returns
     {
         route: "/register",
         method: "POST",

@@ -43,10 +43,10 @@ router
 })
 
 router.routes = [
-  {route:'/missions', method:"GET", expects:{}, returns:{}},
-  {route:'/missions/:id', method:"GET", expects:{}, returns:{}},
-  {route:'/missions', method:"POST", expects:{}, returns:{}},
-  {route:'/missions', method:"PUT", expects:{}, returns:{}},
-  {route:'/missions/:id', method:"DELETE", expects:{}, returns:{}},
+  {route:'/missions', method:"GET", expects:{}},
+  {route:'/missions/:id', method:"GET", expects:{}},
+  {route:'/missions', method:"POST", expects:{}},
+  {route:'/missions', method:"PUT", expects:{}},
+  {route:'/missions/:id', method:"DELETE", expects:{}},
 ]
 module.exports=router

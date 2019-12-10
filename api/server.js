@@ -37,6 +37,7 @@ primaryRouter.use("/docs", docs.docGen(routeCatalog), docsRouter);
 primaryRouter.get("/testRoutes", async (req, res) => {
   const axiosCalls = [];
   const routes = routesToArray(routeCatalog);
+  
   routes.forEach(route => {
     axiosCalls.push(axios[route.method.toLowerCase()](rootUrl + route.route));
   });

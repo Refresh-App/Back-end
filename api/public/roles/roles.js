@@ -64,11 +64,11 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-  {route:'/roles', method:"GET", expects:{}, returns:{}},
-  {route:'/roles/:id', method:"GET", expects:{}, returns:{}},
-  {route:'/roles', method:"POST", expects:{}, returns:{}},
-  {route:'/roles/:id', method:"PUT", expects:{}, returns:{}},
-  {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
-  {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
+  {route:'/roles', method:"GET", expects:{}},
+  {route:'/roles/:id', method:"GET", expects:{}},
+  {route:'/roles', method:"POST", expects:{}},
+  {route:'/roles/:id', method:"PUT", expects:{}},
+  {route:'/roles/:id', method:"DELETE", expects:{}},
+  {route:'/roles/:id', method:"DELETE", expects:{}},
 ]
 module.exports = router;
