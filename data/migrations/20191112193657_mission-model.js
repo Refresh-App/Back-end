@@ -8,13 +8,18 @@ exports.up = function(knex) {
       .references("id")
       .inTable("questions")
       .onDelete("CASCADE");
-
     col.integer("point_value").notNullable();
     col.integer("goal").notNullable();
     col.specificType("dotw", "INT[]");
     col.dateTime("start_date");
     col.dateTime("ending_date");
     col.integer("daily_reminders");
+    col.integer("input_type")
+    .references('id')
+    .inTable('input_types')
+    .onDelete('CASCADE')
+    .onUpdate('CASCADE')
+    .notNullable()
   });
 };
 

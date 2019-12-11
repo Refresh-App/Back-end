@@ -86,7 +86,7 @@ router.routes = [
   { route: "/answers", method: "GET", expects: {}, returns: {} },
   { route: "/answers/:id", method: "GET", expects: {}, returns: {} },
   { route: "/answers", method: "POST", expects: {}, returns: {} },
-  { route: "/answers", method: "PUT", expects: {}, returns: {} },
+  { route: "/answers/:id", method: "PUT", expects: {}, returns: {} },
   { route: "/answers/:id", method: "DELETE", expects: {}, returns: {} }
 ];
 module.exports = router;
