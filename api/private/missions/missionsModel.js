@@ -9,7 +9,7 @@ module.exports = {
 const table = "missions";
 function findAll() {
   return db(table + " as m")
-    .select('m.*','m.id as mission_id','i.*','q.*')
+    .select('m.*','m.id as mission_id','i.*','q.*', 'q.id as question_id')
     .join("questions as q", "q.id", "m.question")
     .join("input_type as i", "i.id", "m.input_type");
 }
