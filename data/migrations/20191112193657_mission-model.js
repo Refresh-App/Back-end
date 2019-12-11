@@ -16,7 +16,7 @@ exports.up = function(knex) {
     col.integer("daily_reminders");
     col.integer("input_type")
     .references('id')
-    .inTable('input_types')
+    .inTable('input_type')
     .onDelete('CASCADE')
     .onUpdate('CASCADE')
     .notNullable()
