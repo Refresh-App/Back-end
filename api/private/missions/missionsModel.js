@@ -11,7 +11,14 @@ function findAll() {
   return db(table + " as m")
     .select('m.*','m.id as mission_id','i.*','q.*', 'q.id as question_id')
     .join("questions as q", "q.id", "m.question")
-    .join("input_type as i", "i.id", "m.input_type");
+    .join("input_type as i", "i.id", "m.input_type").then(res=>{
+      console.log(res)
+      res.forEach(mission => {
+        delete mission.id 
+        delete mission.creation_date
+      })
+      return res
+    })
 }
 function findById(id) {
   return db(table)

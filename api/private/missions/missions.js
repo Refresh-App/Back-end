@@ -5,7 +5,9 @@ const missionScrubber = require('./missionScrubber')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
-    .then(missions=>{res.status(200).json({message:`SUCCESS`,...missions})})
+    .then(missions=>{
+      res.status(200).json({message:`SUCCESS`,...missions})
+    })
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 
