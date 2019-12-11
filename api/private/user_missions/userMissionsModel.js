@@ -80,7 +80,10 @@ async function findAll(id) {
     .join("input_type as i", "i.id", "m.input_type")
     .join("questions as q", "q.id", "m.question")
     .where("user_id", id).then(missionSubs => {
-      missionSubs.forEach(mission=>delete mission.id)
+      missionSubs.forEach(mission=>{
+        delete mission.id
+        delete mission.creation_date
+      })
       return missionSubs
     })
   //Return All other User Missions Not In Progress
