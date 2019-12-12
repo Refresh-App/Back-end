@@ -46,7 +46,7 @@ router
 
 router.routes = [
   {route:'/missions', method:"GET", expects:{}},
-  {route:'/missions/:id', method:"GET", expects:{}},
+  {route:'/missions/:id', method:"GET", expects:[{headers:"Auth Token"},{URLParam:"Intiger"}]},
   {route:'/missions', method:"POST", expects:{}},
   {route:'/missions', method:"PUT", expects:{}},
   {route:'/missions/:id', method:"DELETE", expects:{}},
