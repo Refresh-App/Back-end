@@ -903,7 +903,9 @@ exports.seed = function(knex) {
         { icon: "fab fa-yelp" },
         { icon: "fas fa-yen-sign" },
         { icon: "fab fa-yoast" },
-        { icon: "fab fa-youtube" }
+        { icon: "fab fa-youtube" },
+        { icon: "fas fa-running" },
+        { icon: "fas fa-apple-alt" }
       ]);
     });
 };
