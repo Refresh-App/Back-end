@@ -75,8 +75,9 @@ async function findAll(id) {
     });
   }
   const mission_subscriptions = await db(table + " as um")
-    .select("m.*","m.id as mission_id","q.*","m.question as question_id","i.*")
+    .select("m.*","m.id as mission_id","q.*","m.question as question_id","i.*","ic.*")
     .join("missions as m", "m.id", "um.mission_id")
+    .join("icons as ic", "ic.id", "m.icon")
     .join("input_type as i", "i.id", "m.input_type")
     .join("questions as q", "q.id", "m.question")
     .where("user_id", id).then(missionSubs => {
