@@ -9,8 +9,9 @@ module.exports = {
 const table = "missions";
 function findAll() {
   return db(table + " as m")
-    .select('m.*','m.id as mission_id','i.*','q.*', 'q.id as question_id')
+    .select('m.*','m.id as mission_id','i.*','q.*', 'q.id as question_id','ic.*')
     .join("questions as q", "q.id", "m.question")
+    .join("icons as ic", "ic.id", "m.icon")
     .join("input_type as i", "i.id", "m.input_type").then(res=>{
       console.log(res)
       res.forEach(mission => {

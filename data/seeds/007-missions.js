@@ -48,7 +48,7 @@ exports.seed = function(knex) {
           question: 15,
           point_value: "50",
           input_type: 1,
-          icon:705
+          icon:900
         },
         {
           vertical: "food",
@@ -57,7 +57,7 @@ exports.seed = function(knex) {
           question: 16,
           point_value: "30",
           input_type: 1,
-          icon:797
+          icon:901
         }
       ]);
     });
