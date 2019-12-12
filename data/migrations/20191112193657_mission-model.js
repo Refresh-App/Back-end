@@ -17,9 +17,10 @@ exports.up = function(knex) {
     col.integer("input_type")
     .references('id')
     .inTable('input_type')
-    .onDelete('CASCADE')
-    .onUpdate('CASCADE')
     .notNullable()
+    col.integer("icon")
+    .references('id')
+    .inTable('icons')
   });
 };
 
