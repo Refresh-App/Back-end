@@ -87,7 +87,7 @@ async function findAll(id) {
       return missionSubs
     })
   //Return All other User Missions Not In Progress
-
+ 
   return {
     user_missions: {
       missions_in_progress,
