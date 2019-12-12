@@ -41,10 +41,6 @@ async function findAll(id) {
       "m.question",
       "m.point_value",
       "m.goal",
-      "m.dotw",
-      "m.start_date",
-      "m.ending_date",
-      "m.daily_reminders"
     );
 
   //No Missions in Progress
