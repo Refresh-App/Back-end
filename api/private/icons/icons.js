@@ -37,4 +37,13 @@ router
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
+
+router.routes = [
+    { route: "/icons", method: "GET", expects: {}, returns: {} },
+    { route: "/icons/:id", method: "GET", expects: {}, returns: {} },
+    { route: "/icons", method: "POST", expects: {}, returns: {} },
+    { route: "/icons/:id", method: "PUT", expects: {}, returns: {} },
+    { route: "/icons/:id", method: "DELETE", expects: {}, returns: {} }
+  ];
+
 module.exports=router

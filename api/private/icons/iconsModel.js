@@ -6,7 +6,7 @@ module.exports={
     add,
     editById
 }
-const table='users'
+const table='icons'
 function findAll(){
     return db(table)
 }
