@@ -79,7 +79,6 @@ async function findAll(id) {
     .join("missions as m", "m.id", "um.mission_id")
     .join("icons as ic", "ic.id", "m.icon")
     .join("input_type as i", "i.id", "m.input_type")
-    .join("icons as ic", "ic.id", "m.icon")
     .join("questions as q", "q.id", "m.question")
     .where("user_id", id).then(missionSubs => {
       missionSubs.forEach(mission=>{
