@@ -24,27 +24,18 @@ async function findAll(id) {
   //Returns All missions in progress between Above Dates
   let missions_in_progress = await db("missions as m")
     .select(
-      process.env.NODE_ENV !== "test" &&
-        db.raw("array_agg(a.id) as daily_answers"),
-      "m.*"
+      "m.*",
+      "m.id as mission_id",
+      process.env.NODE_ENV !== "test" && //Won't work with sqlite
+        db.raw("array_agg(a.id) as daily_answers")
     )
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
+    .join("input_type as i", "i.id", "m.input_type")
     .whereBetween("answer_date", [today, tomorrow])
     .andWhere("a.user_id", id)
     .as("mp")
-    .groupBy(
-      "m.id",
-      "m.vertical",
-      "m.description",
-      "m.question",
-      "m.point_value",
-      "m.goal",
-      "m.dotw",
-      "m.start_date",
-      "m.ending_date",
-      "m.daily_reminders"
-    );
+    .groupBy("m.id");
 
   //No Missions in Progress
   if (!missions_in_progress.length) {
@@ -75,20 +66,23 @@ async function findAll(id) {
   }
   const mission_subscriptions = await db(table + " as um")
     .select(
+      "m.*",
       "m.id as mission_id",
-      "m.vertical",
-      "q.question",
+      "q.*",
       "m.question as question_id",
-      "m.description",
-      "m.point_value",
-      "m.goal",
-      "m.dotw",
-      "m.ending_date",
-      "m.start_date"
+      "i.*"
     )
     .join("missions as m", "m.id", "um.mission_id")
+    .join("input_type as i", "i.id", "m.input_type")
     .join("questions as q", "q.id", "m.question")
-    .where("user_id", id);
+    .where("user_id", id)
+    .then(missionSubs => {
+      missionSubs.forEach(mission => {
+        delete mission.id;
+        delete mission.creation_date;
+      });
+      return missionSubs;
+    });
   //Return All other User Missions Not In Progress
 
   return {
