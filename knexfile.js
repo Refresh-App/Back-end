@@ -11,6 +11,7 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
+    debug:true
   },
   development: {
     client: "sqlite3",
@@ -24,6 +25,7 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
+    debug:true
   },
   staging: {
     client: "pg",
