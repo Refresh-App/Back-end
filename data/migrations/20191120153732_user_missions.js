@@ -14,6 +14,10 @@ exports.up = function(knex) {
       .references("id")
       .inTable("missions")
       .onDelete("CASCADE");
+    col.specificType("dotw", "INT[]");
+    col.dateTime("start_date");
+    col.dateTime("ending_date");
+    col.integer("daily_reminders");
 
     col.unique(["user_id", "mission_id"]);
   });

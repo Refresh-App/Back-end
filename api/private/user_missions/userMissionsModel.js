@@ -41,10 +41,6 @@ async function findAll(id) {
       "m.question",
       "m.point_value",
       "m.goal",
-      "m.dotw",
-      "m.start_date",
-      "m.ending_date",
-      "m.daily_reminders"
     );
 
   //No Missions in Progress
@@ -75,8 +71,9 @@ async function findAll(id) {
     });
   }
   const mission_subscriptions = await db(table + " as um")
-    .select("m.*","m.id as mission_id","q.*","m.question as question_id","i.*")
+    .select("m.*","m.id as mission_id","q.*","m.question as question_id","i.*","ic.*")
     .join("missions as m", "m.id", "um.mission_id")
+    .join("icons as ic", "ic.id", "m.icon")
     .join("input_type as i", "i.id", "m.input_type")
     .join("questions as q", "q.id", "m.question")
     .where("user_id", id).then(missionSubs => {
@@ -87,7 +84,7 @@ async function findAll(id) {
       return missionSubs
     })
   //Return All other User Missions Not In Progress
-
+ 
   return {
     user_missions: {
       missions_in_progress,

@@ -11,7 +11,9 @@ exports.seed = function(knex) {
           goal: "6",
           question: 11,
           point_value: 20,
-          input_type: 1
+          input_type: 1,
+          icon:797,
+          color:'rgb(21, 117, 255)'
         },
         {
           vertical: "sleep",
@@ -19,7 +21,9 @@ exports.seed = function(knex) {
           goal: "6",
           question: 12,
           point_value: 20,
-          input_type: 1
+          input_type: 1,
+          icon:81,
+          color:'rgb(252, 84, 235)'
         },
         {
           vertical: "activity",
@@ -27,7 +31,9 @@ exports.seed = function(knex) {
           goal: "30",
           question: 13,
           point_value: "50",
-          input_type: 1
+          input_type: 1,
+          icon:797,
+          color:'rgb(252, 84, 84)'
         },
         {
           vertical: "mental",
@@ -35,7 +41,9 @@ exports.seed = function(knex) {
           goal: "5",
           question: 14,
           point_value: 20,
-          input_type: 1
+          input_type: 1,
+          icon:863,
+          color:'rgb(255, 162, 95)'
         },
         {
           vertical: "social",
@@ -43,7 +51,9 @@ exports.seed = function(knex) {
           goal: "60",
           question: 15,
           point_value: "50",
-          input_type: 1
+          input_type: 1,
+          icon:900,
+          color:'rgb(155, 81, 224)'
         },
         {
           vertical: "food",
@@ -51,7 +61,9 @@ exports.seed = function(knex) {
           goal: "3",
           question: 16,
           point_value: "30",
-          input_type: 1
+          input_type: 1,
+          icon:901,
+          color:'rgb(39, 174, 96)'
         }
       ]);
     });
