@@ -1,60 +1,61 @@
 module.exports = {
-        test: {
-            client: "sqlite3",
-            useNullAsDefault: true,
-            connection: {
-                filename: "./data/dev.sqlite3"
-            },
-            migrations: {
-                directory: "./data/migrations"
-            },
-            seeds: {
-                directory: "./data/seeds"
-            },
-            debug: true
+    test: {
+        client: "sqlite3",
+        useNullAsDefault: true,
+        connection: {
+            filename: "./data/dev.sqlite3"
         },
-        development: {
-            client: "sqlite3",
-            useNullAsDefault: true,
-            connection: {
-                filename: "./data/dev.sqlite3"
-            },
-            migrations: {
-                directory: "./data/migrations"
-            },
-            seeds: {
-                directory: "./data/seeds"
-            },
-            debug: true
+        migrations: {
+            directory: "./data/migrations"
         },
-        staging: {
-            client: "pg",
-            connection: process.env.DATABASE_URL_STAGE,
-            pool: {
-                min: 2,
-                max: 10
-            },
-            migrations: {
-                tableName: "knex_migrations",
-                directory: "./data/migrations"
-            },
-            seeds: {
-                directory: "./data/seeds"
-            },
+        seeds: {
+            directory: "./data/seeds"
+        },
+        debug: true
+    },
+    development: {
+        client: "sqlite3",
+        useNullAsDefault: true,
+        connection: {
+            filename: "./data/dev.sqlite3"
+        },
+        migrations: {
+            directory: "./data/migrations"
+        },
+        seeds: {
+            directory: "./data/seeds"
+        },
+        debug: true
+    },
+    staging: {
+        client: "pg",
+        connection: process.env.DATABASE_URL_STAGE,
+        pool: {
+            min: 2,
+            max: 10
+        },
+        migrations: {
+            tableName: "knex_migrations",
+            directory: "./data/migrations"
+        },
+        seeds: {
+            directory: "./data/seeds"
+        },
 
+    },
+    production: {
+        client: "pg",
+        connection: process.env.DATABASE_URL,
+        pool: {
+            min: 2,
+            max: 10
         },
-        production: {
-            client: "pg",
-            connection: process.env.DATABASE_URL,
-            pool: {
-                min: 2,
-                max: 10
-            },
-            migrations: {
-                tableName: "knex_migrations",
-                directory: "./data/migrations"
-            },
-            seeds: {
-                directory: "./data/seeds"
-            }
-        };
+        migrations: {
+            tableName: "knex_migrations",
+            directory: "./data/migrations"
+        },
+        seeds: {
+            directory: "./data/seeds"
+        }
+    }
+}

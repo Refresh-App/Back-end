@@ -86,8 +86,8 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-    { route: "/users", method: "GET", expects: {}, returns: {} },
-    { route: "/users/:id", method: "GET", expects: {}, returns: {} },
+    { route: "/users", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
+    { route: "/users/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
     { route: "/users", method: "POST", expects: {}, returns: {} },
     { route: "/users/:id", method: "PUT", expects: {}, returns: {} },
     { route: "/users/:id", method: "DELETE", expects: {}, returns: {} }

@@ -44,11 +44,18 @@ router
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
 
-router.routes = [
-    { route: '/missions', method: "GET", expects: {} },
-    { route: '/missions/:id', method: "GET", expects: {} },
-    { route: '/missions', method: "POST", expects: {} },
-    { route: '/missions', method: "PUT", expects: {} },
-    { route: '/missions/:id', method: "DELETE", expects: {} },
-]
-module.exports = router
+router.routes = [{
+        route: "/missions",
+        method: "GET",
+        expects: { headers: "Authorization: Token" }
+    },
+    {
+        route: "/missions/:id",
+        method: "GET",
+        expects: { headers: "Authorization: Token" }
+    },
+    { route: "/missions", method: "POST", expects: {} },
+    { route: "/missions", method: "PUT", expects: {} },
+    { route: "/missions/:id", method: "DELETE", expects: {} }
+];
+module.exports = router;
