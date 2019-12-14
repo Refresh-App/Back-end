@@ -8,7 +8,7 @@ exports.seed = function(knex) {
         {
           vertical: "water",
           description: "more glasses of water",
-          goal: "6",
+          goal: "8",
           question: 11,
           point_value: 20,
           input_type: 1,
@@ -68,3 +68,6 @@ exports.seed = function(knex) {
       ]);
     });
 };
+
+
+
