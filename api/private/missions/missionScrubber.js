@@ -20,7 +20,14 @@ module.exports = async (req, res, next) => {
     : errors.push({ goal: "Goal is required" });
   !!mission.inputType
     ? addProp("input_type", mission.inputType)
-    : errors.push({ inputType: "Goal is required" });
+    : errors.push({ inputType: "inputType is required" });
+  !!mission.icon
+    ? addProp("icon", mission.icon)
+    : errors.push({ icon: "icon is required" });
+  !!mission.color
+    ? addProp("color", mission.color)
+    : errors.push({ color: "color is required" });
+
   //Question
   [mission.question] =
     mission.question &&
