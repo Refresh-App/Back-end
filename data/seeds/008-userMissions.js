@@ -39,6 +39,13 @@ exports.seed = function(knex) {
                 { user_id: 5, mission_id: 4 },
                 { user_id: 5, mission_id: 5 },
                 { user_id: 5, mission_id: 6 },
+                //User 6
+                { user_id: 6, mission_id: 1 },
+                { user_id: 6, mission_id: 2 },
+                { user_id: 6, mission_id: 3 },
+                { user_id: 6, mission_id: 4 },
+                { user_id: 6, mission_id: 5 },
+                { user_id: 6, mission_id: 6 },
             ]);
         });
 };
