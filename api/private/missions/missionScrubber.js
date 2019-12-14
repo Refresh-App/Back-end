@@ -19,7 +19,7 @@ module.exports = async (req, res, next) => {
     ? addProp("goal", mission.goal)
     : errors.push({ goal: "Goal is required" });
   !!mission.inputType
-    ? addProp("input_type", mission.goal)
+    ? addProp("input_type", mission.inputType)
     : errors.push({ inputType: "Goal is required" });
   //Question
   [mission.question] =
