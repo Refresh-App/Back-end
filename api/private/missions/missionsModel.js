@@ -32,9 +32,10 @@ function remove(id) {
     .del();
 }
 function editById(id, update) {
+  console.log(id)
   return db(table)
     .where({ id })
-    .update(update, "*");
+    .update(update, "*")
 }
 function add(obj) {
   return db(table)

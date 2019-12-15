@@ -30,8 +30,7 @@ router
     .put('/:id', (req, res) => {
         const { id } = req.params
         const { body } = req
-
-        return dbModel.editById(id)
+        return dbModel.editById(id,body)
             .then(missions => { res.status(200).json({ message: `SUCCESS`, ...missions }) })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
