@@ -36,9 +36,9 @@ function add(obj) {
         });
 }
 
-function editById(user_id, id) {
+function editById(user_id, id, body) {
     return db(table)
         .where({ id })
         .andWhere({ user_id })
-        .update(update, "*");
+        .update(body, "*");
 }

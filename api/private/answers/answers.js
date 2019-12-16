@@ -101,7 +101,15 @@ router.routes = [{
         expects: { answer: "answer", question_id: "2" },
         returns: {}
     },
-    { route: "/answers/:id", method: "PUT", expects: {}, returns: {} },
+    {
+        route: "/answers/:id",
+        method: "PUT",
+        expects: {
+            answer: "updated string here",
+            user_id: 7
+        },
+        returns: {}
+    },
     { route: "/answers/:id", method: "DELETE", expects: {}, returns: {} }
 ];
 module.exports = router;
