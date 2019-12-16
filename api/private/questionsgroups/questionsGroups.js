@@ -42,7 +42,7 @@ router.put("/:id", (req, res) => {
     const { body } = req;
 
     return dbModel
-        .editById(id,body)
+        .editById(id, body)
         .then(questionGroup => {
             res.status(200).json({ message: `SUCCESS`, ...questionGroup });
         })
@@ -64,11 +64,36 @@ router.delete("/:id", (req, res) => {
         });
 });
 
-router.routes = [
-    { route: "/questiongroups", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
-    { route: "/questiongroups/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
-    { route: "/questiongroups", method: "POST", expects: {}, returns: {} },
-    { route: "/questiongroups", method: "PUT", expects: {}, returns: {} },
+router.routes = [{
+        route: "/questiongroups",
+        method: "GET",
+        expects: { headers: "Authorization: Token" },
+        returns: {}
+    },
+    {
+        route: "/questiongroups/:id",
+        method: "GET",
+        expects: { headers: "Authorization: Token" },
+        returns: {}
+    },
+    {
+        route: "/questiongroups",
+        method: "POST",
+        expects: {
+            group: "string",
+            question_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        returns: {}
+    },
+    {
+        route: "/questiongroups",
+        method: "PUT",
+        expects: {
+            group: "string",
+            question_ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        returns: {}
+    },
     { route: "/questiongroups/:id", method: "DELETE", expects: {}, returns: {} }
 ];
 
