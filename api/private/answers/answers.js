@@ -16,8 +16,9 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     const { id } = req.params;
+    console.log("id", id, "req.user", req.user.user_id)
     return dbModel
-        .findAllQuestionId(req.user.user_id, id)
+        .findByAnswerId(req.user.user_id, id)
         .then(answers => {
             res.status(200).json({ message: `SUCCESS`, ...answers });
         })
@@ -60,7 +61,7 @@ router.put("/:id", (req, res) => {
     const { body } = req;
 
     return dbModel
-        .editById(user_id,id,body)
+        .editById(user_id, id, body)
         .then(answers => {
             res.status(200).json({ message: `SUCCESS`, ...answers });
         })
@@ -88,8 +89,18 @@ router.routes = [{
         expects: { headers: "Authorization: Token" },
         returns: {}
     },
-    { route: "/answers/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
-    { route: "/answers", method: "POST", expects: {}, returns: {} },
+    {
+        route: "/answers/:id",
+        method: "GET",
+        expects: { headers: "Authorization: Token" },
+        returns: {}
+    },
+    {
+        route: "/answers",
+        method: "POST",
+        expects: { answer: "answer", question_id: "2" },
+        returns: {}
+    },
     { route: "/answers/:id", method: "PUT", expects: {}, returns: {} },
     { route: "/answers/:id", method: "DELETE", expects: {}, returns: {} }
 ];
