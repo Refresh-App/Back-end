@@ -18,6 +18,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findById(id)
         .then(users => {
+            delete users.password
             res.status(200).json({ message: `SUCCESS`, ...users });
         })
         .catch(e => {
