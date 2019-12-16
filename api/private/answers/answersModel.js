@@ -17,11 +17,7 @@ function findAllByUserId(id) {
 function findByAnswerId(user_id, id) {
     return db(table)
         .where({ id })
-        .andWhere("user_id", user_id)
-        .then(res => {
-            console.log("im in answer id", res)
-            return res
-        })
+        .andWhere("user_id", user_id);
 }
 
 function findByDateRange(id, startDate, endDate) {
