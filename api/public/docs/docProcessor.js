@@ -2,8 +2,16 @@ const axios = require("axios");
 const rootUrl =
     "https://" + process.env.ROOT_URL || "http://localhost:" + process.env.PORT;
 module.exports = {
-    docGen
+    docGen,
+    defaultDocs
 };
+
+function defaultDocs(routes){
+  return (req,res,next)=>{
+      req.routes = routes
+      next()
+  }
+}
 
 function docGen(routes) {
   const token =
@@ -76,6 +84,6 @@ function docGen(routes) {
     req.routes = newObj;
     setTimeout(function() {
       next();
-    }, 3000);
+    }, 4000);
   };
 }
