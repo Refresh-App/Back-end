@@ -38,4 +38,16 @@ router
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
+
+router.routes = [{
+    route: "/points",
+    method: "GET",
+    expects: { headers: "Authorization: Token" },
+    returns: {}
+},
+{ route: "/points/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
+{ route: "/points", method: "POST", expects: {}, returns: {} },
+{ route: "/points/:id", method: "PUT", expects: {}, returns: {} },
+{ route: "/points/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports=router

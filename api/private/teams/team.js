@@ -38,4 +38,16 @@ router
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
+
+router.routes = [{
+    route: "/teams",
+    method: "GET",
+    expects: { headers: "Authorization: Token" },
+    returns: {}
+},
+{ route: "/teams/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
+{ route: "/teams", method: "POST", expects: {}, returns: {} },
+{ route: "/teams/:id", method: "PUT", expects: {}, returns: {} },
+{ route: "/teams/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports=router
