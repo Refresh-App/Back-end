@@ -10,6 +10,9 @@ const questionGroupsRouter = require("./questionsgroups/questionsGroups");
 const userMissionsRouter = require("./user_missions/userMissions");
 const inputTypesRouter = require('./input_type/input_type')
 const iconsRouter=require('./icons/icons')
+const teamsRouter=require('./teams/team')
+const teamSubscriptionsRouter=require('./team_subscriptions/teamSubscription')
+const pointsRouter=require('./points/points')
 const jwt = require(_jwt);
 
 //all routes https://apidevnow.com/<route>
@@ -24,6 +27,9 @@ privateRouter.use("/questiongroups", questionGroupsRouter);
 privateRouter.use("/usermissions", userMissionsRouter);
 privateRouter.use("/inputtypes", inputTypesRouter);
 privateRouter.use("/icons", iconsRouter);
+privateRouter.use('/teams',teamsRouter)
+privateRouter.use('/teams-subscriptions',teamSubscriptionsRouter)
+privateRouter.use('/points',pointsRouter)
 
 //Used For Documentation and Testing
 privateRouter.routes = [
@@ -36,7 +42,10 @@ privateRouter.routes = [
   ...questionGroupsRouter.routes,
   ...userMissionsRouter.routes,
   ...inputTypesRouter.routes,
-  ...iconsRouter.routes
+  ...iconsRouter.routes,
+  ...teamsRouter.routes,
+  ...pointsRouter.routes,
+  ...teamSubscriptionsRouter.routes
 ];
 
 module.exports = privateRouter;

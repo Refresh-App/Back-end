@@ -40,7 +40,7 @@ router.put("/:id", (req, res) => {
     const { body } = req;
 
     return dbModel
-        .editById(id)
+        .editById(id,body)
         .then(questions => {
             res.status(200).json({ message: `SUCCESS`, ...questions });
         })

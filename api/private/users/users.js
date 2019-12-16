@@ -16,8 +16,9 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     return dbModel
-        .findAllById(id)
+        .findById(id)
         .then(users => {
+            delete users.password
             res.status(200).json({ message: `SUCCESS`, ...users });
         })
         .catch(e => {
@@ -41,7 +42,7 @@ router.put("/:id", (req, res) => {
     const { body } = req;
 
     return dbModel
-        .editById(id)
+        .editById(id,body)
         .then(users => {
             res.status(200).json({ message: `SUCCESS`, ...users });
         })

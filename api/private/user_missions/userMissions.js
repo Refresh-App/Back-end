@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     return dbModel
-        .findAllById(id)
+        .findById(id)
         .then(userMissions => {
             res.status(200).json({ message: `SUCCESS`, ...userMissions });
         })
@@ -42,7 +42,7 @@ router.put("/:id", (req, res) => {
     const { body } = req;
 
     return dbModel
-        .editById(id)
+        .editById(id,body)
         .then(userMissions => {
             res.status(200).json({ message: `SUCCESS`, ...userMissions });
         })

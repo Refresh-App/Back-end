@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const dbModel = require('./iconsModel')
+const dbModel = require('./teamModel')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
@@ -33,17 +33,21 @@ router
 router
   .delete('/:id',(req,res)=>{
     const {id}=req.params
+    
     return dbModel.remove(id)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 
-router.routes = [
-    { route: "/icons", method: "GET", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "GET", expects: {}, returns: {} },
-    { route: "/icons", method: "POST", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "PUT", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "DELETE", expects: {}, returns: {} }
-  ];
-
+router.routes = [{
+    route: "/teams",
+    method: "GET",
+    expects: { headers: "Authorization: Token" },
+    returns: {}
+},
+{ route: "/teams/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
+{ route: "/teams", method: "POST", expects: {}, returns: {} },
+{ route: "/teams/:id", method: "PUT", expects: {}, returns: {} },
+{ route: "/teams/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports=router

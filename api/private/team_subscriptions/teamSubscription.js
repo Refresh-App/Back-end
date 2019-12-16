@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const dbModel = require('./iconsModel')
+const dbModel = require('./teamSubscriptionModel')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
@@ -33,17 +33,21 @@ router
 router
   .delete('/:id',(req,res)=>{
     const {id}=req.params
+    
     return dbModel.remove(id)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 
-router.routes = [
-    { route: "/icons", method: "GET", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "GET", expects: {}, returns: {} },
-    { route: "/icons", method: "POST", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "PUT", expects: {}, returns: {} },
-    { route: "/icons/:id", method: "DELETE", expects: {}, returns: {} }
-  ];
-
+router.routes = [{
+  route: "/team-subscriptions",
+  method: "GET",
+  expects: { headers: "Authorization: Token" },
+  returns: {}
+},
+{ route: "/team-subscriptions/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
+{ route: "/team-subscriptions", method: "POST", expects: {}, returns: {} },
+{ route: "/team-subscriptions/:id", method: "PUT", expects: {}, returns: {} },
+{ route: "/team-subscriptions/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports=router

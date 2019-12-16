@@ -31,7 +31,7 @@ primaryRouter.use(
 );
 
 //Auto Documentation Genorated from routeCatalog
-primaryRouter.use("/docs", docs.docGen(routeCatalog), docsRouter);
+primaryRouter.use("/docs", docs.defaultDocs(routeCatalog), docsRouter);
 
 //Used For Testing
 primaryRouter.get("/testRoutes", async(req, res) => {

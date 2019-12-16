@@ -14,7 +14,7 @@ function findAll() {
   return db(table);
 }
 function findById(id) {
-  id = Array.isArray(id) ? [id] : id;
+ 
   return db(table)
     .where({ id })
     .first();
