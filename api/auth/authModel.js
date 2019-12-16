@@ -42,8 +42,8 @@ async function findOrCreateByEmail(profile) {
     const user_missions = await userMissionsModel.findAll(user.id);
     const getUserRoles = await rolesModel.findAllRolesById(user.id);
     const user_profile = await profileModel.findByUserId(user.id);
-    const my_team =  await teamsModel.findByUserId(user.id)
-    
+    //const my_team =  await teamsModel.findByUserId(user.id)
+
     return {
       user_id: user.id,
       user_profile,
