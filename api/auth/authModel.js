@@ -3,7 +3,7 @@ const profileModel = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
 const rolesModel = require("../public/roles/roles-model");
 const userMissionsModel = require("../private/user_missions/userMissionsModel");
-
+const teamsModel = require('../private/team_subscriptions/teamSubscriptionModel')
 module.exports = {
   addUser,
   findByEmail,
@@ -42,9 +42,12 @@ async function findOrCreateByEmail(profile) {
     const user_missions = await userMissionsModel.findAll(user.id);
     const getUserRoles = await rolesModel.findAllRolesById(user.id);
     const user_profile = await profileModel.findByUserId(user.id);
+    //const my_team =  await teamsModel.findByUserId(user.id)
+
     return {
       user_id: user.id,
       user_profile,
+    
       user_roles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back"
@@ -93,6 +96,7 @@ async function findOrCreateByEmail(profile) {
     return {
       user_profile: { ...newProfile },
       ...user_missions,
+      my_team:"Not currently in a team",
       user_roles: [...getUserRoles],
       newUser: "Welcome New User"
     };

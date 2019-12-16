@@ -6,6 +6,9 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll()
         .then(users => {
+            users.forEach(user=>{
+                delete user.password
+                delete user.id})
             res.status(200).json({ message: `SUCCESS`, users: [...users] });
         })
         .catch(e => {
