@@ -41,8 +41,8 @@ privateRouter.routes = [
   ...userMissionsRouter.routes,
   ...inputTypesRouter.routes,
   ...iconsRouter.routes,
-  ...teamsRouter.route,
-  ...pointsRouter.route
+  ...teamsRouter.routes,
+  ...pointsRouter.routes
 ];
 
 module.exports = privateRouter;
