@@ -11,6 +11,7 @@ const userMissionsRouter = require("./user_missions/userMissions");
 const inputTypesRouter = require('./input_type/input_type')
 const iconsRouter=require('./icons/icons')
 const teamsRouter=require('./teams/team')
+const teamSubscriptionsRouter=require('./team_subscriptions/teamSubscription')
 const pointsRouter=require('./points/points')
 const jwt = require(_jwt);
 
@@ -27,6 +28,7 @@ privateRouter.use("/usermissions", userMissionsRouter);
 privateRouter.use("/inputtypes", inputTypesRouter);
 privateRouter.use("/icons", iconsRouter);
 privateRouter.use('/teams',teamsRouter)
+privateRouter.use('/teams-subscriptions',teamSubscriptionsRouter)
 privateRouter.use('/points',pointsRouter)
 
 //Used For Documentation and Testing
@@ -42,7 +44,8 @@ privateRouter.routes = [
   ...inputTypesRouter.routes,
   ...iconsRouter.routes,
   ...teamsRouter.routes,
-  ...pointsRouter.routes
+  ...pointsRouter.routes,
+  ...teamSubscriptionsRouter.routes
 ];
 
 module.exports = privateRouter;
