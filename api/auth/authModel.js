@@ -3,7 +3,7 @@ const profileModel = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
 const rolesModel = require("../public/roles/roles-model");
 const userMissionsModel = require("../private/user_missions/userMissionsModel");
-const teamsModel = require('../private/team_subscriptions')
+const teamsModel = require('../private/team_subscriptions/teamSubscriptionModel')
 module.exports = {
   addUser,
   findByEmail,
