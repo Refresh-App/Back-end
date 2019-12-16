@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const dbModel = require('./teamModel')
+const dbModel = require('./pointsModel')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
