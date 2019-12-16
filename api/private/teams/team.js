@@ -17,6 +17,7 @@ router
 router
   .post('/',(req,res)=>{
     const {body}=req
+    body.user_id = req.user.user_id //set user id
     return dbModel.add(body)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})

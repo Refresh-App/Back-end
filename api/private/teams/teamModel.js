@@ -15,18 +15,23 @@ function findById(id){
     .where({id})
     .first()
 }
+
 function remove(id) {
     return db(table)
     .where({id})
     .del()
 }
+
 function editById(id,update){
     return db(table)
     .where({ id })
     .update(update, '*');
 }
+
 function add(obj){
     return db(table)
     .insert(obj,'id')
-    .then(([id])=>findById(id))
+    .then(([id])=>{
+        findById(id)
+    })
 }
