@@ -16,11 +16,9 @@ router.get("/", (req, res) => {
 // Not sure if we need a .post with profileScrubber?
 
 router.put("/", (req, res) => {
-    const { id } = req.params;
     const { body } = req;
-
     return dbModel
-        .editByUserId(req.user.user_id)
+        .editByUserId(req.user.user_id, body)
         .then(profile => {
             res.status(200).json({ message: `SUCCESS`, ...profile });
         })
@@ -35,7 +33,21 @@ router.routes = [{
         expects: { headers: "Authorization: Token" },
         returns: {}
     },
-    { route: "/profile", method: "PUT", expects: {}, returns: {} }
+    {
+        route: "/profile",
+        method: "PUT",
+        expects: {
+            display_name: "update",
+            avatar: "update",
+            fname: "update",
+            lname: "update",
+            bio: "update",
+            cohort: "update",
+            section_lead: "update",
+            user_id: 7
+        },
+        returns: {}
+    }
 ];
 
 module.exports = router;
