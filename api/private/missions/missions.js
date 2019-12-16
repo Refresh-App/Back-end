@@ -54,8 +54,34 @@ router.routes = [{
         method: "GET",
         expects: { headers: "Authorization: Token" }
     },
-    { route: "/missions", method: "POST", expects: {} },
-    { route: "/missions", method: "PUT", expects: {} },
+    {
+        route: "/missions",
+        method: "POST",
+        expects: {
+            vertical: "string",
+            description: "string",
+            goal: "6",
+            question: 11,
+            point_value: 20,
+            input_type: 1,
+            icon: 797,
+            color: "rgb(21, 117, 255)"
+        }
+    },
+    {
+        route: "/missions",
+        method: "PUT",
+        expects: {
+            vertical: "string",
+            description: "string",
+            goal: "6",
+            question: 11,
+            point_value: 20,
+            input_type: 1,
+            icon: 797,
+            color: "rgb(21, 117, 255)"
+        }
+    },
     { route: "/missions/:id", method: "DELETE", expects: {} }
 ];
 module.exports = router;
