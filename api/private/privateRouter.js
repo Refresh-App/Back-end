@@ -28,7 +28,7 @@ privateRouter.use("/usermissions", userMissionsRouter);
 privateRouter.use("/inputtypes", inputTypesRouter);
 privateRouter.use("/icons", iconsRouter);
 privateRouter.use('/teams',teamsRouter)
-privateRouter.use('/teams-subscriptions',teamSubscriptionsRouter)
+privateRouter.use('/team-subscriptions',teamSubscriptionsRouter)
 privateRouter.use('/points',pointsRouter)
 
 //Used For Documentation and Testing

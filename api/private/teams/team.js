@@ -17,9 +17,12 @@ router
 router
   .post('/',(req,res)=>{
     const {body}=req
-    body.user_id = req.user.user_id //set user id
+    body.team_lead = req.user.user_id //set user id
     return dbModel.add(body)
-    .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
+    .then(p=>{
+      console.log("package",p)
+      res.status(201).json({message:`SUCCESS`,...p})
+    })
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 router
@@ -47,8 +50,8 @@ router.routes = [{
     returns: {}
 },
 { route: "/teams/:id", method: "GET", expects: { headers: "Authorization: Token" }, returns: {} },
-{ route: "/teams", method: "POST", expects: {}, returns: {} },
-{ route: "/teams/:id", method: "PUT", expects: {}, returns: {} },
+{ route: "/teams", method: "POST", expects: {team_name:"Avengers"}, returns: { id: 23, team_name: 'Avengers', team_lead: 1 } },
+{ route: "/teams/:id", method: "PUT", expects: {team_name:"Mario Karters"}, returns: {} },
 { route: "/teams/:id", method: "DELETE", expects: {}, returns: {} }
 ];
 module.exports=router

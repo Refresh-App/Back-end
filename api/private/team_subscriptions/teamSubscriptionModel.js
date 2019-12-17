@@ -9,6 +9,10 @@ module.exports={
 const table='team_subscriptions'
 function findAll(){
     return db(table)
+    .then(res=>{
+        console.log(res)
+        return res
+    })
 }
 function findById(id){
     return db(table)
