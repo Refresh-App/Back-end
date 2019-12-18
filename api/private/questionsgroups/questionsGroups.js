@@ -27,11 +27,10 @@ router.get("/:id", (req, res) => {
 
 router.post("/", questionGroupsScrubber, (req, res) => {
     const { body } = req;
-    console.log('req.body',body)
     return dbModel
         .createQuestionGroup(body)
         .then(questionGroup => {
-            res.status(201).json({ message: `SUCCESS`, ...questionGroup });
+            res.status(201).json({ message: `SUCCESS`, ...questionGroup,body });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
