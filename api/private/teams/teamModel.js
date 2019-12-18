@@ -7,10 +7,14 @@ module.exports = {
   editById
 };
 const table = "teams";
-async function findAll() {
+async function findAll(id) {
+    console.log(id)
   const teamsObj = await db(table + " as t")
     .select("t.*", "p.display_name as team_lead")
     .join("profile as p", "p.user_id", "t.team_lead")
+    .join("team_subscriptions as ts","ts.team_id","t.id")
+    .where("ts.user_id",id)
+
     for(let i = 0; i < teamsObj.length;i++){
         teamsObj[i].members = await db('team_subscriptions as ts')
         .select('p.display_name','p.avatar','p.bio')
