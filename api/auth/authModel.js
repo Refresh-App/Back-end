@@ -47,7 +47,6 @@ async function findOrCreateByEmail(profile) {
     return {
       user_id: user.id,
       user_profile,
-    
       user_roles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back"
