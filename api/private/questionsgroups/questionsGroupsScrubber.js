@@ -8,9 +8,9 @@ module.exports = async (req, res, next) => {
       cleanQuestionGroup[prop] = value;
     };
 
-    !!question_group.group
-      ? addProp("group", question_group.group)
-      : errors.push({ group: "Group is Required" });
+    !!question_group.name
+      ? addProp("name", question_group.name)
+      : errors.push({ name: "Name is Required" });
 
     !!question_group.question_ids
       ? addProp("question_ids", question_group.question_ids)
