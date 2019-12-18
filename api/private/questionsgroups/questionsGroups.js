@@ -27,6 +27,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", questionGroupsScrubber, (req, res) => {
     const { body } = req;
+    console.log('req.body',body)
     return dbModel
         .createQuestionGroup(body)
         .then(questionGroup => {

@@ -22,7 +22,8 @@ function findAllQuestionsByArray(arr) {
   return db("questions")
     .whereIn("id", arr.question_ids)
     .then(questions => {
-      return { group: arr.group, questions: [...questions] };
+      delete arr.question_ids
+      return {  ...arr, questions: [...questions] };
     });
 }
 
