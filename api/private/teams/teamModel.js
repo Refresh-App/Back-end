@@ -9,9 +9,9 @@ module.exports = {
 const table = "teams";
 async function findAll() {
   const teamsObj = await db(table + " as t")
-    .select("t.*", "p.user_id as team_lead")
+    .select("t.*", "p.display_name as team_lead")
     .join("profile as p", "p.user_id", "t.team_lead")
-    
+
   return teamsObj;
 }
 
