@@ -31,9 +31,10 @@ passport.use(
       enableProof: true
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile)
+     
       profile = profileScrubber(profile);
       User.findOrCreateByEmail(profile).then(res => {
+        console.log("RESPONSE",res)
         done(null, res, accessToken);
       });
     }
