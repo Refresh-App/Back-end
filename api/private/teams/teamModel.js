@@ -19,7 +19,7 @@ async function findAll(id) {
     teamsObj[i].members = await db("team_subscriptions as ts")
       .select("p.display_name", "p.avatar", "p.bio", "p.user_id")
       .join("profile as p", "p.user_id", "ts.user_id")
-      .where({ team_id: teamsObj[i].id });
+      .where({ team_id: teamsObj[i].id })
   }
   return teamsObj;
 }

@@ -1,4 +1,5 @@
 const db = require(_dbConfig);
+const teamsModel = require('../teams/teamModel')
 module.exports = {
     findAll,
     findById,
@@ -87,12 +88,12 @@ async function findAll(id) {
             return missionSubs
         })
         //Return All other User Missions Not In Progress
-
+        const my_teams =  await teamsModel.findAll(id)
     return {
         user_missions: {
             missions_in_progress,
             mission_subscriptions
-        }
+        },my_teams
     };
 }
 
