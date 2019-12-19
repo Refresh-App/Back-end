@@ -8,7 +8,6 @@ module.exports = {
 };
 const table = "teams";
 async function findAll(id) {
-  
   const teamsObj = await db(table + " as t")
     .select("t.*", "p.display_name as team_lead","p.user_id as team_lead_id")
     .join("profile as p", "p.user_id", "t.team_lead")
@@ -16,6 +15,10 @@ async function findAll(id) {
     .where("ts.user_id", id);
 
   for (let i = 0; i < teamsObj.length; i++) {
+    teamsObj[i].team_mission_subscriptions = [];
+    teamsObj[i].team_missions_in_progress = [];
+    teamsObj[i].team_missions_pending = [];
+
     teamsObj[i].members = await db("team_subscriptions as ts")
       .select("p.display_name", "p.avatar", "p.bio", "p.user_id")
       .join("profile as p", "p.user_id", "ts.user_id")
