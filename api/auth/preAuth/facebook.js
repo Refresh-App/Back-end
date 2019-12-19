@@ -34,7 +34,7 @@ passport.use(
      
       profile = profileScrubber(profile);
       User.findOrCreateByEmail(profile).then(res => {
-        console.log("RESPONSE",res)
+        
         done(null, res, accessToken);
       });
     }
@@ -55,6 +55,7 @@ facebookRouter.get(
     session: false
   }),
   (req, res) => {
+    console.log('here',res)
     const token = jwt.genToken(req.user);
     const setToken = `
     <script>
