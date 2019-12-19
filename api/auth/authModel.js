@@ -76,7 +76,7 @@ async function findOrCreateByEmail(profile) {
     //Get User Missions
     const user_missions = await userMissionsModel.findAll(newUser.id);
     const my_teams = await teamsModel.findAll(newUser.id)
-    
+
     //Assign User Role
     const userRole = await rolesModel.addUserRole({
       user_id: newUser.id,
@@ -91,9 +91,7 @@ async function findOrCreateByEmail(profile) {
     });
 
     delete newProfile.id; //Clean For Profile Creation
-
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
-
     return {
       user_profile: { ...newProfile },
       ...user_missions,
