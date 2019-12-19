@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const dbModel = require('./teamModel')
-router
+router//Get Current Users Teams
   .get('/',(req,res)=>{
     return dbModel.findAll(req.user.user_id)
-    .then(p=>res.status(200).json({message:`Success`,teams:[...p]}))
+    .then(p=>res.status(200).json({message:`Success`,my_teams:[...p]}))
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 router
