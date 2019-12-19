@@ -13,7 +13,6 @@ async function findAll(id) {
     .select("t.*", "p.display_name as team_lead")
     .join("profile as p", "p.user_id", "t.team_lead")
    
-
     for(let i = 0; i < teamsObj.length;i++){
         teamsObj[i].members = await db('team_subscriptions as ts')
         .select('p.display_name','p.avatar','p.bio')

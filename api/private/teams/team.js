@@ -3,17 +3,7 @@ const dbModel = require('./teamModel')
 router
   .get('/',(req,res)=>{
     return dbModel.findAll(req.user.user_id)
-    .then(p=>{
-      if(p.lenght > 0){
-        res.status(200).json({message:`Success`,teams:[...p]})
-      } else{
-        res.status(200).json({
-          message:`Success`,
-          teams:"Not Currently in a team",
-          newTeam:"Try Creating your own team using post to /teams using {team_name:'yourTeamname'}"
-        })
-      }
-    })
+    .then(p=>res.status(200).json({message:`Success`,teams:[...p]}))
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 router
