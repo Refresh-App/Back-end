@@ -55,7 +55,6 @@ facebookRouter.get(
     session: false
   }),
   (req, res) => {
-    console.log('here',res)
     const token = jwt.genToken(req.user);
     const setToken = `
     <script>

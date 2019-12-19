@@ -10,7 +10,7 @@ const table = "teams";
 async function findAll(id) {
   
   const teamsObj = await db(table + " as t")
-    .select("t.*", "p.display_name as team_lead")
+    .select("t.*", "p.display_name as team_lead","p.user_id as team_lead_id")
     .join("profile as p", "p.user_id", "t.team_lead")
     .join("team_subscriptions as ts", "ts.team_id", "t.id")
     .where("ts.user_id", id);
