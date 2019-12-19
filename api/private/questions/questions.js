@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll()
         .then(questions => {
-            res.status(200).json({ message: `SUCCESS`, questions: [...questions] });
+            res.status(200).json({ message: `Success`, questions: [...questions] });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -17,7 +17,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findById(id)
         .then(questions => {
-            res.status(200).json({ message: `SUCCESS`, ...questions });
+            res.status(200).json({ message: `Success`, ...questions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -29,7 +29,7 @@ router.post("/", questionsScrubber, (req, res) => {
     return dbModel
         .add(body)
         .then(questions => {
-            res.status(201).json({ message: `SUCCESS`, ...questions });
+            res.status(201).json({ message: `Success`, ...questions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -42,7 +42,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(id,body)
         .then(questions => {
-            res.status(200).json({ message: `SUCCESS`, ...questions });
+            res.status(200).json({ message: `Success`, ...questions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -54,7 +54,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(questions => {
-            res.status(201).json({ message: `SUCCESS`, ...questions });
+            res.status(201).json({ message: `Success`, ...questions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });

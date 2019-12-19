@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAllByUserId(id)
         .then(answers => {
-            res.status(200).json({ message: `SUCCESS`, ...answers });
+            res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findByAnswerId(req.user.user_id, id)
         .then(answers => {
-            res.status(200).json({ message: `SUCCESS`, ...answers });
+            res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(200).json({ message: "SOMEMESSAGE", ...e });
@@ -35,7 +35,7 @@ router.post("/datefilter", (req, res) => {
     return dbModel
         .findByDateRange(id, startDate, endDate)
         .then(answers => {
-            res.status(200).json({ message: `SUCCESS`, ...answers });
+            res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -48,7 +48,7 @@ router.post("/", answerScrubber, (req, res) => {
     return dbModel
         .add(body)
         .then(answers => {
-            res.status(201).json({ message: `SUCCESS`, ...answers });
+            res.status(201).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(200).json({ message: "SOMEMESSAGE", ...e, ...body });
@@ -63,7 +63,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(user_id, id, body)
         .then(answers => {
-            res.status(200).json({ message: `SUCCESS`, ...answers });
+            res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(200).json({ message: "SOMEMESSAGE", ...e });
@@ -76,7 +76,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(answers => {
-            res.status(201).json({ message: `SUCCESS`, ...answers });
+            res.status(201).json({ message: `Success`, ...answers });
         })
         .catch(e => {
             res.status(200).json({ message: "SOMEMESSAGE", ...e });

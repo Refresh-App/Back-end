@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll()
         .then(questionGroup => {
-            res.status(200).json({ message: `SUCCESS`, forms: [...questionGroup] });
+            res.status(200).json({ message: `Success`, forms: [...questionGroup] });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findById(id)
         .then(questionGroup => {
-            res.status(200).json({ message: `SUCCESS`, ...questionGroup });
+            res.status(200).json({ message: `Success`, ...questionGroup });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -30,7 +30,7 @@ router.post("/", questionGroupsScrubber, (req, res) => {
     return dbModel
         .createQuestionGroup(body)
         .then(questionGroup => {
-            res.status(201).json({ message: `SUCCESS`, ...questionGroup,posted_body:body });
+            res.status(201).json({ message: `Success`, ...questionGroup,posted_body:body });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -44,7 +44,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(id, body)
         .then(questionGroup => {
-            res.status(200).json({ message: `SUCCESS`, ...questionGroup });
+            res.status(200).json({ message: `Success`, ...questionGroup });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -57,7 +57,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(questionGroup => {
-            res.status(201).json({ message: `SUCCESS`, ...questionGroup });
+            res.status(201).json({ message: `Success`, ...questionGroup });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });

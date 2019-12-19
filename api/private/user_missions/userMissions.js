@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll(id)
         .then(userMissions => {
-            res.status(200).json({ message: `SUCCESS`, ...userMissions });
+            res.status(200).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findById(id)
         .then(userMissions => {
-            res.status(200).json({ message: `SUCCESS`, ...userMissions });
+            res.status(200).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -30,7 +30,7 @@ router.post("/", userMissionsScrubber, (req, res) => {
     return dbModel
         .add(body)
         .then(userMissions => {
-            res.status(201).json({ message: `SUCCESS`, ...userMissions });
+            res.status(201).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -44,7 +44,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(id,body)
         .then(userMissions => {
-            res.status(200).json({ message: `SUCCESS`, ...userMissions });
+            res.status(200).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -57,7 +57,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(userMissions => {
-            res.status(201).json({ message: `SUCCESS`, ...userMissions });
+            res.status(201).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });

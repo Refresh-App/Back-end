@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
             users.forEach(user=>{
                 delete user.password
                 delete user.id})
-            res.status(200).json({ message: `SUCCESS`, users: [...users] });
+            res.status(200).json({ message: `Success`, users: [...users] });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
         .findById(id)
         .then(users => {
             delete users.password
-            res.status(200).json({ message: `SUCCESS`, ...users });
+            res.status(200).json({ message: `Success`, ...users });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -34,7 +34,7 @@ router.post("/", usersScrubber, (req, res) => {
     return dbModel
         .add(body)
         .then(users => {
-            res.status(201).json({ message: `SUCCESS`, ...users });
+            res.status(201).json({ message: `Success`, ...users });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -47,7 +47,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(id,body)
         .then(users => {
-            res.status(200).json({ message: `SUCCESS`, ...users });
+            res.status(200).json({ message: `Success`, ...users });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -60,7 +60,7 @@ router.delete("/", (req, res) => {
     return dbModel
         .remove(id)
         .then(p => {
-            res.status(200).json({ message: `SUCCESS`, ...p });
+            res.status(200).json({ message: `Success`, ...p });
         })
         .catch(e => {
             res.status(401).json({ message: "SOMEMESSAGE", ...e });
@@ -82,7 +82,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(users => {
-            res.status(201).json({ message: `SUCCESS`, ...users });
+            res.status(201).json({ message: `Success`, ...users });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });

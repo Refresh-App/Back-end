@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findByUserId(id)
         .then(profile => {
-            res.status(200).json({ message: `SUCCESS`, profile: {...profile } });
+            res.status(200).json({ message: `Success`, profile: {...profile } });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -20,7 +20,7 @@ router.put("/", (req, res) => {
     return dbModel
         .editByUserId(req.user.user_id, body)
         .then(profile => {
-            res.status(200).json({ message: `SUCCESS`, ...profile });
+            res.status(200).json({ message: `Success`, ...profile });
         })
         .catch(e => {
             res.status(404).json({ message: "SOMEMESSAGE", ...e });

@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
   return dbModel
     .findAll()
     .then(admins => {
-      res.status(200).json({ message: `SUCCESS`, ...admins });
+      res.status(200).json({ message: `Success`, ...admins });
     })
     .catch(e => {
       res
@@ -18,7 +18,7 @@ router.get("/:id", (req, res) => {
   return dbModel
     .findById(id)
     .then(admins => {
-      res.status(200).json({ message: `SUCCESS`, ...admins });
+      res.status(200).json({ message: `Success`, ...admins });
     })
     .catch(e => {
       res
@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
   return dbModel
     .add(body)
     .then(admins => {
-      res.status(201).json({ message: `SUCCESS`, ...admins });
+      res.status(201).json({ message: `Success`, ...admins });
     })
     .catch(e => {
       res
@@ -47,7 +47,7 @@ router.put("/:id", (req, res) => {
   return dbModel
     .editById(id,body)
     .then(admins => {
-      res.status(200).json({ message: `SUCCESS`, ...admins });
+      res.status(200).json({ message: `Success`, ...admins });
     })
     .catch(e => {
       res.status(404).json({ message: "Problem editing the entry", ...e });
@@ -58,7 +58,7 @@ router.delete("/:id", (req, res) => {
   return dbModel
     .remove(id)
     .then(admins => {
-      res.status(201).json({ message: `SUCCESS`, ...admins });
+      res.status(201).json({ message: `Success`, ...admins });
     })
     .catch(e => {
       res.status(404).json({ message: "Administrator removed", ...e });

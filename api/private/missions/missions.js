@@ -6,7 +6,7 @@ router
     .get('/', (req, res) => {
         return dbModel.findAll()
             .then(missions => {
-                res.status(200).json({ message: `SUCCESS`, ...missions })
+                res.status(200).json({ message: `Success`, ...missions })
             })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
@@ -15,7 +15,7 @@ router
     .get('/:id', (req, res) => {
         const { id } = req.params
         return dbModel.findById(id)
-            .then(missions => { res.status(200).json({ message: `SUCCESS`, ...missions }) })
+            .then(missions => { res.status(200).json({ message: `Success`, ...missions }) })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
 
@@ -23,7 +23,7 @@ router
     .post('/', missionScrubber, (req, res) => {
         const { body } = req
         return dbModel.add(body)
-            .then(missions => { res.status(201).json({ message: `SUCCESS`, ...missions }) })
+            .then(missions => { res.status(201).json({ message: `Success`, ...missions }) })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
 router
@@ -31,7 +31,7 @@ router
         const { id } = req.params
         const { body } = req
         return dbModel.editById(id,body)
-            .then(missions => { res.status(200).json({ message: `SUCCESS`, ...missions }) })
+            .then(missions => { res.status(200).json({ message: `Success`, ...missions }) })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
 router
@@ -39,7 +39,7 @@ router
         const { id } = req.params
 
         return dbModel.remove(id)
-            .then(missions => { res.status(201).json({ message: `SUCCESS`, ...missions }) })
+            .then(missions => { res.status(201).json({ message: `Success`, ...missions }) })
             .catch(e => { res.status(404).json({ message: 'SOMEMESSAGE', ...e }) })
     })
 

@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll()
         .then(userRoles => {
-            res.status(200).json({ message: `SUCCESS`, ...userRoles });
+            res.status(200).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
             res.status(404).json({ message: "Problem finding roles", ...e });
@@ -17,7 +17,7 @@ router.get("/:id", (req, res) => {
     return dbModel
         .findAllRolesById(id)
         .then(userRoles => {
-            res.status(200).json({ message: `SUCCESS`, ...userRoles });
+            res.status(200).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
             res.status(404).json({ message: "Unable to find the user's role", ...e });
@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
     return dbModel
         .add(body)
         .then(userRoles => {
-            res.status(201).json({ message: `SUCCESS`, ...userRoles });
+            res.status(201).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
             res.status(404).json({ message: "Problem creating user's role", ...e });
@@ -43,7 +43,7 @@ router.put("/:id", (req, res) => {
     return dbModel
         .editById(id,body)
         .then(userRoles => {
-            res.status(200).json({ message: `SUCCESS`, ...userRoles });
+            res.status(200).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
             res.status(404).json({ message: "Error updating user's role", ...e });
@@ -56,7 +56,7 @@ router.delete("/:id", (req, res) => {
     return dbModel
         .remove(id)
         .then(userRoles => {
-            res.status(201).json({ message: `SUCCESS`, ...userRoles });
+            res.status(201).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
             res.status(404).json({ message: "Problem removing user's role", ...e });
