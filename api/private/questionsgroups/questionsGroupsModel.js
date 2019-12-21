@@ -2,8 +2,8 @@ const db = require(_dbConfig);
 
 module.exports = {
   findAll,
-  findById
-
+  findById,
+  createQuestionGroup
 };
 
 const table = "question_groups";
@@ -15,38 +15,20 @@ function findById(id) {
   return db(table)
     .where({ id })
     .first()
-    .then(group=>findAllQuestionsByArray(group))
+    .then(group => findAllQuestionsByArray(group));
 }
 
-function findAllQuestionsByArray(arr){
-  return db('questions')
-  .whereIn('id', arr.question_ids)
-  .then(questions=>{
-      return {group:arr.group,questions:[...questions]}
-  })
+function findAllQuestionsByArray(arr) {
+  return db("questions")
+    .whereIn("id", arr.question_ids)
+    .then(questions => {
+      delete arr.question_ids
+      return {  ...arr, questions: [...questions] };
+    });
 }
 
-// function findByUserName(admin) {
-//   if (admin.username) {
-//     const username = admin.username;
-//     return db(table)
-//       .where({ username })
-//       .first();
-//   }
-// }
-
-// function remove(id) {
-//   return db(table)
-//     .where({ id })
-//     .del();
-// }
-// function editById(id, update) {
-//   return db(table)
-//     .where({ id })
-//     .update(update, '*');
-// }
-// function register(obj) {
-//   return db(table)
-//     .insert(obj)
-//     .then(([id]) => findById(id));
-// }
+function createQuestionGroup(obj){
+  return db('question_groups')
+  .insert(obj,'id')
+  .then(([id])=>findById(id))
+}

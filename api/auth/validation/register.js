@@ -3,7 +3,6 @@ module.exports = async (req, res, next) => {
   const errors = [];
 
   function validateNewUser(user) {
-    
     //Check For Keys
     const u = user
     !u.email && errors.push({ email: "required" });
@@ -38,7 +37,7 @@ module.exports = async (req, res, next) => {
   }
   
   //Invoke the above function
-  validateNewUser(req.body);
+  await validateNewUser(req.body);
   //Does the user exist?
   if (!errors.length) {
     await dbModel
@@ -49,5 +48,5 @@ module.exports = async (req, res, next) => {
   }
   
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(200).json({ errors });
+  return errors.length < 1 ? next() : res.status(200).json({ errors });
 };

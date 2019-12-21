@@ -5,13 +5,21 @@ exports.up = function(knex) {
       .integer("user_id")
       .unsigned()
       .references("id")
-      .inTable("users");
+      .inTable("users")
+      .onDelete("CASCADE");
+
     col
       .integer("mission_id")
       .unsigned()
       .references("id")
-      .inTable("missions");
-    col.unique(["user_id","mission_id"])
+      .inTable("missions")
+      .onDelete("CASCADE");
+    col.specificType("dotw", "INT[]");
+    col.dateTime("start_date");
+    col.dateTime("ending_date");
+    col.integer("daily_reminders");
+
+    col.unique(["user_id", "mission_id"]);
   });
 };
 

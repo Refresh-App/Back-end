@@ -8,18 +8,18 @@ module.exports = {
   editById,
   findByUsername
 };
-const table = "users"
+const table = "users";
 
-function findAll(){
-  return db(table)
+function findAll() {
+  return db(table + " as u")
+  .select('*')
+  .join("profile as p","p.user_id","u.id")
 }
 function findById(id) {
-  id = Array.isArray(id) ? [id] : id;
+ 
   return db(table)
     .where({ id })
-    .first()
-    .then(res => console.log(res))
-    .catch(res => console.log(res));
+    .first();
 }
 
 function findByUsername(username) {
