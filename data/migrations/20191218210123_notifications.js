@@ -16,7 +16,6 @@ exports.up = function(knex) {
       .notNullable()
       col.timestamp('sent').defaultTo(knex.fn.now());
       col.dateTime('viewed')
-
   })
 };
 
