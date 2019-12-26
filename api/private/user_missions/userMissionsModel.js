@@ -96,7 +96,6 @@ async function findAll(id) {
         user_missions: {
             missions_in_progress,
             mission_subscriptions,
-            
         },my_teams
     };
 }
