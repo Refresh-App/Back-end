@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, ...userMissions });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(200).json({ message: "SOMEMESSAGE", ...e });
         });
 });
 router.get("/:id", (req, res) => {

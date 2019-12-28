@@ -26,27 +26,19 @@ async function findAll(id) {
     //Returns All missions in progress between Above Dates
     let missions_in_progress = await db("missions as m")
         .select(
-            "m.*",
-            "m.id as mission_id",
-            process.env.NODE_ENV !== "test" &&
-            process.env.DB_ENV !== "development" &&
-            //Won't work with sqlite
+            "m.*","q.id as question_id", "q.question as question",
+            "m.id as mission_id","ic.icon as icon",
             db.raw("array_agg(a.id) as daily_answers")
         )
         .from("answers as a")
         .join("missions as m", "m.question", "a.question_id")
         .join("input_type as i", "i.id", "m.input_type")
+        .join("questions as q", "q.id", "m.question")
+        .join("icons as ic", "ic.id", "m.icon")
         .whereBetween("answer_date", [today, tomorrow])
         .andWhere("a.user_id", id)
         .as("mp")
-        .groupBy(
-            "m.id",
-            "m.vertical",
-            "m.description",
-            "m.question",
-            "m.point_value",
-            "m.goal"
-        );
+        .groupBy("m.id","q.id","ic.id");
 
     //No Missions in Progress
     if (!missions_in_progress.length) {
@@ -71,6 +63,7 @@ async function findAll(id) {
             });
             //Is the mission Complete?
             mission.mission_complete = count >= mission.goal ? true : false;
+        
             //Get Current Mission Count
             mission.point_current = count;
         });
