@@ -54,34 +54,14 @@ async function findOrCreateByEmail(profile) {
     };
   } else {
     //CREATE NEW USER
-
+    
     //Encrypt Password, consider doing off AccessToken
     const password =
-      profile.password || bcrypt.hashSync(Date.now() + email, 14);
+      profile.password || bcrypt.hashSync(Date.now() + email,10 );
     delete profile.password; //Clean For Profile Creation
-
+    
     //Create New User
     const newUser = await addUser({ email, password });
-
-    // Assign Default Missions
-    const defaultMissions = await db("default_missions")
-      .select(["mission_id"])
-      .then(res => {
-        res.forEach(mission => {
-          const { mission_id } = mission;
-          return userMissionsModel.add({ mission_id, user_id: newUser.id });
-        });
-      });
-
-    //Get User Missions
-    const user_missions = await userMissionsModel.findAll(newUser.id);
-    const my_teams = await teamsModel.findAll(newUser.id)
-
-    //Assign User Role
-    const userRole = await rolesModel.addUserRole({
-      user_id: newUser.id,
-      role_id: 2
-    });
 
     //Create User Profile
     delete profile.email; //Clean For Profile Creation
@@ -90,14 +70,34 @@ async function findOrCreateByEmail(profile) {
       ...profile
     });
 
-    delete newProfile.id; //Clean For Profile Creation
+     //Clean For Profile Creation
+    // Assign Default Missions
+    const defaultMissions = await db("default_missions")
+      .select(["mission_id"])
+      .then(res => {
+        res.forEach((mission,i) => {
+          const { mission_id } = mission;
+          res[i] = ({ mission_id, user_id: newUser.id })
+        });        
+        return userMissionsModel.add(res);
+      });
+    //Get User Missions
+    const user_missions = await userMissionsModel.findAll(newUser.id);
+    
+
+    //Assign User Role
+    const userRole = await rolesModel.addUserRole({
+      user_id: newUser.id,
+      role_id: 2
+    });
+
+    
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
     return {
       user_profile: { ...newProfile },
       ...user_missions,
       user_roles: [...getUserRoles],
       newUser: "Welcome New User",
-      my_teams
     };
   }
 }

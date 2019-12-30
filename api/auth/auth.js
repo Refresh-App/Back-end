@@ -24,20 +24,20 @@ authRouter.use("/googleAuth", googleAuth);
 authRouter.post("/register", validateNewUser, (req, res) => {
     const user = req.body; //Comes from Middleware
     const hash = bcrypt.hashSync(user.password, HashFactor);
+    
     user.password = hash;
     dbModel
         .findOrCreateByEmail(user)
-        .then(newUser => {
-            console.log('newUser')
+        .then(async newUser => {
             payload = {
                 ...newUser,
                 token_type: "Basic ",
-                token: jwt.genToken(newUser)
+                token: await jwt.genToken(newUser)
             };
-
+            console.log('payload', payload)
             res.status(201).send({ message: "Welcome da Club Yo!", ...payload });
         })
-        .catch(err => res.status(200).json({ errors: err }));
+        .catch(err => res.status(400).json({ errors: err }));
 });
 
 //Register ->Requires{username:'',password:''}
