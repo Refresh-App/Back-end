@@ -36,7 +36,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
 
             res.status(201).send({ message: "Welcome da Club Yo!", ...payload });
         })
-        .catch(err => res.status(400).json({ errors: err }));
+        .catch(err => res.status(200).json({ errors: err }));
 });
 
 //Register ->Requires{username:'',password:''}
