@@ -54,8 +54,8 @@ facebookRouter.get(
     failureRedirect: "/login",
     session: false
   }),
-  (req, res) => {
-    const token = jwt.genToken(req.user);
+  async (req, res) => {
+    const token = await jwt.genToken(req.user);
     const setToken = `
     <script>
         window.opener.postMessage('${JSON.stringify({

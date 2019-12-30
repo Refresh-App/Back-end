@@ -52,9 +52,9 @@ googleRouter.get(
     failureRedirect: "/login",
     session: false
   }),
-  (req, res) => {
+  async (req, res) => {
     //...So, not sure how to deal with escaping very well. R-J
-    const token = jwt.genToken(req.user);
+    const token = await jwt.genToken(req.user);
     const setToken = `
     <script>
         window.opener.postMessage('${JSON.stringify({

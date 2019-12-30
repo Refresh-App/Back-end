@@ -34,7 +34,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
                 token_type: "Basic ",
                 token: await jwt.genToken(newUser)
             };
-            console.log('payload', payload)
+           
             res.status(201).send({ message: "Welcome da Club Yo!", ...payload });
         })
         .catch(err => res.status(400).json({ errors: err }));
