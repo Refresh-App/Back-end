@@ -28,6 +28,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
     dbModel
         .findOrCreateByEmail(user)
         .then(newUser => {
+            console.log('newUser')
             payload = {
                 ...newUser,
                 token_type: "Basic ",

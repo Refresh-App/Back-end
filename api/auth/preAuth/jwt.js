@@ -9,7 +9,7 @@ module.exports = {
 };
 
 //Creates a new JWT Token
-async function genToken(user) {
+function genToken(user) {
   const { user_roles } = user;
   const { user_id } = user.user_profile;
 
@@ -23,9 +23,7 @@ async function genToken(user) {
     expiresIn: tokenTTL
   };
 
-  const token = await jwt.sign(payload, secret, options);
-
-  return token
+  return jwt.sign(payload, secret, options);
 }
 
 //Checks Role
