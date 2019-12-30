@@ -44,5 +44,6 @@ function editById(id, update) {
 function addUserRole(obj) {
   return db(user_roles)
     .insert(obj,'id')
+    .then(()=>findAllRolesById(obj.user_id))
 }
 
