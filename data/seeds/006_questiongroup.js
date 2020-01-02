@@ -9,7 +9,7 @@ exports.seed = function(knex) {
                 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
             return knex("question_groups").insert([
-                { name: "onboarding", question_ids: questions }
+                { name: "onboarding", question_ids: questions, in_progress: false }
             ]);
         });
 };
