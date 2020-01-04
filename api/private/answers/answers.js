@@ -14,9 +14,25 @@ router.get("/", (req, res) => {
         });
 });
 
+//Expects {"startDate":"2019-11-20", "endDate":"2019-11-21"}
+router.get("/datefilter", (req, res) => {
+    req.body = {"startDate":"2019-11-20", "endDate":"2019-11-21"}
+    const id = req.user.user_id;
+    const { startDate, endDate } = req.query;
+   
+    return dbModel
+        .findByDateRange(id, startDate, endDate)
+        .then(answers => {
+            res.status(200).json({ message: `Success`, ...answers });
+        })
+        .catch(e => {
+            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+        });
+});
+
 router.get("/:id", (req, res) => {
     const { id } = req.params;
-    console.log("id", id, "req.user", req.user.user_id)
+    
     return dbModel
         .findByAnswerId(req.user.user_id, id)
         .then(answers => {
@@ -27,20 +43,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-//Expects {"startDate":"2019-11-20", "endDate":"2019-11-21"}
-router.get("/datefilter", (req, res) => {
-    const {user_id} = req.user;
-    const { startDate, endDate } = req.query;
-    
-    return dbModel
-        .findByDateRange(user_id, startDate, endDate)
-        .then(answers => {
-            res.status(200).json({ message: `Success`, ...answers });
-        })
-        .catch(e => {
-            res.status(200).json({ message: "SOMEMESSAGE", ...e,startDate,endDate });
-        });
-});
+
 
 router.post("/", answerScrubber, (req, res) => {
     const { body } = req;
@@ -87,12 +90,6 @@ router.routes = [{
         route: "/answers",
         method: "GET",
         expects: { headers: "Authorization: Token" },
-        returns: {}
-    },
-    {
-        route: "/answers/datefilter/",
-        method: "GET",
-        expects: { headers: "Authorization: Token", url_query_param:"?startDate=2019-10-10&endDate=2019-10-11" },
         returns: {}
     },
     {
