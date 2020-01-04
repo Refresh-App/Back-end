@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 //Expects {"startDate":"2019-11-20", "endDate":"2019-11-21"}
 router.get("/datefilter", (req, res) => {
-    req.body = {"startDate":"2019-11-20", "endDate":"2019-11-21"}
+    
     const id = req.user.user_id;
     const { startDate, endDate } = req.query;
    

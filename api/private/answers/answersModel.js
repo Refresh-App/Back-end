@@ -21,10 +21,11 @@ function findByAnswerId(user_id, id) {
 }
 
 function findByDateRange(id, startDate, endDate) {
-    return db(table)
-        .whereBetween("answer_date", [startDate, endDate])
-        .orderBy("user_id")
-        .where("user_id", id);
+    return db(table +' as a')
+        .select('*')
+        .join('missions as m',"m.question",'a.question_id')
+        .whereBetween("a.answer_date", [startDate, endDate])
+        .where("a.user_id", id);
 }
 
 function add(obj) {
