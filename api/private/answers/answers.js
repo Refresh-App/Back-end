@@ -38,7 +38,7 @@ router.get("/datefilter", (req, res) => {
             res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
-            res.status(200).json({ message: "SOMEMESSAGE", ...e });
+            res.status(200).json({ message: "SOMEMESSAGE", ...e,startDate,endDate });
         });
 });
 
@@ -87,6 +87,12 @@ router.routes = [{
         route: "/answers",
         method: "GET",
         expects: { headers: "Authorization: Token" },
+        returns: {}
+    },
+    {
+        route: "/answers/datefilter/",
+        method: "GET",
+        expects: { headers: "Authorization: Token", url_query_param:"?startDate=2019-10-10&endDate=2019-10-11" },
         returns: {}
     },
     {
