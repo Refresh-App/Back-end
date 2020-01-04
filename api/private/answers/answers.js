@@ -38,7 +38,7 @@ router.post("/datefilter", (req, res) => {
             res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(200).json({ message: "SOMEMESSAGE", ...e });
         });
 });
 
