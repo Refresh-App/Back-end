@@ -28,12 +28,12 @@ router.get("/:id", (req, res) => {
 });
 
 //Expects {"startDate":"2019-11-20", "endDate":"2019-11-21"}
-router.post("/datefilter", (req, res) => {
-    const id = req.user.user_id;
-    const { startDate, endDate } = req.body;
-
+router.get("/datefilter", (req, res) => {
+    const {user_id} = req.user;
+    const { startDate, endDate } = req.query;
+    
     return dbModel
-        .findByDateRange(id, startDate, endDate)
+        .findByDateRange(user_id, startDate, endDate)
         .then(answers => {
             res.status(200).json({ message: `Success`, ...answers });
         })
