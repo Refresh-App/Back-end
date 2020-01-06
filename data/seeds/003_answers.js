@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  const number = 200
+  const number = 500
   return knex("answers")
     .del()
     .then(function() {
