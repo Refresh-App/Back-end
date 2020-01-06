@@ -24,6 +24,17 @@ router.get("/userroles", (req, res) => {
         });
 });
 
+router.post("/userroles", (req, res) => {
+    return dbModel
+        .addUserRole({user_id:req.user.user_id,role_id:req.body.role_id})
+        .then(userRoles => {
+            res.status(200).json({ message: `Success`, user_roles:userRoles });
+        })
+        .catch(e => {
+            res.status(404).json({ message: "Problem finding roles", ...e });
+        });
+});
+
 router.get("/:id", (req, res) => {
     const { id } = req.params;
     return dbModel
@@ -77,7 +88,8 @@ router.delete("/:id", (req, res) => {
 
 router.routes = [
     { route: '/roles', method: "GET", expects: {} },
-    { route: '/roles/userroles', method: "GET", expects: {} },
+    { route: '/roles/userroles', method: "GET", expects: {headers: "Authorization: Token"} },
+    { route: '/roles/userroles', method: "POST", expects: {role_id:2} },
     { route: '/roles/:id', method: "GET", expects: {} },
     { route: '/roles', method: "POST", expects: {} },
     { route: '/roles/:id', method: "PUT", expects: {} },
