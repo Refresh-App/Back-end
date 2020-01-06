@@ -13,6 +13,7 @@ const iconsRouter=require('./icons/icons')
 const teamsRouter=require('./teams/team')
 const teamSubscriptionsRouter=require('./team_subscriptions/teamSubscription')
 const pointsRouter=require('./points/points')
+const rolesRouter = require("./roles/roles");
 const jwt = require(_jwt);
 
 //all routes https://apidevnow.com/<route>
@@ -30,6 +31,7 @@ privateRouter.use("/icons", iconsRouter);
 privateRouter.use('/teams',teamsRouter)
 privateRouter.use('/team-subscriptions',teamSubscriptionsRouter)
 privateRouter.use('/points',pointsRouter)
+privateRouter.use('/roles',rolesRouter)
 
 //Used For Documentation and Testing
 privateRouter.routes = [
@@ -45,7 +47,8 @@ privateRouter.routes = [
   ...iconsRouter.routes,
   ...teamsRouter.routes,
   ...pointsRouter.routes,
-  ...teamSubscriptionsRouter.routes
+  ...teamSubscriptionsRouter.routes,
+  ...rolesRouter.routes
 ];
 
 module.exports = privateRouter;

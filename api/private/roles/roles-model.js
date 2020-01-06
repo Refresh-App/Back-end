@@ -1,7 +1,7 @@
 const db = require(_dbConfig);
 
 module.exports = {
-  findAllRolesById,
+  findUserRolesByUserId,
   findAll,
   findById,
   remove,
@@ -11,12 +11,13 @@ module.exports = {
 
 const table = 'roles';
 const user_roles = "user_roles";
-function findAllRolesById(user_id) {
+function findUserRolesByUserId(user_id) {
  return db(user_roles + " as ur ")
-  .select("rt.id")
+  .select("rt.*")
   .join("users as u", "u.id", "ur.user_id")
   .join("roles as rt", "rt.id", "ur.role_id")
   .where("ur.user_id", user_id)
+  .orderBy('rt.id')
 }
 
 function findAll(){

@@ -8,7 +8,6 @@ const docs = require("./public/docs/docProcessor");
 const { routesToArray } = require("./auth/preAuth/catalogAgent");
 
 //Bring in the Routes
-const publicRouter = require("./public/publicRouter");
 const privateRouter = require("./private/privateRouter");
 const docsRouter = require("./public/docs/docs");
 const authRouter = require("./auth/auth");
@@ -16,14 +15,12 @@ const authRouter = require("./auth/auth");
 //Global Route Catalog
 primaryRouter.routeCatalog = {
     Authentication: [...authRouter.routes],
-    Private_Routes: [...privateRouter.routes],
-    Public_Routes: [...publicRouter.routes]
+    Private_Routes: [...privateRouter.routes]
 };
 const { routeCatalog } = primaryRouter;
 
 //Implement Routes
 primaryRouter.use("/", authRouter);
-primaryRouter.use("/", publicRouter);
 primaryRouter.use(
     "/",
     jwt.chkToken(routeCatalog.Private_Routes),

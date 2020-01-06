@@ -1,4 +1,5 @@
 const db = require(_dbConfig);
+const rolesModel = require('../roles/roles-model')
 module.exports = {
     findAll,
     findByUserId,
@@ -14,9 +15,13 @@ function findAll() {
 }
 
 function findByUserId(id) {
-    return db(table)
+    return db(table, "user_roles as ur")
         .where("user_id", id)
-        .first();
+        .first()
+        .then(async profile =>{
+             profile.user_roles = await rolesModel.findUserRolesByUserId(id)
+             return profile
+        })
 }
 
 function findByProfileId(id) {

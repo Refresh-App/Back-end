@@ -1,7 +1,7 @@
 const db = require(_dbConfig);
 const profileModel = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
-const rolesModel = require("../public/roles/roles-model");
+const rolesModel = require("../private/roles/roles-model");
 const userMissionsModel = require("../private/user_missions/userMissionsModel");
 const teamsModel = require('../private/teams/teamModel')
 module.exports = {
@@ -40,14 +40,12 @@ async function findOrCreateByEmail(profile) {
   //If the user exist
   if (user) {
     const user_missions = await userMissionsModel.findAll(user.id);
-    const getUserRoles = await rolesModel.findAllRolesById(user.id);
     const user_profile = await profileModel.findByUserId(user.id);
     const my_teams =  await teamsModel.findAll(user.id)
 
     return {
       user_id: user.id,
       user_profile,
-      user_roles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back",
       my_teams
@@ -62,6 +60,12 @@ async function findOrCreateByEmail(profile) {
     
     //Create New User
     const newUser = await addUser({ email, password });
+
+    //Assign User Role, Default Student Higher Role, Higer Athority
+    const userRole = await rolesModel.addUserRole({
+      user_id: newUser.id,
+      role_id: 1
+    });
 
     //Create User Profile
     delete profile.email; //Clean For Profile Creation
@@ -84,19 +88,9 @@ async function findOrCreateByEmail(profile) {
     //Get User Missions
     const user_missions = await userMissionsModel.findAll(newUser.id);
     
-
-    //Assign User Role
-    const userRole = await rolesModel.addUserRole({
-      user_id: newUser.id,
-      role_id: 2
-    });
-
-    
-    const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
     return {
       user_profile: { ...newProfile },
       ...user_missions,
-      user_roles: [...getUserRoles],
       newUser: "Welcome New User",
     };
   }
