@@ -7,8 +7,8 @@ exports.seed = function(knex) {
             return knex("roles").insert([
                 { role: "admin" },
                 { role: "user" },
-                { role: "section_lead" },
-                { role: "team_lead" }
+                { role: "Section Lead" },
+                { role: "Team Lead" }
             ]);
         });
 };
