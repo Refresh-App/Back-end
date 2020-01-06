@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
     return dbModel
         .findAll()
         .then(userRoles => {
-            res.status(200).json({ message: `Success`, ...userRoles });
+            res.status(200).json({ message: `Success`, user_roles });
         })
         .catch(e => {
             res.status(404).json({ message: "Problem finding roles", ...e });
