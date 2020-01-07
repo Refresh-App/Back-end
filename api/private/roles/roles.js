@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const dbModel = require("./roles-model");
+const profileModel = require('../profile/profileModle')
 const jwt = require(_jwt)
 
 router.get("/", (req, res) => {
@@ -25,10 +26,13 @@ router.get("/userroles", (req, res) => {
 });
 
 router.post("/userroles", (req, res) => {
+    const {user_id} = req.user
+    const {role_id} = req.body
     return dbModel
-        .addUserRole({user_id:req.user.user_id,role_id:req.body.role_id})
-        .then(userRoles => {
-            res.status(200).json({ message: `Success`, user_roles:userRoles });
+        .addUserRole({user_id,role_id})
+        .then(async userRoles => {
+            const profile = await profileModel.findByUserId(user_id);
+            res.status(200).json({ message: `Success`,user_profile:profile});
         })
         .catch(e => {
             res.status(404).json({ message: "Problem finding roles", ...e });
@@ -89,7 +93,7 @@ router.delete("/:id", (req, res) => {
 router.routes = [
     { route: '/roles', method: "GET", expects: {} },
     { route: '/roles/userroles', method: "GET", expects: {headers: "Authorization: Token"} },
-    { route: '/roles/userroles', method: "POST", expects: {role_id:2} },
+    { route: '/roles/userroles', method: "POST", expects: {role_id:"1-4, the Higher The more power you get"} },
     { route: '/roles/:id', method: "GET", expects: {} },
     { route: '/roles', method: "POST", expects: {} },
     { route: '/roles/:id', method: "PUT", expects: {} },
