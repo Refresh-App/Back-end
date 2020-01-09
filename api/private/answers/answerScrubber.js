@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
     errors.length < 1 && addProp("answer_date", new Date());
     return cleanAnswer;
   };
-  if (Array.isArray(answers)) {
+  if (Array.isArray(answers) && answers.length < 40) {
     req.body = [];
     answers.forEach(a => {
       req.body.push(cleaner(a));
