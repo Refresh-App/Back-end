@@ -34,17 +34,18 @@ primaryRouter.use("/docs", docs.defaultDocs(routeCatalog), docsRouter);
 primaryRouter.get("/testRoutes", async(req, res) => {
     const axiosCalls = [];
     const routes = routesToArray(routeCatalog);
-
-    routes.forEach(route => {
-        axiosCalls.push(axios[route.method.toLowerCase()](rootUrl + route.route));
+    console.log(routes)
+    routes.forEach(async route => {
+        await axiosCalls.push(axios[route.method.toLowerCase()](rootUrl + route.route));
     });
 
     const resolved = [];
     await Promise.all(
-        axiosCalls.map((p, i) =>
-            p.then(res => resolved.push({...res.data, ...routes[i] })).catch(() => undefined)
+        axiosCalls.map(async (p, i) =>
+            await p.then(res => resolved.push({...res.data, ...routes[i] })).catch(() => undefined)
         )
     );
+    console.log(axiosCalls)
 
     res.json(resolved);
 });

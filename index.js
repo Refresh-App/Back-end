@@ -70,6 +70,7 @@ server.use("/", (req, res) => {
 
 //A bit hackey, Need for Travis and some
 //sqlite to pg conversions pertaing to int[]
+//Consider 
 if (ENV === "test") {
 } else {
   server.listen(PORT, () => {
