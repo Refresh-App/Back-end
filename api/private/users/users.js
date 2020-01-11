@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, users: [...users] });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 
@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
             res.status(200).json({ message: `Success`, ...users });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 
@@ -37,7 +37,7 @@ router.post("/", usersScrubber, (req, res) => {
             res.status(201).json({ message: `Success`, ...users });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 router.put("/:id", (req, res) => {
@@ -50,7 +50,7 @@ router.put("/:id", (req, res) => {
             res.status(200).json({ message: `Success`, ...users });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 
@@ -85,7 +85,7 @@ router.delete("/:id", (req, res) => {
             res.status(201).json({ message: `Success`, ...users });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 

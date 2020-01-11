@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, user_roles:userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Problem finding roles", ...e });
+            res.status(200).json({ message: "Problem finding roles", ...e });
         });
 });
 
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
             res.status(200).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Unable to find the user's role", ...e });
+            res.status(200).json({ message: "Unable to find the user's role", ...e });
         });
 });
 
@@ -39,7 +39,7 @@ router.post("/",jwt.chkRole(4), (req, res) => {
             res.status(201).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Problem creating user's role", ...e });
+            res.status(200).json({ message: "Problem creating user's role", ...e });
         });
 });
 
@@ -53,7 +53,7 @@ router.put("/:id",jwt.chkRole(4),(req, res) => {
             res.status(200).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Error updating user's role", ...e });
+            res.status(200).json({ message: "Error updating user's role", ...e });
         });
 });
 
@@ -66,7 +66,7 @@ router.delete("/:id", (req, res) => {
             res.status(201).json({ message: `Success`, ...userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Problem removing user's role", ...e });
+            res.status(200).json({ message: "Problem removing user's role", ...e });
         });
 });
 

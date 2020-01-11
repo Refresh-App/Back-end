@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 
@@ -26,7 +26,7 @@ router.get("/datefilter", (req, res) => {
             res.status(200).json({ message: `Success`, ...answers });
         })
         .catch(e => {
-            res.status(404).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e });
         });
 });
 

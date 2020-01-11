@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, user_roles:userRoles });
         })
         .catch(e => {
-            res.status(404).json({ message: "Problem finding roles", ...e });
+            res.status(200).json({ message: "Problem finding roles", ...e });
         });
 });
 
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
             res.status(200).json({ message: `Success`,user_profile:profile});
         })
         .catch(e => {
-            res.status(404).json({ message: "Problem finding roles", ...e });
+            res.status(200).json({ message: "Problem finding roles", ...e });
         });
 });
 

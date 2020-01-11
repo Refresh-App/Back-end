@@ -8,7 +8,7 @@ router
             .then(missions => {
                 res.status(200).json({ message: `Success`, ...missions })
             })
-            .catch(e => { res.status(404).json({ message: 'Something has gone wrong', ...e }) })
+            .catch(e => { res.status(200).json({ message: 'Something has gone wrong', ...e }) })
     })
 
 router
@@ -16,7 +16,7 @@ router
         const { id } = req.params
         return dbModel.findById(id)
             .then(missions => { res.status(200).json({ message: `Success`, ...missions }) })
-            .catch(e => { res.status(404).json({ message: 'Something has gone wrong', ...e }) })
+            .catch(e => { res.status(200).json({ message: 'Something has gone wrong', ...e }) })
     })
 
 router
@@ -24,7 +24,7 @@ router
         const { body } = req
         return dbModel.add(body)
             .then(missions => { res.status(201).json({ message: `Success`, ...missions }) })
-            .catch(e => { res.status(404).json({ message: 'Something has gone wrong', ...e }) })
+            .catch(e => { res.status(200).json({ message: 'Something has gone wrong', ...e }) })
     })
 router
     .put('/:id', (req, res) => {
@@ -32,7 +32,7 @@ router
         const { body } = req
         return dbModel.editById(id,body)
             .then(missions => { res.status(200).json({ message: `Success`, ...missions }) })
-            .catch(e => { res.status(404).json({ message: 'Something has gone wrong', ...e }) })
+            .catch(e => { res.status(200).json({ message: 'Something has gone wrong', ...e }) })
     })
 router
     .delete('/:id', (req, res) => {
@@ -40,7 +40,7 @@ router
 
         return dbModel.remove(id)
             .then(missions => { res.status(201).json({ message: `Success`, ...missions }) })
-            .catch(e => { res.status(404).json({ message: 'Something has gone wrong', ...e }) })
+            .catch(e => { res.status(200).json({ message: 'Something has gone wrong', ...e }) })
     })
 
 router.routes = [{

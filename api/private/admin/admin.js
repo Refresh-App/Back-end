@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     })
     .catch(e => {
       res
-        .status(404)
+        .status(200)
         .json({ message: "Problem getting the administrators", ...e });
     });
 });
@@ -22,7 +22,7 @@ router.get("/:id", (req, res) => {
     })
     .catch(e => {
       res
-        .status(404)
+        .status(200)
         .json({ message: "Unable to locate that administrator", ...e });
     });
 });
@@ -36,7 +36,7 @@ router.post("/", (req, res) => {
     })
     .catch(e => {
       res
-        .status(404)
+        .status(200)
         .json({ message: "Problem creating that administrator", ...e });
     });
 });
@@ -50,7 +50,7 @@ router.put("/:id", (req, res) => {
       res.status(200).json({ message: `Success`, ...admins });
     })
     .catch(e => {
-      res.status(404).json({ message: "Problem editing the entry", ...e });
+      res.status(200).json({ message: "Problem editing the entry", ...e });
     });
 });
 router.delete("/:id", (req, res) => {
@@ -61,7 +61,7 @@ router.delete("/:id", (req, res) => {
       res.status(201).json({ message: `Success`, ...admins });
     })
     .catch(e => {
-      res.status(404).json({ message: "Administrator removed", ...e });
+      res.status(200).json({ message: "Administrator removed", ...e });
     });
 });
 
