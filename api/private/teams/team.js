@@ -4,14 +4,14 @@ router//Get Current Users Teams
   .get('/',(req,res)=>{
     return dbModel.findAll(req.user.user_id)
     .then(p=>res.status(200).json({message:`Success`,my_teams:[...p]}))
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+    .catch(e=>{res.status(404).json({message:'Something has gone wrong', ...e})})
 })
 router
   .get('/:id',(req,res)=>{
     const {id}=req.params
     return dbModel.findById(id)
     .then(p=>{res.status(200).json({message:`Success`,...p})})
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+    .catch(e=>{res.status(404).json({message:'Something has gone wrong', ...e})})
 })
   
 router
@@ -23,7 +23,7 @@ router
       console.log("package",p)
       res.status(201).json({message:`Success`,...p})
     })
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+    .catch(e=>{res.status(404).json({message:'Something has gone wrong', ...e})})
 })
 router
   .put('/:id',(req,res)=>{
@@ -32,14 +32,14 @@ router
   
     return dbModel.editById(id,body)
     .then(p=>{res.status(200).json({message:`Success`,...p})})
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+    .catch(e=>{res.status(404).json({message:'Something has gone wrong', ...e})})
 })
 router
   .delete('/:id',(req,res)=>{
     const {id}=req.params
     return dbModel.remove(id)
     .then(p=>{res.status(201).json({message:`Success`,...p})})
-    .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
+    .catch(e=>{res.status(404).json({message:'Something has gone wrong', ...e})})
 })
 
 router.routes = [{

@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
             res.status(200).json({ message: `Success`, questions: [...questions] });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(404).json({ message: "Something has gone wrong", ...e });
         });
 });
 router.get("/:id", (req, res) => {
@@ -20,7 +20,7 @@ router.get("/:id", (req, res) => {
             res.status(200).json({ message: `Success`, ...questions });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(404).json({ message: "Something has gone wrong", ...e });
         });
 });
 
@@ -32,7 +32,7 @@ router.post("/", questionsScrubber, (req, res) => {
             res.status(201).json({ message: `Success`, ...questions });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(404).json({ message: "Something has gone wrong", ...e });
         });
 });
 router.put("/:id", (req, res) => {
@@ -45,7 +45,7 @@ router.put("/:id", (req, res) => {
             res.status(200).json({ message: `Success`, ...questions });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(404).json({ message: "Something has gone wrong", ...e });
         });
 });
 router.delete("/:id", (req, res) => {
@@ -57,7 +57,7 @@ router.delete("/:id", (req, res) => {
             res.status(201).json({ message: `Success`, ...questions });
         })
         .catch(e => {
-            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+            res.status(404).json({ message: "Something has gone wrong", ...e });
         });
 });
 
