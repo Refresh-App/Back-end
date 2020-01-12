@@ -9,7 +9,8 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/dog_wyubak.jpg",
     bio: "Where are the cookies?",
-    email: "testemail@apidevnow.com",
+    email: `testuser${count}@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 2
   },
   {
@@ -17,7 +18,8 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/party_w45wo9.jpg",
     bio: "Where's my car dude?",
-    email: "testemail0@apidevnow.com",
+    email: `testuser${count}@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 3
   },
   {
@@ -25,7 +27,8 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/skull_fyf6v7.jpg",
     bio: "Code or die",
-    email: "testemail1@apidevnow.com",
+    email: `testuser${count}@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 4
   },
   {
@@ -33,7 +36,8 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802930/jeebs_zmtsqs.jpg",
     bio: "What day is it?",
-    email: "testemail2@apidevnow.com",
+    email: `testuser${count}@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 5
   },
   {
@@ -41,7 +45,8 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578803665/naughty_vt26fs.jpg",
     bio: "-_-",
-    email: "testemail3@apidevnow.com",
+    email: `testuser${count}@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 6
   }
 ];
@@ -51,7 +56,8 @@ const createFakeUser = seedTeam.map(function(member) {
     avatar: member.avatar,
     bio: member.bio,
     email: member.email,
-    id: member.user_id
+    id: member.user_id,
+    password: member.password
   };
 });
 exports.seed = function(knex) {
