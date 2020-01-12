@@ -37,7 +37,7 @@ function add(obj,query) {
         console.log('Mission',missionPoints)
         console.log('Mission Goal',missionPoints.goal)
         console.log('Answer Value',a.answer)
-        const pointsAdded = missionPoints.point_value * (missionPoints.goal / a.answer)
+        const pointsAdded = missionPoints.point_value / (missionPoints.goal / a.answer)
         console.log("Points",pointsAdded)
     })
 
