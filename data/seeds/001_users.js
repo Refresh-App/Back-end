@@ -2,7 +2,7 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const HashFactor = 8;
 const URL = "apidevnow.com";
-let count = count++;
+
 
 const seedTeam = count = [
   {
