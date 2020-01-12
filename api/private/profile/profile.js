@@ -20,7 +20,7 @@ router.put("/", (req, res) => {
     return dbModel
         .editByUserId(req.user.user_id, body)
         .then(profile => {
-            res.status(200).json({ message: `Success`, ...profile });
+            res.status(200).json({ message: `Success`,user_profile:profile });
         })
         .catch(e => {
             res.status(200).json({ message: "Something has gone wrong", ...e,request:{...req.body} });
