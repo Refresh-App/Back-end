@@ -3,14 +3,14 @@ const bcrypt = require("bcrypt");
 const HashFactor = 8;
 const URL = "apidevnow.com";
 
-
-
 const seedTeam = [
   {
     display_name: "McFacey",
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578593341/spongebob_rainbow_meme_video_16x9.0_qwjtjl.jpg",
     bio: "Be frands yeeeeeet",
+    email: `testuser@${URL}`,
+    password: bcrypt.hashSync("roman", HashFactor),
     user_id: 1
   },
   {
@@ -74,8 +74,6 @@ exports.seed = function(knex) {
   return knex("users")
     .del()
     .then(function() {
-     
-
       // Inserts seed entries
       return knex("users").insert(createFakeUser);
     });
