@@ -2,7 +2,7 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const HashFactor = 8;
 const URL = "apidevnow.com";
-let count = 1;
+let count = 0;
 
 
 const seedTeam  = [
@@ -20,7 +20,7 @@ const seedTeam  = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/party_w45wo9.jpg",
     bio: "Where's my car dude?",
-    email: `testuser${count++}@${URL}`,
+    email: `testuser${count+1}@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 3
   },
@@ -29,7 +29,7 @@ const seedTeam  = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/skull_fyf6v7.jpg",
     bio: "Code or die",
-    email: `testuser${count++}@${URL}`,
+    email: `testuser${count+1}@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 4
   },
@@ -38,7 +38,7 @@ const seedTeam  = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802930/jeebs_zmtsqs.jpg",
     bio: "What day is it?",
-    email: `testuser${count++}@${URL}`,
+    email: `testuser${count+1}@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 5
   },
@@ -47,7 +47,7 @@ const seedTeam  = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578803665/naughty_vt26fs.jpg",
     bio: "-_-",
-    email: `testuser${count++}@${URL}`,
+    email: `testuser${count+1}@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 6
   }
