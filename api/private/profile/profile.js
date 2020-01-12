@@ -19,7 +19,7 @@ router.put("/", (req, res) => {
     const { body } = req;
     return dbModel
         .editByUserId(req.user.user_id, body)
-        .then(profile => {
+        .then(([profile]) => {
             res.status(200).json({ message: `Success`,user_profile:profile });
         })
         .catch(e => {
