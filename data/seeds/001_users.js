@@ -45,7 +45,7 @@ const createFakeUser = seedTeam.map(function(member) {
     display_name: member.display_name,
     avatar: member.avatar,
     bio: member.bio,
-    user_id: member.user_id
+    id: member.user_id
   };
 });
 console.log(createFakeUser)
