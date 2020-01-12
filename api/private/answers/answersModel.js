@@ -30,6 +30,17 @@ function findByDateRange(id, startDate, endDate) {
 
 function add(obj,query) {
     const user_id = Array.isArray(obj) ? obj[0].user_id : obj.user_id;
+    console.log(obj)
+    const answers = obj && Array.isArray(obj) ? obj :[...obj]
+    answers.map(async a=>{
+        const missionPoints = await db('missions').where("question",a.question_id).first()
+        console.log('Mission',missionPoints)
+        console.log('Mission Goal',missionPoints.goal)
+        console.log('Answer Value',a.answer)
+        const pointsAdded = missionPoints.point_value * (missionPoints.goal / a.answer)
+        console.log("Points",pointsAdded)
+    })
+
     return db(table)
         .insert(obj, "id")
         .then(res => {
