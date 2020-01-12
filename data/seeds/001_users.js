@@ -9,7 +9,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578593341/spongebob_rainbow_meme_video_16x9.0_qwjtjl.jpg",
     bio: "Be frands yeeeeeet",
-    email: `testuser@${URL}`,
+    email: `testuser0@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 1
   },
@@ -18,7 +18,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/dog_wyubak.jpg",
     bio: "Where are the cookies?",
-    email: `testuser0@${URL}`,
+    email: `testuser1@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 2
   },
@@ -27,7 +27,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/party_w45wo9.jpg",
     bio: "Where's my car dude?",
-    email: `testuser1@${URL}`,
+    email: `testuser2@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 3
   },
@@ -36,7 +36,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802931/skull_fyf6v7.jpg",
     bio: "Code or die",
-    email: `testuser2@${URL}`,
+    email: `testuser3@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 4
   },
@@ -45,7 +45,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578802930/jeebs_zmtsqs.jpg",
     bio: "What day is it?",
-    email: `testuser3@${URL}`,
+    email: `testuser4@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 5
   },
@@ -54,7 +54,7 @@ const seedTeam = [
     avatar:
       "https://res.cloudinary.com/thinkmode/image/upload/v1578803665/naughty_vt26fs.jpg",
     bio: "-_-",
-    email: `testuser4@${URL}`,
+    email: `testuser5@${URL}`,
     password: bcrypt.hashSync("roman", HashFactor),
     user_id: 6
   }
