@@ -16,10 +16,10 @@ async function findAll(id,query) {
 
     //Daily Missions filter within 24 hours, UTC, set to server time
     const now = new Date();
-    const today =  query.start || new Date(
+    const today =  query && query.start || new Date(
         Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
     );
-    const tomorrow = query.end || new Date(
+    const tomorrow = query && query.end || new Date(
         Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
     );
     
