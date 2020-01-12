@@ -28,12 +28,12 @@ function findByDateRange(id, startDate, endDate) {
         .where("a.user_id", id);
 }
 
-function add(obj) {
+function add(obj,query) {
     const user_id = Array.isArray(obj) ? obj[0].user_id : obj.user_id;
     return db(table)
         .insert(obj, "id")
         .then(res => {
-            return userMissionsModel.findAll(user_id);
+            return userMissionsModel.findAll(user_id,query);
         });
 }
 

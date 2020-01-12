@@ -47,9 +47,9 @@ router.get("/:id", (req, res) => {
 
 router.post("/", answerScrubber, (req, res) => {
     const { body } = req;
-    
+    const {query} = req; //Used for Timezoning
     return dbModel
-        .add(body)
+        .add(body,query)
         .then(answers => {
             res.status(201).json({ message: `Success`, ...answers });
         })
