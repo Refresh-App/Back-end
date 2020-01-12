@@ -3,14 +3,15 @@ const dbModel = require("./userMissionsModel");
 const userMissionsScrubber = require("./userMissionsScrubber");
 
 router.get("/", (req, res) => {
+    const {query} = req
     const id = req.user.user_id;
     return dbModel
-        .findAll(id)
+        .findAll(id,query)
         .then(userMissions => {
-            res.status(200).json({ message: `Success`, ...userMissions });
+            res.status(200).json({ message: `Success`, ...userMissions});
         })
         .catch(e => {
-            res.status(200).json({ message: "Something has gone wrong", ...e });
+            res.status(200).json({ message: "Something has gone wrong", ...e ,...req.query });
         });
 });
 router.get("/:id", (req, res) => {

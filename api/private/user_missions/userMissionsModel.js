@@ -10,19 +10,19 @@ module.exports = {
 };
 const table = "user_missions";
 //Finds all Missions by User id Segrigated by progress status.
-async function findAll(id) {
+async function findAll(id,query) {
     //Id of all returned missions
     const filterdMissions = [];
 
     //Daily Missions filter within 24 hours, UTC, set to server time
     const now = new Date();
-    const today = new Date(
+    const today =  query.start || new Date(
         Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
     );
-    const tomorrow = new Date(
+    const tomorrow = query.end || new Date(
         Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
     );
-
+    
     //Returns All missions in progress between Above Dates
     let missions_in_progress = await db("missions as m")
         .select(
