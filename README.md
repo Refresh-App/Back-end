@@ -16,7 +16,7 @@
 | GET |/missions/:id | GET to see the missions |
 | GET |/answers | GET to see the missions |
 
-d
+
 
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
